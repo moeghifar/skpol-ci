@@ -218,7 +218,9 @@ $config['csrf_exclude_uris'] = array(
 	'skp/action_update_ttd',
 	'skp/action_add_alurproses',
 	'skp/get_produk',
-	'skp/action_upload_skp_terbit'
+	'skp/action_upload_skp_terbit',
+	'pengiriman/action_add_pengiriman',
+	'pengiriman/action_edit_pengiriman'
 );
 
 /*

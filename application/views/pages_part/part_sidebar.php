@@ -51,6 +51,14 @@
                 </a>
             </li>
 
+            <!--PENGIRIMAN SKP-->
+            <li class="<?php if($this->uri->segment(1) == 'pengiriman' && $this->uri->segment(2) == 'view_pengiriman_list') echo "active";?>">
+                <a class="disabled" href="<?php echo base_url('pengiriman/view_pengiriman_list');?>">
+                    <span class="figure"><i class="ico-paper-plane"></i></span>
+                    <span class="text">Pengiriman SKP</span>
+                </a>
+            </li>
+
             <!--INPUT TINDAK LANJUT-->
             <li class="<?php if($this->uri->segment(1) == 'kunjungan' && $this->uri->segment(2) == 'tindak_lanjut') echo "active";?>">
                 <a href="<?php echo base_url('kunjungan/tindak_lanjut');?>">
@@ -174,13 +182,13 @@
 
 
             <!--SKP MENU-->
-            <li class="<?php if($this->uri->segment(1) == 'skp' && $this->uri->segment(2) != 'alurproses') echo "active open";?>">
+            <li class="<?php if(($this->uri->segment(1) == 'skp'||$this->uri->segment(1) == 'pengiriman') && $this->uri->segment(2) != 'alurproses') echo "active open";?>">
                 <a href="javascript:void(0);" data-target="#skp" data-toggle="submenu" data-parent=".topmenu">
                     <span class="figure"><i class="ico-briefcase2"></i></span>
                     <span class="text">SKP</span>
                     <span class="arrow"></span>
                 </a>
-                <ul id="skp" class="submenu collapse <?php if($this->uri->segment(1) == 'skp' && $this->uri->segment(2) != 'alurproses') echo "in";?>">
+                <ul id="skp" class="submenu collapse <?php if(($this->uri->segment(1) == 'skp'|| $this->uri->segment(1) == 'pengiriman') && $this->uri->segment(2) != 'alurproses') echo "in";?>">
                     <li class="submenu-header ellipsis">SKP</li>
                     <li class="<?php if ( $this->uri->segment(1) == 'skp' && $this->uri->segment(2) == 'skp_list'  ) echo "active";?>">
                         <a href="<?php echo base_url('skp/skp_list');?>">
@@ -205,6 +213,20 @@
                     <li class="<?php if ( $this->uri->segment(1) == 'skp' && $this->uri->segment(2) == 'tandatangan_list'  ) echo "active";?>">
                         <a href="<?php echo base_url('skp/tandatangan_list');?>">
                             <span class="text">Tanda Tangan SKP</span>
+                        </a>
+                    </li>
+                    <?php }?>
+                    <?php if($sessionJen=='kp'||$sessionJen=='admin'){?>
+                    <li class="<?php if ( $this->uri->segment(1) == 'pengiriman' && $this->uri->segment(2) == 'pengiriman_skp_terbit'  ) echo "active";?>">
+                        <a href="<?php echo base_url('pengiriman/pengiriman_skp_terbit');?>">
+                            <span class="text">Pengiriman SKP</span>
+                        </a>
+                    </li>
+                    <?php }?>
+                    <?php if($sessionJen=='dinas'||$sessionJen=='kp'||$sessionJen=='admin'){?>
+                    <li class="<?php if ( $this->uri->segment(1) == 'pengiriman' && $this->uri->segment(2) == 'view_pengiriman_list'  ) echo "active";?>">
+                        <a href="<?php echo base_url('pengiriman/view_pengiriman_list');?>">
+                            <span class="text">Informasi Pengiriman SKP</span>
                         </a>
                     </li>
                     <?php }?>
