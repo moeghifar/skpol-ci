@@ -44,7 +44,7 @@
 				</div>
 			<?php
 				}
-				var_dump($this->session->userdata());
+				// var_dump($this->session->userdata());
                 if(isset($content)){
                 $this->load->view($content);
                 }
