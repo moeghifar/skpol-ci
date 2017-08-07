@@ -30,9 +30,8 @@
 		                </div>
 		                <div class="form-group">
 		                    <select class="form-control input-md" name="omzet">
-								<option value="">Omzet Tahunan UPI</option>
 								<?php
-									$st = array('<2.5'=>'< 2.5 Milyar','>2.5'=>'> 2.5 Milyar'); foreach($st as $k => $v){
+									$st = array('<2.5'=>'< 2.5 Milyar','2.5 - 50'=>'2.5 Milyar - 50 Milyar','>2.5'=>'> 2.5 Milyar'); foreach($st as $k => $v){
 											if($upi[0]['omzet_upi'] == $k){
 												echo '<option selected value="'.$k.'">'.$v.'</option>';
 											}else{

@@ -81,7 +81,7 @@
                         <div class="row">
                             <div class="col-sm-12">
 								<small class="help-block text-danger">*Isi field di bawah jika UPI belum memenuhi persyaratan.</small>
-                                <textarea name="alasan" class="form-control" style="max-width:100%;min-width:100%;min-height:80px;"></textarea>
+                                <textarea name="alasan" class="form-control" style="max-width:100%;min-width:100%;min-height:80px;">Harap lengkapi data UPI anda agar dapat mengajukan perizinan SKP.</textarea>
                             </div>
                         </div>
                     </div>

@@ -14,6 +14,7 @@ class MY_Controller extends CI_Controller {
 		$this->session_prefix = $this->config->item('default_session_name');
 		// check session availability
 		$this->_session_engine();
+		// check rejected UPI
 		$cekr = $this->cek_rejected();
 		if(count($cekr) == 0){
 			$this->global_alert = '';
@@ -26,16 +27,6 @@ class MY_Controller extends CI_Controller {
 		$currentLevel = $this->session->userdata($this->session_prefix.'-userlevel');
 		$this->load->model('model_skp');
 		return $this->model_skp->_check_reject($this->session->userdata($this->session_prefix.'-userid'));
-	}
-
-	public function _session_restrict($sessLevel=null){
-		$sessLevel[] = 'admin';
-		$currentLevel = $this->session->userdata($this->session_prefix.'-userlevel');
-		if(is_array($sessLevel)){
-			if(in_array($currentLevel,$sessLevel)!=true){
-				redirect('error');
-			}
-		}
 	}
 
 	public function _session_engine(){
@@ -80,7 +71,7 @@ class MY_Controller extends CI_Controller {
 		</html>';
 		// Also, for getting full html you may use the following internal method:
 		//$body = $this->email->full_html($subject, $message);
-		
+
 		$result = $this->email
 		->from($conf['from'])
 		->to($conf['to'])
@@ -97,4 +88,13 @@ class MY_Controller extends CI_Controller {
 		$data['content'] = 'errors/content_error404';
 		$this->load->view('error',$data);//loading view
 	}
+
+	public function _session_restrict($level = array()){
+		$current_level = $this->session->userdata($this->session_prefix.'-userlevel');
+		if (in_array($current_level,$level)) {
+			return true;
+		}
+		redirect('404');
+	}
+
 }

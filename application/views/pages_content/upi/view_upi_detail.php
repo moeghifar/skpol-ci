@@ -50,9 +50,9 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-3">Kontak</label>
+                    <label class="control-label col-sm-3">Nomor Telepon UPI</label>
                     <div class="col-sm-9">
-                        <p class="control-label" style="text-align: left;"><?=$upi[0]['kontak_upi']?> / <?=$upi[0]['kontakperson_upi']?></p>
+                        <p class="control-label" style="text-align: left;"><?=$upi[0]['kontak_upi']?></p>
                     </div>
                 </div>
                 <div class="form-group">

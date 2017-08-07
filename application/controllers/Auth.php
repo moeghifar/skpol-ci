@@ -29,7 +29,7 @@ class Auth extends MY_Controller {
 
 	public function registrasi(){
 		$data['provinsi']	= $this->model_auth->_get_provinsi();
-		$data['content']	= 'pages_content/view_register';
+		$data['content']	= 'pages_content/view_register_v2';
 		$this->load->view('login',$data);
 	}
 
@@ -145,21 +145,21 @@ class Auth extends MY_Controller {
 					$data['upi'] = array(
 						'idtbl_upi'				=> '',
 						'nama_upi'				=> strtoupper($this->input->post('nama_upi')),
-						'pemilik_upi'			=> $this->input->post('nama_pemilik'),
-						'penanggungjawab_upi'	=> $this->input->post('nama_penanggungjawab'),
-						'alamat_upi'			=> $this->input->post('alamat_upi'),
-						'alamat_pabrik'			=> $alamat_pabrik,
-						'kodepos_upi'			=> $this->input->post('kode_pos'),
+						// 'pemilik_upi'			=> $this->input->post('nama_pemilik'),
+						// 'penanggungjawab_upi'	=> $this->input->post('nama_penanggungjawab'),
+						// 'alamat_upi'			=> $this->input->post('alamat_upi'),
+						// 'alamat_pabrik'			=> $alamat_pabrik,
+						// 'kodepos_upi'			=> $this->input->post('kode_pos'),
 						'entitas_upi'			=> $this->input->post('jenis_upi'),
 						'provinsi_upi'			=> $this->input->post('provinsi'),
-						'kabupaten_upi'			=> $this->input->post('kabupaten'),
-						'kecamatan_upi'			=> $this->input->post('kecamatan'),
-						'desa_upi'				=> $this->input->post('kelurahan'),
+						// 'kabupaten_upi'			=> $this->input->post('kabupaten'),
+						// 'kecamatan_upi'			=> $this->input->post('kecamatan'),
+						// 'desa_upi'				=> $this->input->post('kelurahan'),
 						'email_upi'				=> $this->input->post('email'),
-						'kontak_upi'			=> $this->input->post('kontak_upi'),
-						'kontakperson_upi'		=> $this->input->post('kontakperson_upi'),
-						'omzet_upi'				=> $this->input->post('omzet_tahunan'),
-						'tahunmulai_upi'		=> $this->input->post('tahun_mulai'),
+						// 'kontak_upi'			=> $this->input->post('kontak_upi'),
+						// 'kontakperson_upi'		=> $this->input->post('kontakperson_upi'),
+						// 'omzet_upi'				=> $this->input->post('omzet_tahunan'),
+						// 'tahunmulai_upi'		=> $this->input->post('tahun_mulai'),
 						'nosiup_upi'			=> $this->input->post('nosiup'),
 						'noiup_upi'				=> $this->input->post('noiup'),
 						'noakta_upi'			=> $this->input->post('noakta'),

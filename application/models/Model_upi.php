@@ -37,15 +37,15 @@ class Model_upi extends CI_Model {
 	function _get_upi_terdaftar($id = null, $idp = null){
 		if($id != null){
 			if ($idp != null) {
-				$q = $this->db->get_where('view_user_upi_provinsi',array('idtbl_upi'=>$id, 'kode_provinsi'=>$idp));
+				$q = $this->db->query("SELECT * FROM view_user_upi_provinsi where idtbl_upi='$id' AND kode_provinsi='$idp' AND idtbl_upi NOT IN (SELECT upi_id FROM tbl_rejected WHERE upi_id IS NOT NULL)");
 			}else{
-				$q = $this->db->get_where('view_user_upi_provinsi',array('idtbl_upi'=>$id));
+				$q = $this->db->query("SELECT * FROM view_user_upi_provinsi where idtbl_upi='$id' AND idtbl_upi NOT IN (SELECT upi_id FROM tbl_rejected WHERE upi_id IS NOT NULL)");
 			}
 		}else{
 			if ($idp != null) {
-				$q = $this->db->get_where('view_user_upi_provinsi',array('kode_provinsi'=>$idp));
+				$q = $this->db->query("SELECT * FROM view_user_upi_provinsi where kode_provinsi='$idp' AND idtbl_upi NOT IN (SELECT upi_id FROM tbl_rejected WHERE upi_id IS NOT NULL)");
 			}else{
-				$q = $this->db->get('view_user_upi_provinsi');
+				$q = $this->db->query("SELECT * FROM view_user_upi_provinsi where idtbl_upi NOT IN (SELECT upi_id FROM tbl_rejected WHERE upi_id IS NOT NULL)");
 			}
 		}
 		return $q->result_array();

@@ -506,6 +506,8 @@ class Skp extends MY_Controller {
 	}
 
 	public function alurproses(){
+		// strict session page
+        $this->_session_restrict(array('kp'));
 		$data['page_title'] = 'Daftar Alur Proses';
 		$data['content'] = 'pages_content/alurproses/view_alurproses_list';
 		$data['alur']	= $this->model_skp->_get_alur_proses();

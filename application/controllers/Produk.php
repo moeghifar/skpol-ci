@@ -10,6 +10,8 @@ class Produk extends MY_Controller {
 
 	public function view_produk_list()
 	{
+        // session restriction
+		$this->_session_restrict(array('kp','dinas'));
 		$data['page_title'] = 'Produk Terdaftar';
 		$data['produk']		= $this->model_produk->_get_produk("1");
 		$data['content'] 	= 'pages_content/produk/view_produk_list';
@@ -19,7 +21,6 @@ class Produk extends MY_Controller {
 	{
 		// session restriction
 		$this->_session_restrict(array('kp'));
-		// - - - - - - - - - //
 		$data['page_title'] = 'Pengajuan Produk Baru';
 		$data['produk']		= $this->model_produk->_get_produk("0");
 		$data['content'] = 'pages_content/produk/view_approval_produk';
@@ -27,6 +28,8 @@ class Produk extends MY_Controller {
 	}
 
 	public function action_add_product(){
+        // session restriction
+		$this->_session_restrict(array('kp','dinas'));
 		if( $this->input->post('submit') != NULL ){
 			$param = array(
 				'idtbl_produk'			=> '',
@@ -43,6 +46,8 @@ class Produk extends MY_Controller {
 	}
 
 	public function confirm_product($id){
+        // session restriction
+		$this->_session_restrict(array('kp'));
 		if($this->model_produk->_update_produk($id)){
 			$this->nyast->notif_create_notification('Produk Berhasil Ditambahkan','Konfirmasi Berhasil');
 			redirect(site_url('produk/view_approval_produk'));
@@ -51,6 +56,8 @@ class Produk extends MY_Controller {
 	}
 
 	public function delete_product($id){
+        // session restriction
+		$this->_session_restrict(array('kp'));
 		if($this->model_produk->_delete_produk($id)){
 			$this->nyast->notif_create_notification('Produk Tidak Ditambahkan','Produk Ditolak');
 			redirect(site_url('produk/view_approval_produk'));
@@ -58,6 +65,8 @@ class Produk extends MY_Controller {
 
 	}
 	public function delete_current_product($id){
+        // session restriction
+		$this->_session_restrict(array('kp'));
 		if($this->model_produk->_soft_delete_produk($id)){
 			$this->nyast->notif_create_notification('Data Produk Telah Dihapus','Hapus Berhasil');
 			redirect(site_url('produk/view_produk_list'));

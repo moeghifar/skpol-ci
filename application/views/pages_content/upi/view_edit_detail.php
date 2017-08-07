@@ -53,7 +53,7 @@
                         <div class="col-sm-7" style="padding-left: 0px;">
                             <select class="form-control" name="omzet">
                                 <?php
-                                    $st = array('<2.5'=>'< 2.5 Milyar','>2.5'=>'> 2.5 Milyar'); foreach($st as $k => $v){
+                                    $st = array('<2.5'=>'< 2.5 Milyar','2.5 - 50'=>'2.5 Milyar - 50 Milyar','> 50'=>'> 50 Milyar'); foreach($st as $k => $v){
                                             if($upi[0]['omzet_upi'] == $k){
                                                 echo '<option selected value="'.$k.'">'.$v.'</option>';
                                             }else{
@@ -66,7 +66,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-3">Kontak</label>
+                    <label class="control-label col-sm-3">Nomor Telepon UPI</label>
                     <div class="col-sm-9">
                         <div class="col-sm-7" style="padding-left: 0px;">
                             <input type="text" class="form-control" name="kontak" value="<?=$upi[0]['kontak_upi']?>">
@@ -74,7 +74,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-3">Kontak Person</label>
+                    <label class="control-label col-sm-3">Nama & Nomor Kontak Person</label>
                     <div class="col-sm-9">
                         <div class="col-sm-7" style="padding-left: 0px;">
                             <input type="text" class="form-control" name="kontakperson" value="<?=$upi[0]['kontakperson_upi']?>">
