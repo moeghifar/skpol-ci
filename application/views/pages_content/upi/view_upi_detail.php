@@ -8,9 +8,9 @@
             </div>
             <div class="panel-body">
                 <div class="form-group">
-                    <label class="control-label col-sm-3">Nama UPI</label>
+                    <label class="control-label col-sm-3">Entitas & Nama UPI</label>
                     <div class="col-sm-9">
-                        <p class="control-label" style="text-align: left;"><?=$upi[0]['nama_upi']?></p>
+                        <p class="control-label" style="text-align: left;">(<?=$upi[0]['entitas_upi']?>) <?=$upi[0]['nama_upi']?></p>
                     </div>
                 </div>
                 <div class="form-group">

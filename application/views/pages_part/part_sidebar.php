@@ -44,10 +44,18 @@
             </li>
 
             <!--PENGAJUAN SKP-->
-            <li class="<?php if($this->uri->segment(1) == 'skp' && $this->uri->segment(2) == 'create') echo "active";?>">
-                <a class="disabled" href="<?php echo base_url('skp/create');?>">
+            <li class="<?php if($this->uri->segment(1) == 'skp' && $this->uri->segment(2) == 'create' && $this->uri->segment(3) == 'v1') echo "active";?>">
+                <a class="disabled" href="<?php echo base_url('skp/create/v1');?>">
                     <span class="figure"><i class="ico-briefcase2"></i></span>
-                    <span class="text">Pengajuan SKP</span>
+                    <span class="text">Pengajuan SKP v1</span>
+                </a>
+            </li>
+
+            <!--PENGAJUAN SKP V2-->
+            <li class="<?php if($this->uri->segment(1) == 'skp' && $this->uri->segment(2) == 'create' && $this->uri->segment(3) == 'v2') echo "active";?>">
+                <a class="disabled" href="<?php echo base_url('skp/create/v2');?>">
+                    <span class="figure"><i class="ico-briefcase"></i></span>
+                    <span class="text">Pengajuan SKP v2</span>
                 </a>
             </li>
 
@@ -226,7 +234,7 @@
                     <?php if($sessionJen=='dinas'||$sessionJen=='kp'||$sessionJen=='admin'){?>
                     <li class="<?php if ( $this->uri->segment(1) == 'pengiriman' && $this->uri->segment(2) == 'view_pengiriman_list'  ) echo "active";?>">
                         <a href="<?php echo base_url('pengiriman/view_pengiriman_list');?>">
-                            <span class="text">Informasi Pengiriman SKP</span>
+                            <span class="text">Informasi Pengiriman</span>
                         </a>
                     </li>
                     <?php }?>

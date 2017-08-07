@@ -1,3 +1,75 @@
+<!-- START modal-sm -->
+<div id="modalCreateSKP" class="modal fade">
+	<div class="modal-dialog modal-md">
+		<div class="modal-content">
+			<div class="modal-header text-center">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h3 class="semibold modal-title text-primary">Tambah Produk</h3>
+			</div>
+			<div class="modal-body" style="max-height:450px;overflow:scroll;">
+				<div class="row" id="form-multi-produk">
+					<div class="col-sm-12" style="margin-bottom:10px;">
+						<select placeholder="Nama Produk" class="nama_produk" id="select2-placeholder">
+							<option value="">Pilih produk...</option>
+							<?php
+							$katprod = '';
+							foreach($getProduk as $k){
+								if($katprod != $k['kategori_produk']){
+									echo '<optgroup label="'.$k['kategori_produk'].'">';
+									$katprod = $k['kategori_produk'];
+								}
+								echo '<option value="'.$k['idtbl_produk'].'">'.$k['namaind_produk'].'</option>';
+							}
+							?>
+						</select>
+					</div>
+					<div class="col-sm-4" style="margin-bottom:10px;">
+						<select placeholder="Jenis Pengajuan" class="form-control jenis_pengajuan">
+							<option value="">Jenis pengajuan...</option>
+							<option value="1">Baru</option>
+							<option value="2">Perpanjang</option>
+						</select>
+					</div>
+					<div class="col-sm-8" style="margin-bottom:10px;">
+						<div class="input-group">
+							<input type="text" placeholder="Total Realisasi Produksi (angka)" class="form-control numb total_realisasi_produk" required>
+							<span class="input-group-addon">Kg/Tahun</span>
+						</div>
+					</div>
+					<div id="pemasaran">
+						<div class="col-sm-12">
+							<div style="font-size:8pt;color:red;margin-bottom:5px;">Jika data tidak tersedia gunakan tanda strip (-) </div>
+							<div class="row">
+								<div class="col-sm-10">
+									<div id="formKota"><input required placeholder="Tujuan Pemasaran Domestik (kota)" type="text" class="form-control mb10" name="kota[]"></div>
+								</div>
+								<div class="col-sm-2">
+									<a style="margin-bottom: 10px;" class="btn btn-primary" onclick="addKota()"><i class="ico ico-plus"></i></a>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-12">
+							<div style="font-size:8pt;color:red;margin-bottom:5px;">Jika data tidak tersedia gunakan tanda strip (-) </div>
+							<div class="row">
+								<div class="col-sm-10">
+									<div id="formNegara"><input required placeholder="Tujuan Pemasaran Mancanegara (negara)" type="text" class="form-control mb10" name="negara[]"></div>
+								</div>
+								<div class="col-sm-2">
+									<a class="btn btn-primary" onclick="addNegara()"><i class="ico ico-plus"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+				<button id="btn-tambah-produk" type="button" class="btn btn-primary">Tambah Produk</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<!--/ END modal-sm -->
 <div class="row form-scroll">
 	<div class="col-md-12">
 		<div class="alert alert-info fade in">
@@ -17,64 +89,27 @@
 
 		<!--Produk-->
 		<div class="panel-heading text-center">
-			<h3 class="panel-title">Produk <a class="btn btn-primary btn-xs pull-right" onclick="duplicateProduk()"><i class="ico ico-plus"></i></a></h3>
+			<h3 class="panel-title">Daftar Produk</h3>
 		</div>
 		<div class="panel-body">
-			<div id="container-produk">
-				<div class="form-group">
-					<div class="col-sm-12">
-						<div class="col-sm-4" style="padding-left: 0px;margin-bottom: 10px;">
-							<select placeholder="Jenis Pengajuan" name="jenis_pengajuan" class="form-control">
-								<option value="">Jenis pengajuan...</option>
-								<option value="1">Baru</option>
-								<option value="2">Perpanjang</option>
-							</select>
-						</div>
-						<div class="col-sm-4" style="padding-left: 0px;margin-bottom: 10px;">
-							<select placeholder="Nama Produk" name="nama_produk" id="select2-placeholder">
-								<option value="">Pilih produk...</option>
-								<?php
-								$katprod = '';
-								foreach($getProduk as $k){
-									if($katprod != $k['kategori_produk']){
-										echo '<optgroup label="'.$k['kategori_produk'].'">';
-										$katprod = $k['kategori_produk'];
-									}
-									echo '<option value="'.$k['idtbl_produk'].'">'.$k['namaind_produk'].'</option>';
-								}
-								?>
-							</select>
-						</div>
-						<div class="col-sm-4" style="padding-left: 0px;margin-bottom: 10px;">
-							<div class="input-group">
-								<input type="text" name="total_realisasi_produk" placeholder="Total Realisasi Produksi (angka)" class="form-control numb" required>
-								<span class="input-group-addon">Kg/Tahun</span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="form-group" id="pemasaran">
-					<div class="col-sm-6">
-						<div class="row">
-							<div class="col-sm-10">
-								<div id="formKota"><input required placeholder="Tujuan Pemasaran Domestik (kota)" type="text" class="form-control mb10" name="kota[]"></div>
-							</div>
-							<div class="col-sm-2">
-								<a style="margin-bottom: 10px;" class="btn btn-primary" onclick="addKota()"><i class="ico ico-plus"></i></a>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6">
-						<div class="row">
-							<div class="col-sm-10">
-								<div id="formNegara"><input required placeholder="Tujuan Pemasaran Mancanegara (negara)" type="text" class="form-control mb10" name="negara[]"></div>
-							</div>
-							<div class="col-sm-2">
-								<a class="btn btn-primary" onclick="addNegara()"><i class="ico ico-plus"></i></a>
-							</div>
-						</div>
-					</div>
-				</div>
+			<a class="btn btn-primary mb10" data-toggle="modal" data-target="#modalCreateSKP"><i class="ico ico-plus"></i> Tambah Produk </a>
+			<p><strong style="text-align:center;color:red;">Harap Masukan Minimal 1 Produk</strong></p>
+			<hr/>
+			<div class="table-responsive">
+				<table class="table table-striped table-responsive" style="font-size:80%;">
+					<thead>
+						<tr>
+							<th></th>
+							<th>Nama Produk</th>
+							<th>Jenis Pengajuan</th>
+							<th>Realisasi</th>
+							<th>Distribusi Lokal</th>
+							<th>Distribusi Mancanegara</th>
+						</tr>
+					</thead>
+					<tbody id="tbl-produk-container">
+					</tbody>
+				</table>
 			</div>
 		</div>
 
@@ -188,7 +223,7 @@
 					<div class="col-sm-9">
 						<div class="row">
 							<div class="col-sm-4">
-								<input type="text" required group-field="gedungbeku" class="form-control numb" placeholder="Jumlah Unit" name="ugudang_beku">
+								<input type="text" required group-field="gedungbeku" class="form-control numb mb10" placeholder="Jumlah Unit" name="ugudang_beku">
 							</div>
 							<div class="col-sm-5">
 								<div class="input-group">
@@ -204,7 +239,7 @@
 					<div class="col-sm-9">
 						<div class="row">
 							<div class="col-sm-4">
-								<input type="text" required group-field="gudangdingin" class="form-control numb" placeholder="Jumlah Unit" name="ugudang_dingin">
+								<input type="text" required group-field="gudangdingin" class="form-control numb mb10" placeholder="Jumlah Unit" name="ugudang_dingin">
 							</div>
 							<div class="col-sm-5">
 								<div class="input-group">
@@ -220,7 +255,7 @@
 					<div class="col-sm-9">
 						<div class="row">
 							<div class="col-sm-4">
-								<input type="text" required group-field="abf" class="form-control numb" placeholder="Jumlah Unit" name="uabf">
+								<input type="text" required group-field="abf" class="form-control numb mb10" placeholder="Jumlah Unit" name="uabf">
 							</div>
 							<div class="col-sm-5">
 								<div class="input-group">
@@ -236,7 +271,7 @@
 					<div class="col-sm-9">
 						<div class="row">
 							<div class="col-sm-4">
-								<input type="text" required group-field="cpf" class="form-control numb" placeholder="Jumlah Unit" name="ucpf">
+								<input type="text" required group-field="cpf" class="form-control numb mb10" placeholder="Jumlah Unit" name="ucpf">
 							</div>
 							<div class="col-sm-5">
 								<div class="input-group">
@@ -252,7 +287,7 @@
 					<div class="col-sm-9">
 						<div class="row">
 							<div class="col-sm-4">
-								<input type="text" required group-field="tf" class="form-control numb" placeholder="Jumlah Unit" name="utf">
+								<input type="text" required group-field="tf" class="form-control numb mb10" placeholder="Jumlah Unit" name="utf">
 							</div>
 							<div class="col-sm-5">
 								<div class="input-group">
@@ -268,7 +303,7 @@
 					<div class="col-sm-9">
 						<div class="row">
 							<div class="col-sm-4">
-								<input type="text" required group-field="bf" class="form-control numb" placeholder="Jumlah Unit" name="ubf">
+								<input type="text" required group-field="bf" class="form-control numb mb10" placeholder="Jumlah Unit" name="ubf">
 							</div>
 							<div class="col-sm-5">
 								<div class="input-group">
@@ -284,7 +319,7 @@
 					<div class="col-sm-9">
 						<div class="row">
 							<div class="col-sm-4">
-								<input type="text" class="form-control numb" required group-field="retor" placeholder="Jumlah Unit" name="uretor">
+								<input type="text" class="form-control numb mb10" required group-field="retor" placeholder="Jumlah Unit" name="uretor">
 							</div>
 							<div class="col-sm-5">
 								<div class="input-group">
@@ -300,7 +335,7 @@
 					<div class="col-sm-9">
 						<div class="row">
 							<div class="col-sm-4">
-								<input type="text" class="form-control numb" required group-field="seamer" placeholder="Jumlah Unit" name="useamer">
+								<input type="text" class="form-control numb mb10" required group-field="seamer" placeholder="Jumlah Unit" name="useamer">
 							</div>
 							<div class="col-sm-5">
 								<div class="input-group">
@@ -316,7 +351,7 @@
 					<div class="col-sm-9">
 						<div class="row">
 							<div class="col-sm-4">
-								<input type="text" class="form-control numb" required group-field="gudangkering" placeholder="Jumlah Unit" name="ugudang_kering">
+								<input type="text" class="form-control numb mb10" required group-field="gudangkering" placeholder="Jumlah Unit" name="ugudang_kering">
 							</div>
 							<div class="col-sm-5">
 								<div class="input-group">
@@ -332,7 +367,7 @@
 					<div class="col-sm-9">
 						<div class="row">
 							<div class="col-sm-4">
-								<input type="text" class="form-control numb" required group-field="bakcuci" placeholder="Jumlah Unit" name="ubak_cuci">
+								<input type="text" class="form-control numb mb10" required group-field="bakcuci" placeholder="Jumlah Unit" name="ubak_cuci">
 							</div>
 							<div class="col-sm-5">
 								<div class="input-group">
@@ -348,7 +383,7 @@
 					<div class="col-sm-9">
 						<div class="row">
 							<div class="col-sm-4">
-								<input type="text" class="form-control numb" required group-field="bakpenampungan" placeholder="Jumlah Unit" name="ubak_tampung">
+								<input type="text" class="form-control numb mb10" required group-field="bakpenampungan" placeholder="Jumlah Unit" name="ubak_tampung">
 							</div>
 							<div class="col-sm-5">
 								<div class="input-group">
@@ -363,15 +398,15 @@
 					<label class="control-label col-sm-3">Lainnya</label>
 					<div class="col-sm-9">
 						<div class="row">
-							<div class="col-sm-9" id="formLainnya" style="margin-bottom: 10px;">
+							<div class="col-sm-9" id="formLainnya">
 								<div class="row">
 									<div class="col-sm-4">
-										<input type="text" class="form-control mb10" name="lainnya_sarana[0]" placeholder="Nama Sarana">
+										<input type="text" class="form-control mb10 " name="lainnya_sarana[0]" placeholder="Nama Sarana">
 									</div>
 									<div class="col-sm-3">
 										<input type="text" class="form-control mb10 numb" name="lainnya_unit[0]" placeholder="Unit">
 									</div>
-									<div class="col-sm-5">
+									<div class="col-sm-5 mb10">
 										<div class="input-group">
 											<input type="text" class="form-control numb" placeholder="Kapasitas" name="lainnya_kg[0]">
 											<span class="input-group-addon">Kg</span>
@@ -396,25 +431,25 @@
 			<div class="form-group">
 				<label class="control-label col-sm-3">Tenaga Kerja Asing</label>
 				<div class="col-sm-9" style="padding-left: 0px">
-					<div class="col-sm-3">
+					<div class="col-sm-3 mb10">
 						<div class="input-group">
 							<input type="text" required class="form-control numb" placeholder="Administrasi" name="tka_administrasi_l">
 							<span class="input-group-addon">L</span>
 						</div>
 					</div>
-					<div class="col-sm-3">
+					<div class="col-sm-3 mb10">
 						<div class="input-group">
 							<input type="text" required class="form-control numb" placeholder="Administrasi" name="tka_administrasi_p">
 							<span class="input-group-addon">P</span>
 						</div>
 					</div>
-					<div class="col-sm-3">
+					<div class="col-sm-3 mb10">
 						<div class="input-group">
 							<input type="text" required class="form-control numb" placeholder="Pengolahan" name="tka_pengolahan_l">
 							<span class="input-group-addon">L</span>
 						</div>
 					</div>
-					<div class="col-sm-3">
+					<div class="col-sm-3 mb10">
 						<div class="input-group">
 							<input type="text" required class="form-control numb" placeholder="Pengolahan" name="tka_pengolahan_p">
 							<span class="input-group-addon">P</span>
@@ -425,25 +460,25 @@
 			<div class="form-group">
 				<label class="control-label col-sm-3">Tenaga Tetap</label>
 				<div class="col-sm-9" style="padding-left: 0px">
-					<div class="col-sm-3">
+					<div class="col-sm-3 mb10">
 						<div class="input-group">
 							<input type="text" required class="form-control numb" placeholder="Administrasi" name="tt_administrasi_l">
 							<span class="input-group-addon">L</span>
 						</div>
 					</div>
-					<div class="col-sm-3">
+					<div class="col-sm-3 mb10">
 						<div class="input-group">
 							<input type="text" required class="form-control numb" placeholder="Administrasi" name="tt_administrasi_p">
 							<span class="input-group-addon">P</span>
 						</div>
 					</div>
-					<div class="col-sm-3">
+					<div class="col-sm-3 mb10">
 						<div class="input-group">
 							<input type="text" required class="form-control numb" placeholder="Pengolahan" name="tt_pengolahan_l">
 							<span class="input-group-addon">L</span>
 						</div>
 					</div>
-					<div class="col-sm-3">
+					<div class="col-sm-3 mb10">
 						<div class="input-group">
 							<input type="text" required class="form-control numb" placeholder="Pengolahan" name="tt_pengolahan_p">
 							<span class="input-group-addon">P</span>
@@ -454,25 +489,25 @@
 			<div class="form-group">
 				<label class="control-label col-sm-3">Tenaga Harian</label>
 				<div class="col-sm-9" style="padding-left: 0px">
-					<div class="col-sm-3">
+					<div class="col-sm-3 mb10">
 						<div class="input-group">
 							<input type="text" required class="form-control numb" placeholder="Administrasi" name="th_administrasi_l">
 							<span class="input-group-addon">L</span>
 						</div>
 					</div>
-					<div class="col-sm-3">
+					<div class="col-sm-3 mb10">
 						<div class="input-group">
 							<input type="text" required class="form-control numb" placeholder="Administrasi" name="th_administrasi_p">
 							<span class="input-group-addon">P</span>
 						</div>
 					</div>
-					<div class="col-sm-3">
+					<div class="col-sm-3 mb10">
 						<div class="input-group">
 							<input type="text" required class="form-control numb" placeholder="Pengolahan" name="th_pengolahan_l">
 							<span class="input-group-addon">L</span>
 						</div>
 					</div>
-					<div class="col-sm-3">
+					<div class="col-sm-3 mb10">
 						<div class="input-group">
 							<input type="text" required class="form-control numb" placeholder="Pengolahan" name="th_pengolahan_p">
 							<span class="input-group-addon">P</span>
@@ -506,13 +541,13 @@
 			<div class="form-group">
 				<label class="control-label col-sm-3">UPI</label>
 				<div class="col-sm-9" style="padding-left: 0px">
-					<div class="col-sm-3">
+					<div class="col-sm-3 mb10">
 						<input type="text" class="form-control" placeholder="Nama" name="pj_upi_pabrik_nama" required>
 					</div>
-					<div class="col-sm-3">
+					<div class="col-sm-3 mb10">
 						<input type="text" class="form-control" placeholder="Pendidikan" name="pj_upi_pabrik_pendidikan" required>
 					</div>
-					<div class="col-sm-6">
+					<div class="col-sm-6 mb10">
 						<input type="text" class="form-control" placeholder="Sertifikat (SPI / HACCP / ISO / Sertifikat lain)" name="pj_upi_pabrik_sertifikat" required>
 					</div>
 				</div>
@@ -520,13 +555,13 @@
 			<div class="form-group">
 				<label class="control-label col-sm-3">Produksi</label>
 				<div class="col-sm-9" style="padding-left: 0px">
-					<div class="col-sm-3">
+					<div class="col-sm-3 mb10">
 						<input type="text" class="form-control" placeholder="Nama" name="pj_produksi_nama" required>
 					</div>
-					<div class="col-sm-3">
+					<div class="col-sm-3 mb10">
 						<input type="text" class="form-control" placeholder="Pendidikan" name="pj_produksi_pendidikan" required>
 					</div>
-					<div class="col-sm-6">
+					<div class="col-sm-6 mb10">
 						<input type="text" class="form-control" placeholder="Sertifikat (SPI / HACCP / ISO / Sertifikat lain)" name="pj_produksi_sertifikat" required>
 					</div>
 				</div>
@@ -534,13 +569,13 @@
 			<div class="form-group">
 				<label class="control-label col-sm-3">Mutu (QC)</label>
 				<div class="col-sm-9" style="padding-left: 0px">
-					<div class="col-sm-3">
+					<div class="col-sm-3 mb10">
 						<input type="text" class="form-control" placeholder="Nama" name="pj_mutu_nama" required>
 					</div>
-					<div class="col-sm-3">
+					<div class="col-sm-3 mb10">
 						<input type="text" class="form-control" placeholder="Pendidikan" name="pj_mutu_pendidikan" required>
 					</div>
-					<div class="col-sm-6">
+					<div class="col-sm-6 mb10">
 						<input type="text" class="form-control" placeholder="Sertifikat (SPI / HACCP / ISO / Sertifikat lain)" name="pj_mutu_sertifikat" required>
 					</div>
 				</div>
@@ -597,10 +632,10 @@
 			<div class="form-group">
 				<label class="control-label col-sm-3">Pembelian Dari</label>
 				<div class="col-sm-9">
-					<div class="col-sm-6" style="padding-left: 0px;">
+					<div class="col-sm-6 mb10" style="padding-left: 0px;">
 						<input type="text" class="form-control" name="pembelian_dari" placeholder="Pembelian Dari" required>
 					</div>
-					<div class="col-sm-6" style="padding-left: 0px;">
+					<div class="col-sm-6 mb10" style="padding-left: 0px;">
 						<div class="input-group">
 							<input type="text" class="form-control numb" name="pembelianjumlah" placeholder="Jumlah" required>
 							<span class="input-group-addon">Kg</span>
@@ -670,10 +705,10 @@
 			<div class="form-group">
 				<label class="control-label col-sm-3">Jenis Bahan Kemasan Produk Akhir</label>
 				<div class="col-sm-9" style="padding-left: 0px">
-					<div class="col-sm-3">
+					<div class="col-sm-3 mb10">
 						<input type="text" class="form-control" placeholder="Inner" name="jbk_inner" required>
 					</div>
-					<div class="col-sm-3">
+					<div class="col-sm-3 mb10">
 						<input type="text" class="form-control" placeholder="Master" name="jbk_master" required>
 					</div>
 				</div>

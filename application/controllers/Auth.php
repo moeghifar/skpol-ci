@@ -134,6 +134,11 @@ class Auth extends MY_Controller {
 						'login_status' 	=> '0',
 						'level'			=> 'upi'
 					);
+					if (strlen($this->input->post('alamat_pabrik') < 1)) {
+						$alamat_pabrik = '-';
+					} else {
+						$alamat_pabrik = $this->input->post('alamat_pabrik');
+					}
 					// input user
 					$this->model_auth->_insert_user($data['user']);
 					$iduser = $this->db->insert_id();
@@ -143,7 +148,7 @@ class Auth extends MY_Controller {
 						'pemilik_upi'			=> $this->input->post('nama_pemilik'),
 						'penanggungjawab_upi'	=> $this->input->post('nama_penanggungjawab'),
 						'alamat_upi'			=> $this->input->post('alamat_upi'),
-						'alamat_pabrik'			=> $this->input->post('alamat_pabrik'),
+						'alamat_pabrik'			=> $alamat_pabrik,
 						'kodepos_upi'			=> $this->input->post('kode_pos'),
 						'entitas_upi'			=> $this->input->post('jenis_upi'),
 						'provinsi_upi'			=> $this->input->post('provinsi'),
