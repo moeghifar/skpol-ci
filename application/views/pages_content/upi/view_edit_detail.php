@@ -9,7 +9,7 @@
                     <label class="control-label col-sm-3">Nama UPI</label>
                     <div class="col-sm-9">
                         <div class="col-sm-7" style="padding-left: 0px;">
-                            <input type="text" class="form-control" name="nama" value="<?=$upi[0]['nama_upi']?>" style="text-transform: uppercase;">
+                            <input type="text" class="form-control" name="nama" value="<?php echo (isset($upi[0]['nama_upi'])?$upi[0]['nama_upi']:""); ?>" style="text-transform: uppercase;">
                         </div>
                     </div>
                 </div>
@@ -52,6 +52,7 @@
                     <div class="col-sm-9">
                         <div class="col-sm-7" style="padding-left: 0px;">
                             <select class="form-control" name="omzet">
+                                <option>...pilih omzet tahunan...</option>
                                 <?php
                                     $st = array('<2.5'=>'< 2.5 Milyar','2.5 - 50'=>'2.5 Milyar - 50 Milyar','> 50'=>'> 50 Milyar'); foreach($st as $k => $v){
                                             if($upi[0]['omzet_upi'] == $k){
@@ -86,6 +87,7 @@
                     <div class="col-sm-9">
                         <div class="col-sm-7" style="padding-left: 0px;">
                             <select name="tahunmulai" class="form-control">
+                                <option>...pilih tahun berdiri...</option>
 								<?php
 								for($x=1950;$x<=date('Y');$x++){
 									if($x == $upi[0]['tahunmulai_upi']){
@@ -210,10 +212,19 @@
                     <label class="control-label col-sm-3">No. IUP</label>
                     <div class="col-sm-9">
                         <div class="col-sm-5" style="padding-left: 0px;">
-                            <input type="text" class="form-control" name="noiup" value="<?=$upi[0]['noiup_upi']?>">
+                            <input type="text" class="form-control mb10" name="noiup" value="<?=$upi[0]['noiup_upi']?>">
                         </div>
                         <div class="col-sm-2" style="padding-left: 0px;">
-                            <a target="_blank" class="btn btn-block btn-default" href="<?=base_url($upi[0]['fileiup_upi'])?>"><i class="ico ico-file"></i> File IUP</a>
+                            <?php
+                                if(isset($upi[0]['fileiup_upi']) && file_exists('.'.$upi[0]['fileiup_upi'])) {
+                                    $fileiup = '<i class="ico ico-check" style="color:green"></i>';
+                                    $urliup = base_url($upi[0]['fileiup_upi']);
+                                } else {
+                                    $fileiup = '<i class="ico ico-remove" style="color:red"></i>';
+                                    $urliup = '#';
+                                }
+                            ?>
+                            <a  class="btn btn-block btn-default mb10" href="<?=$urliup?>"><?php echo $fileiup; ?> File IUP</a>
 							<input type="hidden" name="old_iup_path" value="<?=$upi[0]['fileiup_upi']?>">
 						</div>
 						<div class="col-sm-5">
@@ -232,10 +243,19 @@
                     <label class="control-label col-sm-3">No. SIUP</label>
                     <div class="col-sm-9">
                         <div class="col-sm-5" style="padding-left: 0px;">
-                            <input type="text" class="form-control" name="nosiup" value="<?=$upi[0]['nosiup_upi']?>">
+                            <input type="text" class="form-control mb10" name="nosiup" value="<?=$upi[0]['nosiup_upi']?>">
                         </div>
 						<div class="col-sm-2" style="padding-left: 0px;">
-                            <a target="_blank" class="btn btn-block btn-default" href="<?=base_url($upi[0]['filesiup_upi'])?>"><i class="ico ico-file"></i> File SIUP</a>
+                            <?php
+                                if($upi[0]['filesiup_upi'] != "" && file_exists('.'.$upi[0]['filesiup_upi'])) {
+                                    $filesiup = '<i class="ico ico-check" style="color:green"></i>';
+                                    $urlsiup = base_url($upi[0]['filesiup_upi']);
+                                } else {
+                                    $filesiup = '<i class="ico ico-remove" style="color:red"></i>';
+                                    $urlsiup = '#';
+                                }
+                            ?>
+                            <a  class="btn btn-block btn-default mb10" href="<?=$urlsiup?>"><?php echo $filesiup; ?> File SIUP</a>
 							<input type="hidden" name="old_siup_path" value="<?=$upi[0]['filesiup_upi']?>">
 						</div>
 						<div class="col-sm-5">
@@ -254,10 +274,19 @@
                     <label class="control-label col-sm-3">No. Akta</label>
                     <div class="col-sm-9">
                         <div class="col-sm-5" style="padding-left: 0px;">
-                            <input type="text" class="form-control" name="noakta" value="<?=$upi[0]['noakta_upi']?>">
+                            <input type="text" class="form-control mb10" name="noakta" value="<?=$upi[0]['noakta_upi']?>">
                         </div>
 						<div class="col-sm-2" style="padding-left: 0px;">
-                            <a target="_blank" class="btn btn-block btn-default" href="<?=base_url($upi[0]['fileakta_upi'])?>"><i class="ico ico-file"></i> File Akta</a>
+                            <?php
+                                if($upi[0]['fileakta_upi'] != "" && file_exists('.'.$upi[0]['fileakta_upi'])) {
+                                    $fileakta = '<i class="ico ico-check" style="color:green"></i>';
+                                    $urlakta = base_url($upi[0]['fileakta_upi']);
+                                } else {
+                                    $fileakta = '<i class="ico ico-remove" style="color:red"></i>';
+                                    $urlakta = '#';
+                                }
+                            ?>
+                            <a  class="btn btn-block btn-default mb10" href="<?=$urlakta?>"><?php echo $fileakta; ?> File Akta</a>
 							<input type="hidden" name="old_akta_path" value="<?=$upi[0]['fileakta_upi']?>">
 						</div>
 						<div class="col-sm-5">

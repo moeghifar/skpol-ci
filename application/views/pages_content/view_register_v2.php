@@ -8,7 +8,7 @@
 						<input name="username" type="text" class="form-control input-md" placeholder="Username" id="username" required>
 					</div>
 					<div class="form-group">
-						<input tooltip="Email harus unik dan aktif untuk menerima notifikasi" name="email" type="email" class="form-control input-md" placeholder="Email" required>
+						<input data-toggle="popover" data-placement="top" data-trigger="focus" title="Email harus unik dan aktif untuk menerima notifikasi" name="email" type="email" class="form-control input-md" placeholder="Email" required>
 					</div>
 					<div class="form-group">
 						<input name="password" type="password" class="form-control input-md" placeholder="Password" required>
@@ -26,6 +26,8 @@
 							<option value="Lainnya" >Lainnya</option>
 						</select>
 					</div>
+				</div>
+				<div class="col-lg-6">
 					<div class="form-group">
 						<select class="form-control input-md" name="provinsi">
 							<option value="">...pilih provinsi...</option>
@@ -36,12 +38,10 @@
 							?>
 						</select>
 					</div>
-				</div>
-				<div class="col-lg-6">
-					<div class="form-group">
+					<div class="form-group siup-form-group">
 						<input name="nosiup" type="text" class="form-control input-md" placeholder="No SIUP" required>
 					</div>
-					<div class="form-group">
+					<div class="form-group siup-form-group">
 						<div class="row">
 							<div class="col-sm-12">
 								<div class="input-group">
@@ -52,14 +52,13 @@
 										</div>
 									</span>
 								</div>
-
 							</div>
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group iup-form-group">
 						<input name="noiup" type="text" class="form-control input-md" placeholder="No IUP" required>
 					</div>
-					<div class="form-group">
+					<div class="form-group iup-form-group">
 						<div class="row">
 							<div class="col-sm-12">
 								<div class="input-group">
@@ -74,7 +73,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="form-group">
+					<!-- <div class="form-group">
 						<input name="noakta" type="text" class="form-control input-md" placeholder="No Akta Notaris" required>
 					</div>
 					<div class="form-group">
@@ -91,7 +90,7 @@
 
 							</div>
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 			<div class="row">

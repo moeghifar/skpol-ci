@@ -5,35 +5,37 @@
                 <h3 class="panel-title">Daftar UPI</h3>
             </div>
             <div class="panel-body">
-                <table class="table table-striped table-bordered" id="table-list-unsortable">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Nama Upi</th>
-                            <th>Provinsi</th>
-                            <th>Pendaftaran</th>
-                            <th width="30%">Alasan</th>
-                            <th width="20%">Perbaikan</th>
-                            <th width="5%"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php $x = 1; foreach($upi as $k){ ?>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered" id="table-list-unsortable">
+                        <thead>
                             <tr>
-                                <td><?=$x?></td>
-                                <td><?=strtoupper($k['nama_upi'])?></td>
-                                <td><?=$k['nama_provinsi']?></td>
-                                <td><?=$this->nyast->date_indo_format($k['registration_date'])?></td>
-								<td><?=$k['alasan']?></td>
-                                <td><?=$k['revisi']?></td>
-                                <td>
-									<button class="btn btn-sm btn-success mb5" data-idupi="<?=$k['idtbl_upi']?>" data-toggle="modal" data-target="#modalParam"><i class="ico ico-checkmark4"></i></button>
-                                    <a href="<?php echo base_url('upi/view_detail/'.$k['idtbl_upi']);?>" class="btn btn-sm btn-info mb5"><i class="ico ico-search"></i></a>
-                                </td>
+                                <th>#</th>
+                                <th>Nama Upi</th>
+                                <th>Provinsi</th>
+                                <th>Pendaftaran</th>
+                                <th width="30%">Alasan</th>
+                                <th width="20%">Perbaikan</th>
+                                <th width="5%"></th>
                             </tr>
-                        <?php $x++; } ?>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <?php $x = 1; foreach($upi as $k){ ?>
+                                <tr>
+                                    <td><?=$x?></td>
+                                    <td><?=strtoupper($k['nama_upi'])?></td>
+                                    <td><?=$k['nama_provinsi']?></td>
+                                    <td><?=$this->nyast->date_indo_format($k['registration_date'])?></td>
+    								<td><?=$k['alasan']?></td>
+                                    <td><?php echo ( isset($k['revisi']) ? $k['revisi'] : '<span style="color:red">belum ada</span>' ); ?></td>
+                                    <td>
+    									<button class="btn btn-sm btn-success mb5" data-idupi="<?=$k['idtbl_upi']?>" data-toggle="modal" data-target="#modalParam"><i class="ico ico-checkmark4"></i></button>
+                                        <a href="<?php echo base_url('upi/view_detail_revisi/'.$k['idtbl_upi']);?>" class="btn btn-sm btn-info mb5"><i class="ico ico-search"></i></a>
+                                    </td>
+                                </tr>
+                            <?php $x++; } ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

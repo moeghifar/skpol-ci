@@ -108,12 +108,17 @@ class Auth extends MY_Controller {
 		// $config['max_size']             = 25000;
 		$this->load->library('upload', $config);
 		if( $this->input->post('submit') != NULL ){
-			if($this->check_file('file_akta') && $this->check_file('file_siup') && $this->check_file('file_iup')){
-				$fileUpload = array(
-					'file_akta' => str_replace(array('/','.'),'_',$this->input->post('nama_upi')).'_'.str_replace(array('/','.',','),'',$this->input->post('noakta')),
-					'file_siup'	=> str_replace(array('/','.'),'_',$this->input->post('nama_upi')).'_'.str_replace(array('/','.',','),'',$this->input->post('nosiup')),
-					'file_iup'	=> str_replace(array('/','.'),'_',$this->input->post('nama_upi')).'_'.str_replace(array('/','.',','),'',$this->input->post('noiup'))
-				);
+			if($this->check_file('file_siup') || $this->check_file('file_iup')){
+				$siupFileExist = false;
+				$iupFileExist = false;
+				if($this->check_file('file_siup')){
+					$fileUpload['file_siup'] = str_replace(array('/','.'),'_',$this->input->post('nama_upi')).'_'.str_replace(array('/','.',','),'',$this->input->post('nosiup'));
+					$siupFileExist = true;
+				}
+				if($this->check_file('file_iup')){
+					$fileUpload['file_iup']	= str_replace(array('/','.'),'_',$this->input->post('nama_upi')).'_'.str_replace(array('/','.',','),'',$this->input->post('noiup'));
+					$iupFileExist = true;
+				}
 				$fileData = array();
 				$countError = array();
 				foreach($fileUpload as $i => $v){
@@ -142,6 +147,14 @@ class Auth extends MY_Controller {
 					// input user
 					$this->model_auth->_insert_user($data['user']);
 					$iduser = $this->db->insert_id();
+					$fieldSiup = '';
+					$fieldIup = '';
+					if($siupFileExist) {
+						$fieldSiup = '/file/upi/file_siup/'.$fileData['file_siup']['file_name'];
+					}
+					if($iupFileExist) {
+						$fieldIup = '/file/upi/file_iup/'.$fileData['file_iup']['file_name'];
+					}
 					$data['upi'] = array(
 						'idtbl_upi'				=> '',
 						'nama_upi'				=> strtoupper($this->input->post('nama_upi')),
@@ -163,9 +176,9 @@ class Auth extends MY_Controller {
 						'nosiup_upi'			=> $this->input->post('nosiup'),
 						'noiup_upi'				=> $this->input->post('noiup'),
 						'noakta_upi'			=> $this->input->post('noakta'),
-						'filesiup_upi'			=> '/file/upi/file_siup/'.$fileData['file_siup']['file_name'],
-						'fileiup_upi'			=> '/file/upi/file_iup/'.$fileData['file_iup']['file_name'],
-						'fileakta_upi'			=> '/file/upi/file_akta/'.$fileData['file_akta']['file_name'],
+						'filesiup_upi'			=> $fieldSiup,
+						'fileiup_upi'			=> $fieldIup,
+						// 'fileakta_upi'			=> '/file/upi/file_akta/'.$fileData['file_akta']['file_name'],
 						'nonpwp_upi'			=> $this->input->post('nonpwp'),
 						'registration_status'	=> '1',
 						'registration_date'		=> date('Y-m-d'),

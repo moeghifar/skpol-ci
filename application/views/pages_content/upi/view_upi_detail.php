@@ -10,13 +10,13 @@
                 <div class="form-group">
                     <label class="control-label col-sm-3">Entitas & Nama UPI</label>
                     <div class="col-sm-9">
-                        <p class="control-label" style="text-align: left;">(<?=$upi[0]['entitas_upi']?>) <?=$upi[0]['nama_upi']?></p>
+                        <p class="control-label" style="text-align: left;">(<?php if(isset($upi[0]['entitas_upi'])){echo $upi[0]['entitas_upi'];} ?>) <?php if(isset($upi[0]['nama_upi'])){echo $upi[0]['nama_upi'];} ?></p>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-3">Pemilik Upi</label>
                     <div class="col-sm-9">
-                        <p class="control-label" style="text-align: left;"><?=$upi[0]['pemilik_upi']?></p>
+                        <p class="control-label" style="text-align: left;"><?php echo (isset($upi[0]['pemilik_upi'])?$upi[0]['pemilik_upi']:""); ?></p>
                     </div>
                 </div>
                 <div class="form-group">
@@ -100,7 +100,7 @@
             </div>
 
             <div class="panel-footer">
-                <a href="<?php echo base_url('upi/view_list');?>" class="btn btn-success">Kembali</a>
+                <a href="<?php echo $prev_page; ?>" class="btn btn-success">Kembali</a>
             </div>
         </form>
         <!--/ Form horizontal layout striped -->

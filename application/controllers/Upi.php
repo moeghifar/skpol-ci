@@ -11,7 +11,7 @@ class Upi extends MY_Controller {
 
 	public function filing_list(){
         // strict session page
-        $this->_session_auth(array('kp'));
+        $this->_session_restrict(array('kp'));
     	$data['page_title'] = 'Daftar Pengajuan UPI Baru';
     	if($this->level=='dinas'){
     		$data['upi']		= $this->model_upi->_get_upi_baru(null,$this->session->userdata($this->session_prefix.'-userkodeprovinsi'));
@@ -123,10 +123,17 @@ class Upi extends MY_Controller {
 	{
 		$data['page_title'] = 'Edit Detail UPI';
 		if ($id!=null) {
+            if($this->level == 'upi') {
+                redirect(site_url('upi/edit_detail'));
+            }
 			$data['upi']	= $this->model_upi->_get_upi_terdaftar($id);
 		}else{
 			if($this->level == 'upi'){
-				$data['upi']	= $this->model_upi->_get_upi_terdaftar($this->session->userdata($this->session_prefix.'-upiid'));
+                if($this->global_alert != ""){
+                    $data['upi']	= $this->model_upi->_get_upi_revisi($this->session->userdata($this->session_prefix.'-upiid'));
+                } else {
+                    $data['upi']	= $this->model_upi->_get_upi_terdaftar($this->session->userdata($this->session_prefix.'-upiid'));
+                }
 			}else{
 				$this->show404();
 			}
@@ -147,6 +154,19 @@ class Upi extends MY_Controller {
         $this->load->view('index',$data);
 	}
 
+    public function view_detail_revisi($id)
+	{
+		$data['page_title'] = 'Detail UPI Revisi';
+        if($this->level=='dinas'){
+    		$data['upi']		= $this->model_upi->_get_upi_revisi(null,$this->session->userdata($this->session_prefix.'-userkodeprovinsi'));
+    	}else{
+    		$data['upi']		= $this->model_upi->_get_upi_revisi();
+    	}
+		$data['content'] = 'pages_content/upi/view_upi_detail';
+        $data['prev_page'] = site_url('upi/view_upi_revisi');
+        $this->load->view('index',$data);
+	}
+
 	public function view_list()
 	{
 		$data['page_title'] = 'List UPI Terdaftar';
@@ -164,6 +184,7 @@ class Upi extends MY_Controller {
 		$data['page_title'] = 'Detail UPI';
 		$data['upi']		= $this->model_upi->_get_upi_terdaftar($id);
 		$data['content'] = 'pages_content/upi/view_upi_detail';
+        $data['prev_page'] = site_url('upi/view_list');
         $this->load->view('index',$data);
 	}
 

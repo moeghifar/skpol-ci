@@ -5,36 +5,38 @@
                 <h3 class="panel-title">Daftar Pendaftaran UPI</h3>
             </div>
 			<div class="panel-body">
-                <table class="table table-striped table-bordered" id="table-list-unsortable">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Nama Upi</th>
-                            <th>Provinsi</th>
-                            <th>Kabupaten / Kota</th>
-                            <th>Pemilik</th>
-                            <th>Pendaftaran</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php $x = 1; foreach($upi as $k){ ?>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered" id="table-list-unsortable">
+                        <thead>
                             <tr>
-                                <td><?=$x?></td>
-                                <td><?=strtoupper($k['nama_upi'])?></td>
-                                <td><?=$k['nama_provinsi']?></td>
-                                <td><?=$k['kabupaten_upi']?></td>
-                                <td><?=$k['pemilik_upi']?></td>
-                                <td><?=$this->nyast->date_indo_format($k['registration_date'])?></td>
-                                <td>
-                                <a class="btn btn-sm btn-primary" href="<?php echo base_url('upi/filing_detail/'.$k['idtbl_upi']);?>"><i class="ico ico-eye-open"></i></a>
-                                <button class="btn btn-sm btn-success" data-idupi="<?=$k['idtbl_upi']?>" data-toggle="modal" data-target="#modalParam"><i class="ico ico-checkmark4"></i></button>
-                                <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-url="<?=site_url('upi/action_delete_upi/'.$k['idtbl_upi']);?>"><i class="ico ico-trash"></i></a>
-                            </td>
-                        </tr>
-                        <?php $x++; } ?>
-                    </tbody>
-                </table>
+                                <th>#</th>
+                                <th>Nama Upi</th>
+                                <th>Provinsi</th>
+                                <th>Kabupaten / Kota</th>
+                                <th>Pemilik</th>
+                                <th>Pendaftaran</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php $x = 1; foreach($upi as $k){ ?>
+                                <tr>
+                                    <td><?=$x?></td>
+                                    <td><?=strtoupper($k['nama_upi'])?></td>
+                                    <td><?=$k['nama_provinsi']?></td>
+                                    <td><?=$k['kabupaten_upi']?></td>
+                                    <td><?=$k['pemilik_upi']?></td>
+                                    <td><?=$this->nyast->date_indo_format($k['registration_date'])?></td>
+                                    <td>
+                                    <a class="btn btn-sm btn-primary mb10" href="<?php echo base_url('upi/filing_detail/'.$k['idtbl_upi']);?>"><i class="ico ico-eye-open"></i></a>
+                                    <button class="btn btn-sm btn-success mb10" data-idupi="<?=$k['idtbl_upi']?>" data-toggle="modal" data-target="#modalParam"><i class="ico ico-checkmark4"></i></button>
+                                    <a class="btn btn-sm btn-danger mb10" data-toggle="modal" data-target="#deleteModal" data-url="<?=site_url('upi/action_delete_upi/'.$k['idtbl_upi']);?>"><i class="ico ico-trash"></i></a>
+                                </td>
+                            </tr>
+                            <?php $x++; } ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
