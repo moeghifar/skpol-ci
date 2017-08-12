@@ -80,9 +80,10 @@ $db['default'] = array(
 	// 'username' => 'user_dbskponline',
 	// 'password' => 'p4s5w0Rd_dbskponline',
 	// 'database' => 'db_skp_online',
+	/* ALPHA */
 	'username' => 'root',
-	'password' => 'root',
-	'database' => 'db_skp_online_alpha',
+	'password' => 'PdsKkp2016',
+	'database' => 'db_skp_online_alpha_v2',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

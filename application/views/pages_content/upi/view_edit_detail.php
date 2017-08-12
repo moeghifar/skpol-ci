@@ -9,7 +9,7 @@
                     <label class="control-label col-sm-3">Nama UPI</label>
                     <div class="col-sm-9">
                         <div class="col-sm-7" style="padding-left: 0px;">
-                            <input type="text" class="form-control" name="nama" value="<?=$upi[0]['nama_upi']?>" style="text-transform: uppercase;">
+                            <input type="text" class="form-control" name="nama" value="<?php if (isset($upi[0]['nama_upi'])){echo $upi[0]['nama_upi'];}?>" style="text-transform: uppercase;">
                         </div>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                     <label class="control-label col-sm-3">Nama Pemilik</label>
                     <div class="col-sm-9">
                         <div class="col-sm-7" style="padding-left: 0px;">
-                            <input type="text" class="form-control" name="pemilik" value="<?=$upi[0]['pemilik_upi']?>">
+                            <input type="text" class="form-control" name="pemilik" value="<?php if(isset($upi[0]['pemilik_upi'])){echo $upi[0]['pemilik_upi'];}?>">
                         </div>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                     <label class="control-label col-sm-3">Nama Penanggung Jawab</label>
                     <div class="col-sm-9">
                         <div class="col-sm-7" style="padding-left: 0px;">
-                            <input type="text" class="form-control" name="penanggungjawab" value="<?=$upi[0]['penanggungjawab_upi']?>">
+                            <input type="text" class="form-control" name="penanggungjawab" value="<?php if(isset($upi[0]['penanggungjawab_upi'])){echo $upi[0]['penanggungjawab_upi'];}?>">
                         </div>
                     </div>
                 </div>
