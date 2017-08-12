@@ -11,7 +11,7 @@ class Upi extends MY_Controller {
 
 	public function filing_list(){
         // strict session page
-        $this->_session_auth(array('kp'));
+        //$this->_session_auth(array('kp'));
     	$data['page_title'] = 'Daftar Pengajuan UPI Baru';
     	if($this->level=='dinas'){
     		$data['upi']		= $this->model_upi->_get_upi_baru(null,$this->session->userdata($this->session_prefix.'-userkodeprovinsi'));
