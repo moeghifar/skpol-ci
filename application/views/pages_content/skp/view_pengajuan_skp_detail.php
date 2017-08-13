@@ -77,81 +77,61 @@
                     <label class="control-label col-sm-3">Bahan Baku</label>
                     <div class="col-sm-9">
                         <p class="control-label" style="text-align: left;">
-                        Hasil Tangkapan :
-                        <?php foreach($bahanbaku as $bb){
-                            if ($bb['kategori_bahanbaku']=='tangkapan') {
-                                if ($bb['asal_bahanbaku']!=null) {
-                                    echo ucfirst($bb['asal_bahanbaku']);
-                                }else{
-                                    echo 'Asal wilayah tidak diketahui';
+                            Hasil Tangkapan : <br/>
+                            <?php foreach($bahanbaku as $bb){
+                                if ($bb['kategori_bahanbaku']=='tangkapan') {
+                                    if ($bb['asal_bahanbaku']!="-") {
+                                        echo ucfirst($bb['asal_bahanbaku']).', ';
+                                    }else{
+                                        echo 'tidak ada';
+                                    }
+                                    if ($bb['jenis_bahanbaku']!="-") {
+                                        echo ucfirst($bb['jenis_bahanbaku']).', ';
+                                    }
+                                    if ($bb['bentuk_bahanbaku']!="-") {
+                                        echo ucfirst($bb['bentuk_bahanbaku']);
+                                    }
+                                    echo '<br/>';
                                 }
-                                echo ' - ';
-                                if ($bb['jenis_bahanbaku']!=null) {
-                                    echo ucfirst($bb['jenis_bahanbaku']);
-                                }else{
-                                    echo 'Jenis tidak diketahui';
-                                }
-                                echo ' - ';
-                                if ($bb['bentuk_bahanbaku']!=null) {
-                                    echo ucfirst($bb['bentuk_bahanbaku']);
-                                }else{
-                                    echo 'Bentuk tidak diketahui';
-                                }
-                                echo '; ';
                             }
-                        }
-                        ?>
-                        <br>
-                        Hasil Budidaya :
-                        <?php foreach($bahanbaku as $bb){
-                            if ($bb['kategori_bahanbaku']=='budidaya') {
-                                if ($bb['asal_bahanbaku']!=null) {
-                                    echo ucfirst($bb['asal_bahanbaku']);
-                                }else{
-                                    echo 'Asal wilayah tidak diketahui';
+                            ?>
+                            <br/>Hasil Budidaya : <br/>
+                            <?php foreach($bahanbaku as $bb){
+                                if ($bb['kategori_bahanbaku']=='budidaya') {
+                                    if ($bb['asal_bahanbaku']!="-") {
+                                        echo ucfirst($bb['asal_bahanbaku']).', ';
+                                    }else{
+                                        echo 'tidak ada';
+                                    }
+                                    if ($bb['jenis_bahanbaku']!="-") {
+                                        echo ucfirst($bb['jenis_bahanbaku']).', ';
+                                    }
+                                    if ($bb['bentuk_bahanbaku']!="-") {
+                                        echo ucfirst($bb['bentuk_bahanbaku']);
+                                    }
+                                    echo '<br/>';
                                 }
-                                echo ' - ';
-                                if ($bb['jenis_bahanbaku']!=null) {
-                                    echo ucfirst($bb['jenis_bahanbaku']);
-                                }else{
-                                    echo 'Jenis tidak diketahui';
-                                }
-                                echo ' - ';
-                                if ($bb['bentuk_bahanbaku']!=null) {
-                                    echo ucfirst($bb['bentuk_bahanbaku']);
-                                }else{
-                                    echo 'Bentuk tidak diketahui';
-                                }
-                                echo '; ';
                             }
-                        }
-                        ?>
-                        <br>
-                        Hasil Import :
-                        <?php foreach($bahanbaku as $bb){
-                            if ($bb['kategori_bahanbaku']=='import') {
-                                if ($bb['asal_bahanbaku']!=null) {
-                                    echo ucfirst($bb['asal_bahanbaku']);
-                                }else{
-                                    echo 'Asal wilayah tidak diketahui';
+                            ?>
+                            <br/>Hasil Import : <br/>
+                            <?php foreach($bahanbaku as $bb){
+                                if ($bb['kategori_bahanbaku']=='import') {
+                                    if ($bb['asal_bahanbaku']!="-") {
+                                        echo ucfirst($bb['asal_bahanbaku']).', ';
+                                    }else{
+                                        echo 'tidak ada';
+                                    }
+                                    if ($bb['jenis_bahanbaku']!="-") {
+                                        echo ucfirst($bb['jenis_bahanbaku']).', ';
+                                    }
+                                    if ($bb['bentuk_bahanbaku']!="-") {
+                                        echo ucfirst($bb['bentuk_bahanbaku']);
+                                    }
+                                    echo '<br/>';
                                 }
-                                echo ' - ';
-                                if ($bb['jenis_bahanbaku']!=null) {
-                                    echo ucfirst($bb['jenis_bahanbaku']);
-                                }else{
-                                    echo 'Jenis tidak diketahui';
-                                }
-                                echo ' - ';
-                                if ($bb['bentuk_bahanbaku']!=null) {
-                                    echo ucfirst($bb['bentuk_bahanbaku']);
-                                }else{
-                                    echo 'Bentuk tidak diketahui';
-                                }
-                                echo '; ';
                             }
-                        }
-                        ?>
-                        <br>
+                            ?>
+                        </p>
                     </div>
                 </div>
                 <div class="form-group">
