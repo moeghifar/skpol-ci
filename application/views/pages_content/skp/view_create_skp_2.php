@@ -6,66 +6,152 @@
 				<button type="button" class="close" data-dismiss="modal">×</button>
 				<h3 class="semibold modal-title text-primary">Tambah Produk</h3>
 			</div>
-			<div class="modal-body" style="max-height:450px;overflow:scroll;">
-				<div class="row" id="form-multi-produk">
-					<div class="col-sm-12" style="margin-bottom:10px;">
-						<select placeholder="Nama Produk" class="nama_produk" id="select2-placeholder">
-							<option value="">Pilih produk...</option>
-							<?php
-							$katprod = '';
-							foreach($getProduk as $k){
-								if($katprod != $k['kategori_produk']){
-									echo '<optgroup label="'.$k['kategori_produk'].'">';
-									$katprod = $k['kategori_produk'];
-								}
-								echo '<option value="'.$k['idtbl_produk'].'">'.$k['namaind_produk'].'</option>';
-							}
-							?>
-						</select>
-					</div>
-					<div class="col-sm-4" style="margin-bottom:10px;">
-						<select placeholder="Jenis Pengajuan" class="form-control jenis_pengajuan">
-							<option value="">Jenis pengajuan...</option>
-							<option value="1">Baru</option>
-							<option value="2">Perpanjang</option>
-						</select>
-					</div>
-					<div class="col-sm-8" style="margin-bottom:10px;">
-						<div class="input-group">
-							<input type="text" placeholder="Total Realisasi Produksi (angka)" class="form-control numb total_realisasi_produk" required>
-							<span class="input-group-addon">Kg/Tahun</span>
-						</div>
-					</div>
-					<div id="pemasaran">
+			<form id="form-multi-produk">
+				<div class="modal-body" style="max-height:450px;overflow:scroll;">
+					<div class="row">
 						<div class="col-sm-12">
-							<div style="font-size:8pt;color:red;margin-bottom:5px;">Jika data tidak tersedia gunakan tanda strip (-) </div>
-							<div class="row">
-								<div class="col-sm-10">
-									<div id="formKota"><input required placeholder="Tujuan Pemasaran Domestik (kota)" type="text" class="form-control mb10" name="kota[]"></div>
+							<div class="alert alert-warning fade in">
+								<h5 class="semibold">Tata Cara Pengisian</h5>
+								<p class="mb10">
+									- Semua field pada form wajib diisi <br/>
+									- Jika data tidak tersedia gunakan tanda strip (-)
+								</p>
+							</div>
+						</div>
+						<div class="col-sm-12" style="margin-bottom:10px;">
+							<select placeholder="Nama Produk" class="nama_produk" id="select2-placeholder">
+								<option value="">Pilih produk...</option>
+								<?php
+								$katprod = '';
+								foreach($getProduk as $k){
+									if($katprod != $k['kategori_produk']){
+										echo '<optgroup label="'.$k['kategori_produk'].'">';
+										$katprod = $k['kategori_produk'];
+									}
+									echo '<option value="'.$k['idtbl_produk'].'">'.$k['namaind_produk'].'</option>';
+								}
+								?>
+							</select>
+						</div>
+						<div class="col-sm-4" style="margin-bottom:10px;">
+							<select placeholder="Jenis Pengajuan" class="form-control jenis_pengajuan">
+								<option value="">Jenis pengajuan...</option>
+								<option value="1">Baru</option>
+								<option value="2">Perpanjang</option>
+							</select>
+						</div>
+						<div class="col-sm-8" style="margin-bottom:10px;">
+							<div class="input-group">
+								<input type="text" placeholder="Total Realisasi Produksi (angka)" class="form-control numb total_realisasi_produk" required>
+								<span class="input-group-addon">Kg/Tahun</span>
+							</div>
+						</div>
+						<div id="pemasaran">
+							<div class="col-sm-12">
+								<div class="row">
+									<div class="col-sm-10">
+										<div id="formKota"><input required placeholder="Tujuan Pemasaran Domestik (kota)" type="text" class="form-control mb10" name="kota[]"></div>
+									</div>
+									<div class="col-sm-2">
+										<a class="btn btn-primary mb10" onclick="addKota()"><i class="ico ico-plus"></i></a>
+									</div>
 								</div>
-								<div class="col-sm-2">
-									<a style="margin-bottom: 10px;" class="btn btn-primary" onclick="addKota()"><i class="ico ico-plus"></i></a>
+							</div>
+							<div class="col-sm-12">
+								<div class="row">
+									<div class="col-sm-10">
+										<div id="formNegara"><input required placeholder="Tujuan Pemasaran Mancanegara (negara)" type="text" class="form-control mb10" name="negara[]"></div>
+									</div>
+									<div class="col-sm-2">
+										<a class="btn btn-primary mb10" onclick="addNegara()"><i class="ico ico-plus"></i></a>
+									</div>
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-12">
-							<div style="font-size:8pt;color:red;margin-bottom:5px;">Jika data tidak tersedia gunakan tanda strip (-) </div>
-							<div class="row">
-								<div class="col-sm-10">
-									<div id="formNegara"><input required placeholder="Tujuan Pemasaran Mancanegara (negara)" type="text" class="form-control mb10" name="negara[]"></div>
+						<div id="bahanbaku">
+							<div class="form-group">
+								<label class="control-label col-sm-12">Bahan Baku - Hasil Tangkapan</label>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-12">
+									<div class="row">
+										<div class="col-sm-10" id="formTangkap" style="margin-bottom: 10px;">
+											<div class="row">
+												<div class="col-sm-4">
+													<input type="text" required group-restrict="bahanbaku" group-field="tangkapan0" class="form-control mb10" name="t_asal[]" placeholder="Asal Wilayah">
+												</div>
+												<div class="col-sm-4">
+													<input type="text" required group-field="tangkapan0" class="form-control mb10" name="t_jenis[]" placeholder="Jenis Ikan">
+												</div>
+												<div class="col-sm-4">
+													<input type="text" required group-field="tangkapan0" class="form-control mb10" name="t_bentuk[]" placeholder="Bentuk Ikan">
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-1">
+											<a class="btn btn-primary" onclick="addTangkap()"><i class="ico ico-plus"></i></a>
+										</div>
+									</div>
 								</div>
-								<div class="col-sm-2">
-									<a class="btn btn-primary" onclick="addNegara()"><i class="ico ico-plus"></i></a>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-sm-12">Bahan Baku - Hasil Budidaya</label>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-12">
+									<div class="row">
+										<div class="col-sm-10" id="formBudidaya" style="margin-bottom: 10px;">
+											<div class="row">
+												<div class="col-sm-4">
+													<input type="text" group-restrict="bahanbaku" group-field="budidaya0" class="form-control mb10" name="b_asal[]" placeholder="Asal Wilayah" required>
+												</div>
+												<div class="col-sm-4">
+													<input type="text" group-field="budidaya0" class="form-control mb10" name="b_jenis[]" placeholder="Jenis Ikan" required>
+												</div>
+												<div class="col-sm-4">
+													<input type="text" group-field="budidaya0" class="form-control mb10" name="b_bentuk[]" placeholder="Bentuk Ikan" required>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-1">
+											<a class="btn btn-primary" onclick="addBudidaya()"><i class="ico ico-plus"></i></a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-sm-12">Bahan Baku - Hasil Import</label>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-12">
+									<div class="row">
+										<div class="col-sm-10" id="formImport" style="margin-bottom: 10px;">
+											<div class="row">
+												<div class="col-sm-4">
+													<input type="text" group-restrict="bahanbaku" group-field="import0" class="form-control mb10" name="i_asal[]" placeholder="Asal Wilayah" required>
+												</div>
+												<div class="col-sm-4">
+													<input type="text" group-field="import0" class="form-control mb10" name="i_jenis[]" placeholder="Jenis Ikan" required>
+												</div>
+												<div class="col-sm-4">
+													<input type="text" group-field="import0" class="form-control mb10" name="i_bentuk[]" placeholder="Bentuk Ikan" required>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-1">
+											<a class="btn btn-primary" onclick="addImport()"><i class="ico ico-plus"></i></a>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-				<button id="btn-tambah-produk" type="button" class="btn btn-primary">Tambah Produk</button>
-			</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+					<button id="btn-tambah-produk" type="submit" class="btn btn-primary">Tambah Produk</button>
+				</div>
+			</form>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div>
@@ -96,99 +182,18 @@
 			<p><strong style="text-align:center;color:red;">Harap Masukan Minimal 1 Produk</strong></p>
 			<hr/>
 			<div class="table-responsive">
-				<table class="table table-striped table-responsive" style="font-size:80%;">
+				<table class="table table-responsive" style="font-size:80%;">
 					<thead>
 						<tr>
-							<th></th>
-							<th>Nama Produk</th>
-							<th>Jenis Pengajuan</th>
-							<th>Realisasi</th>
-							<th>Distribusi Lokal</th>
-							<th>Distribusi Mancanegara</th>
+							<th style="border-right:1px solid #DDD;">#</th>
+							<th style="border-right:1px solid #DDD;">Info Produk</th>
+							<th style="border-right:1px solid #DDD;">Pemasaran</th>
+							<th>Bahan Baku</th>
 						</tr>
 					</thead>
 					<tbody id="tbl-produk-container">
 					</tbody>
 				</table>
-			</div>
-		</div>
-
-		<!--Bahan Baku-->
-		<div class="panel-heading text-center">
-			<h3 class="panel-title" id="bahanbaku">Bahan Baku</h3>
-		</div>
-		<div class="panel-body">
-			<div class="form-group">
-				<label class="control-label col-sm-3">Hasil Tangkapan</label>
-				<div class="col-sm-9">
-					<div class="row">
-						<div class="col-sm-9" id="formTangkap" style="margin-bottom: 10px;">
-							<div class="row">
-								<div class="col-sm-4">
-									<input type="text" required group-restrict="bahanbaku" group-field="tangkapan0" class="form-control mb10" name="t_asal[0]" placeholder="Asal Wilayah">
-								</div>
-								<div class="col-sm-4">
-									<input type="text" required group-field="tangkapan0" class="form-control mb10" name="t_jenis[0]" placeholder="Jenis Ikan">
-								</div>
-								<div class="col-sm-4">
-									<input type="text" required group-field="tangkapan0" class="form-control mb10" name="t_bentuk[0]" placeholder="Bentuk Ikan">
-								</div>
-							</div>
-							<div class="help-block label mb10" style="color:red">* Pengisian Bahan Baku Wajib Melengkapi Ketiga Input Field.</div>
-						</div>
-						<div class="col-sm-3">
-							<a class="btn btn-primary" onclick="addTangkap()"><i class="ico ico-plus"></i> Tambah</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-3">Hasil Budidaya</label>
-				<div class="col-sm-9">
-					<div class="row">
-						<div class="col-sm-9" id="formBudidaya" style="margin-bottom: 10px;">
-							<div class="row">
-								<div class="col-sm-4">
-									<input type="text" group-restrict="bahanbaku" group-field="budidaya0" class="form-control mb10" name="b_asal[0]" placeholder="Asal Wilayah" required>
-								</div>
-								<div class="col-sm-4">
-									<input type="text" group-field="budidaya0" class="form-control mb10" name="b_jenis[0]" placeholder="Jenis Ikan" required>
-								</div>
-								<div class="col-sm-4">
-									<input type="text" group-field="budidaya0" class="form-control mb10" name="b_bentuk[0]" placeholder="Bentuk Ikan" required>
-								</div>
-							</div>
-							<div class="help-block label mb10" style="color:red">* Pengisian Bahan Baku Wajib Melengkapi Ketiga Input Field.</div>
-						</div>
-						<div class="col-sm-3">
-							<a class="btn btn-primary" onclick="addBudidaya()"><i class="ico ico-plus"></i> Tambah</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-3">Hasil Import</label>
-				<div class="col-sm-9">
-					<div class="row">
-						<div class="col-sm-9" id="formImport" style="margin-bottom: 10px;">
-							<div class="row">
-								<div class="col-sm-4">
-									<input type="text" group-restrict="bahanbaku" group-field="import0" class="form-control mb10" name="i_asal[0]" placeholder="Asal Wilayah" required>
-								</div>
-								<div class="col-sm-4">
-									<input type="text" group-field="import0" class="form-control mb10" name="i_jenis[0]" placeholder="Jenis Ikan" required>
-								</div>
-								<div class="col-sm-4">
-									<input type="text" group-field="import0" class="form-control mb10" name="i_bentuk[0]" placeholder="Bentuk Ikan" required>
-								</div>
-							</div>
-							<div class="help-block label mb10" style="color:red">* Pengisian Bahan Baku Wajib Melengkapi Ketiga Input Field.</div>
-						</div>
-						<div class="col-sm-3">
-							<a class="btn btn-primary" onclick="addImport()"><i class="ico ico-plus"></i> Tambah</a>
-						</div>
-					</div>
-				</div>
 			</div>
 		</div>
 

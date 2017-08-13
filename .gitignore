@@ -4,3 +4,7 @@
 
 # Exclude file directory
 file/**
+
+# ignore database config & index php
+index.php
+application/config/database.php
