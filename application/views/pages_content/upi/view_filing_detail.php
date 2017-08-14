@@ -34,7 +34,9 @@
                 <div class="form-group">
                     <label class="control-label col-sm-3">Alamat</label>
                     <div class="col-sm-9">
+                        <?php if(isset($upi[0]['alamat_upi'])){?>
                         <p class="control-label" style="text-align: left;"><?=$upi[0]['alamat_upi']?>, <?=$upi[0]['desa_upi']?>, <?=$upi[0]['kecamatan_upi']?>, <?=$upi[0]['kabupaten_upi']?>, <?=$upi[0]['nama_provinsi']?> Kode Pos <?=$upi[0]['kodepos_upi']?> </p>
+                        <?php }?>
                     </div>
                 </div>
                 <div class="form-group">
@@ -52,13 +54,17 @@
                 <div class="form-group">
                     <label class="control-label col-sm-3">Kontak</label>
                     <div class="col-sm-9">
+                        <?php if(isset($upi[0]['kontak_upi'])){?>
                         <p class="control-label" style="text-align: left;"><?=$upi[0]['kontak_upi']?> / <?=$upi[0]['kontakperson_upi']?></p>
+                        <?php }?>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-3">Omzet Tahunan UPI</label>
                     <div class="col-sm-9">
+                        <?php if(isset($upi[0]['omzet_upi'])){?>
                         <p class="control-label" style="text-align: left;"><?=$upi[0]['omzet_upi']?> Milyar</p>
+                        <?php }?>
                     </div>
                 </div>
                 <div class="form-group">
