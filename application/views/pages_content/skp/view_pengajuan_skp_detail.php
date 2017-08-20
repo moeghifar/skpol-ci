@@ -163,7 +163,7 @@
 						<p class="control-label" style="text-align: left;">Tenaga Kerja Tetap Pengolahan <?=$karyawan[0]['olahtetaplk_karyawan']?> Laki-laki <?=$karyawan[0]['olahtetappr_karyawan']?> Perempuan</p>
 						<p class="control-label" style="text-align: left;">Tenaga Kerja Harian Administrasi <?=$karyawan[0]['admharilk_karyawan']?> Laki-laki <?=$karyawan[0]['admharipr_karyawan']?> Perempuan</p>
 						<p class="control-label" style="text-align: left;">Tenaga Kerja Harian Pengolahan <?=$karyawan[0]['olahharilk_karyawan']?> Laki-laki <?=$karyawan[0]['olahharipr_karyawan']?> Perempuan</p>
-						<p class="control-label" style="text-align: left;">Jumlah Hari Kerja : <?=$karyawan[0]['harikerja_karyawan']?>Hari/Bulan</p>
+						<p class="control-label" style="text-align: left;">Jumlah Hari Kerja : <?=$karyawan[0]['harikerja_karyawan']?> Hari/Bulan</p>
 						<p class="control-label" style="text-align: left;">Jumlah Shift : <?=$karyawan[0]['shift_karyawan']?> Shift/Hari</p>
                     </div>
                 </div>
@@ -189,7 +189,7 @@
                     <div class="col-sm-9">
                         <p class="control-label" style="text-align: left;">Sumber Air : <?=$air[0]['sumber_air']?></p>
 						<p class="control-label" style="text-align: left;">Pengolahan Air : <?=$air[0]['pengolahan_air']?></p>
-						<p class="control-label" style="text-align: left;">Volume Air : <?=$air[0]['volume_air']?></p>
+						<p class="control-label" style="text-align: left;">Volume Air : <?=number_format($air[0]['volume_air'],'0',',','.')?> Liter/hari</p>
                     </div>
                 </div>
                 <div class="form-group">

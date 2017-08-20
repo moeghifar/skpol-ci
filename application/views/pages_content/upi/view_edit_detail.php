@@ -203,8 +203,31 @@
                 <div class="form-group">
                     <label class="control-label col-sm-3">No. NPWP</label>
                     <div class="col-sm-9">
-                        <div class="col-sm-7" style="padding-left: 0px;">
-                            <input type="text" class="form-control" name="nonpwp" data-mask="99–999–999–9–999–999" value="<?=$upi[0]['nonpwp_upi']?>">
+                        <div class="col-sm-5" style="padding-left: 0px;">
+                            <input type="text" class="form-control mb10" data-mask="99–999–999–9–999–999" name="nonpwp" value="<?=$upi[0]['nonpwp_upi']?>">
+                        </div>
+						<div class="col-sm-2" style="padding-left: 0px;">
+                            <?php
+                                if($upi[0]['filenpwp_upi'] != "" && file_exists('.'.$upi[0]['filenpwp_upi'])) {
+                                    $filenpwp = '<i class="ico ico-check" style="color:green"></i>';
+                                    $urlnpwp = base_url($upi[0]['filenpwp_upi']);
+                                } else {
+                                    $filenpwp = '<i class="ico ico-remove" style="color:red"></i>';
+                                    $urlnpwp = 'javascript:void(0)';
+                                }
+                            ?>
+                            <a  class="btn btn-block btn-default mb10" target="_blank" href="<?=$urlnpwp?>"><?php echo $filenpwp; ?> File NPWP</a>
+							<input type="hidden" name="old_npwp_path" value="<?=$upi[0]['filenpwp_upi']?>">
+						</div>
+						<div class="col-sm-5">
+							<div class="input-group">
+								<input name="file_name_npwp" type="text" class="form-control" placeholder="Upload File NPWP" for="file_npwp" readonly>
+								<span class="input-group-btn">
+									<div class="btn btn-primary btn-file">
+										<span class="icon iconmoon-file-3"></span> Upload <input type="file" name="file_npwp">
+									</div>
+								</span>
+							</div>
                         </div>
                     </div>
                 </div>
@@ -221,10 +244,10 @@
                                     $urliup = base_url($upi[0]['fileiup_upi']);
                                 } else {
                                     $fileiup = '<i class="ico ico-remove" style="color:red"></i>';
-                                    $urliup = '#';
+                                    $urliup = 'javascript:void(0)';
                                 }
                             ?>
-                            <a  class="btn btn-block btn-default mb10" href="<?=$urliup?>"><?php echo $fileiup; ?> File IUP</a>
+                            <a class="btn btn-block btn-default mb10" target="_blank" href="<?=$urliup?>"><?php echo $fileiup; ?> File IUP</a>
 							<input type="hidden" name="old_iup_path" value="<?=$upi[0]['fileiup_upi']?>">
 						</div>
 						<div class="col-sm-5">
@@ -252,10 +275,10 @@
                                     $urlsiup = base_url($upi[0]['filesiup_upi']);
                                 } else {
                                     $filesiup = '<i class="ico ico-remove" style="color:red"></i>';
-                                    $urlsiup = '#';
+                                    $urlsiup = 'javascript:void(0)';
                                 }
                             ?>
-                            <a  class="btn btn-block btn-default mb10" href="<?=$urlsiup?>"><?php echo $filesiup; ?> File SIUP</a>
+                            <a  class="btn btn-block btn-default mb10" target="_blank" href="<?=$urlsiup?>"><?php echo $filesiup; ?> File SIUP</a>
 							<input type="hidden" name="old_siup_path" value="<?=$upi[0]['filesiup_upi']?>">
 						</div>
 						<div class="col-sm-5">
@@ -283,10 +306,10 @@
                                     $urlakta = base_url($upi[0]['fileakta_upi']);
                                 } else {
                                     $fileakta = '<i class="ico ico-remove" style="color:red"></i>';
-                                    $urlakta = '#';
+                                    $urlakta = 'javascript:void(0)';
                                 }
                             ?>
-                            <a  class="btn btn-block btn-default mb10" href="<?=$urlakta?>"><?php echo $fileakta; ?> File Akta</a>
+                            <a  class="btn btn-block btn-default mb10" target="_blank" href="<?=$urlakta?>"><?php echo $fileakta; ?> File Akta</a>
 							<input type="hidden" name="old_akta_path" value="<?=$upi[0]['fileakta_upi']?>">
 						</div>
 						<div class="col-sm-5">
@@ -301,6 +324,132 @@
                         </div>
                     </div>
                 </div>
+                <?php if($confirmed == true) { ?>
+                <!-- FILE KTP -->
+                <div class="form-group">
+                    <label class="control-label col-sm-3">File KTP</label>
+                    <div class="col-sm-9" id="filektp_upi">
+						<div class="col-sm-3" style="padding-left: 0px;">
+                            <?php
+                                if($upi[0]['filektp_upi'] != "" && file_exists('.'.$upi[0]['fileakta_upi'])) {
+                                    $file = '<i class="ico ico-check" style="color:green"></i> ada';
+                                    $url = base_url($upi[0]['filektp_upi']);
+                                } else {
+                                    $file = '<i class="ico ico-remove" style="color:red"></i> belum ada';
+                                    $url = 'javascript:void(0)';
+                                }
+                            ?>
+                            <a  class="btn btn-block btn-default mb10" target="_blank" href="<?=$url?>"><?php echo $file; ?></a>
+						</div>
+						<div class="col-sm-6">
+							<div class="input-group">
+								<input name="file_name_ktp" type="text" class="form-control" placeholder="Upload File KTP" for="file_ktp" readonly>
+								<span class="input-group-btn">
+									<div class="btn btn-primary btn-file">
+										<span class="icon iconmoon-file-3"></span> Pilih File <input type="file" name="file_ktp">
+									</div>
+								</span>
+							</div>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="button" class="btn btn-inverse" data-path="file/upi/file_extra" data-file="filektp_upi" data-id="<?=$upi[0]['idtbl_upi']?>" data-tbl="upi" name="submit" id="ajax_upload_file" value="Simpan File">
+                        </div>
+                    </div>
+                </div>
+                <!-- FILE Sertifikat Pengolah Ikan -->
+                <div class="form-group">
+                    <label class="control-label col-sm-3">File Sertifikat Pengolah Ikan</label>
+                    <div class="col-sm-9" id="filesertifikatpengolahikan_upi">
+						<div class="col-sm-3" style="padding-left: 0px;">
+                            <?php
+                                if($upi[0]['filesertifikatpengolahikan_upi'] != "" && file_exists('.'.$upi[0]['filesertifikatpengolahikan_upi'])) {
+                                    $file = '<i class="ico ico-check" style="color:green"></i> ada';
+                                    $url = base_url($upi[0]['filesertifikatpengolahikan_upi']);
+                                } else {
+                                    $file = '<i class="ico ico-remove" style="color:red"></i> belum ada';
+                                    $url = 'javascript:void(0)';
+                                }
+                            ?>
+                            <a  class="btn btn-block btn-default mb10" target="_blank" href="<?=$url?>"><?php echo $file; ?></a>
+						</div>
+						<div class="col-sm-6">
+							<div class="input-group">
+								<input name="file_name_sertifikatpengolahikan" type="text" class="form-control" placeholder="Upload File Sertifikat Pengolah Ikan" for="file_sertifikatpengolahikan" readonly>
+								<span class="input-group-btn">
+									<div class="btn btn-primary btn-file">
+										<span class="icon iconmoon-file-3"></span> Pilih File <input type="file" name="file_sertifikatpengolahikan">
+									</div>
+								</span>
+							</div>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="button" class="btn btn-inverse" data-path="file/upi/file_extra" data-file="filesertifikatpengolahikan_upi" data-id="<?=$upi[0]['idtbl_upi']?>" data-tbl="upi" name="submit" id="ajax_upload_file" value="Simpan File">
+                        </div>
+                    </div>
+                </div>
+                <!-- FILE SPT Pajak -->
+                <div class="form-group">
+                    <label class="control-label col-sm-3">File SPT Pajak</label>
+                    <div class="col-sm-9" id="filesptpajak_upi">
+						<div class="col-sm-3" style="padding-left: 0px;">
+                            <?php
+                                if($upi[0]['filesptpajak_upi'] != "" && file_exists('.'.$upi[0]['filesptpajak_upi'])) {
+                                    $file = '<i class="ico ico-check" style="color:green"></i> ada';
+                                    $url = base_url($upi[0]['filesptpajak_upi']);
+                                } else {
+                                    $file = '<i class="ico ico-remove" style="color:red"></i> belum ada';
+                                    $url = 'javascript:void(0)';
+                                }
+                            ?>
+                            <a  class="btn btn-block btn-default mb10" target="_blank" href="<?=$url?>"><?php echo $file; ?></a>
+						</div>
+						<div class="col-sm-6">
+							<div class="input-group">
+								<input name="file_name_sptpajak" type="text" class="form-control" placeholder="Upload File SPT Pajak" for="file_sptpajak" readonly>
+								<span class="input-group-btn">
+									<div class="btn btn-primary btn-file">
+										<span class="icon iconmoon-file-3"></span> Pilih File <input type="file" name="file_sptpajak">
+									</div>
+								</span>
+							</div>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="button" class="btn btn-inverse" data-path="file/upi/file_extra" data-file="filesptpajak_upi" data-id="<?=$upi[0]['idtbl_upi']?>" data-tbl="upi" name="submit" id="ajax_upload_file" value="Simpan File">
+                        </div>
+                    </div>
+                </div>
+                <!-- FILE Sewa Menyewa -->
+                <div class="form-group">
+                    <label class="control-label col-sm-3">File Sewa Menyewa</label>
+                    <div class="col-sm-9" id="filesewamenyewa_upi">
+						<div class="col-sm-3" style="padding-left: 0px;">
+                            <?php
+                                if($upi[0]['filesewamenyewa_upi'] != "" && file_exists('.'.$upi[0]['filesewamenyewa_upi'])) {
+                                    $file = '<i class="ico ico-check" style="color:green"></i> ada';
+                                    $url = base_url($upi[0]['filesewamenyewa_upi']);
+                                } else {
+                                    $file = '<i class="ico ico-remove" style="color:red"></i> belum ada';
+                                    $url = 'javascript:void(0)';
+                                }
+                            ?>
+                            <a  class="btn btn-block btn-default mb10" target="_blank" href="<?=$url?>"><?php echo $file; ?></a>
+						</div>
+						<div class="col-sm-6">
+							<div class="input-group">
+								<input name="file_name_sewamenyewa" type="text" class="form-control" placeholder="Upload File Sewa Menyewa" for="file_sewamenyewa" readonly>
+								<span class="input-group-btn">
+									<div class="btn btn-primary btn-file">
+										<span class="icon iconmoon-file-3"></span> Pilih File <input type="file" name="file_sewamenyewa">
+									</div>
+								</span>
+							</div>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="button" class="btn btn-inverse" data-path="file/upi/file_extra" data-file="filesewamenyewa_upi" data-id="<?=$upi[0]['idtbl_upi']?>" data-tbl="upi" name="submit" id="ajax_upload_file" value="Simpan File">
+                        </div>
+                    </div>
+                </div>
+                <?php } ?>
 				<?php if($this->global_alert != ""){ ?>
 					<div class="form-group">
 	                    <label class="control-label col-sm-3">Pesan Perbaikan Data</label>

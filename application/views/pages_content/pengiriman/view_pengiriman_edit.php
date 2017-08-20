@@ -22,13 +22,13 @@
                 <div class="form-group">
                     <label class="control-label col-sm-3">Alamat Pengiriman</label>
                     <div class="col-sm-9">
-                        <textarea type="text" class="form-control" name="alamat" required></textarea>
+                        <textarea type="text" class="form-control" name="alamat" required><?=$pengiriman[0]['alamat_pengiriman']?></textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-3">Informasi Tambahan</label>
                     <div class="col-sm-9">
-                        <textarea type="text" class="form-control" name="info" required></textarea>
+                        <textarea type="text" class="form-control" name="info" required><?=$pengiriman[0]['keterangan_pengiriman']?></textarea>
                     </div>
                 </div>
                 <div class="form-group">

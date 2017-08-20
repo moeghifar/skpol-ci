@@ -13,7 +13,9 @@
 							<th>Kategori Produk</th>
 							<th>Nama Produk (Bahasa)</th>
 							<th>Nama Produk (English)</th>
-							<th style="text-align:center"><i class="ico-list"></i></th>
+							<th style="text-align:center">
+								<i class="ico-list"></i>
+							</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -23,7 +25,11 @@
 							<td><?=$p['kategori_produk']?></td>
 							<td><?=$p['namaind_produk']?></td>
 							<td><?=$p['namaen_produk']?></td>
-							<td style="text-align:center"><a data-toggle="modal" data-target="#deleteModal" data-url="<?=site_url('produk/delete_current_product/'.$p['idtbl_produk']);?>" class="btn btn-sm btn-danger"><i class="ico-remove"></i></a></td>
+							<td style="text-align:center">
+								<?php if($this->session->userdata($this->session_prefix.'-userlevel')=='kp'){?>
+									<a data-toggle="modal" data-target="#deleteModal" data-url="<?=site_url('produk/delete_current_product/'.$p['idtbl_produk']);?>" class="btn btn-sm btn-danger"><i class="ico-remove"></i></a>
+								<?php } ?>
+							</td>
 						</tr>
 						<?php $x++; }?>
 					</tbody>

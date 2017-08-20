@@ -489,3 +489,5 @@ CREATE VIEW `view_upi_produk_skp` AS select * from ((`tbl_skp` `skp` join `tbl_p
 CREATE VIEW `view_skp_terbit` AS select * from ((`tbl_skp_terbit` `skpt` join `tbl_alurproses` `ap`) join `view_upi_produk_skp` `ups`) where ((`skpt`.`skp_id` = `ups`.`idtbl_skp`) and (`ap`.`idtbl_alurproses` = `skpt`.`alurproses_id`));
 
 CREATE VIEW `view_skp_kunjungan` AS select * from (`view_upi_produk_skp` `ups` join `tbl_kunjungan` `k`) where (`ups`.`idtbl_skp` = `k`.`skp_id`);
+
+CREATE VIEW `view_pengiriman_skp_terbit`  AS  select *  from (`view_skp_terbit` join `tbl_pengiriman`) where (`tbl_pengiriman`.`skpterbit_id` = `view_skp_terbit`.`idtbl_skp_terbit`) ;

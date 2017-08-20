@@ -130,14 +130,20 @@ class Upi extends MY_Controller {
 		}else{
 			if($this->level == 'upi'){
                 if($this->global_alert != ""){
-                    $data['upi']	= $this->model_upi->_get_upi_revisi($this->session->userdata($this->session_prefix.'-upiid'));
+                    $data['upi']       = $this->model_upi->_get_upi_revisi($this->session->userdata($this->session_prefix.'-upiid'));
                 } else {
-                    $data['upi']	= $this->model_upi->_get_upi_terdaftar($this->session->userdata($this->session_prefix.'-upiid'));
+                    $data['upi']	   = $this->model_upi->_get_upi_terdaftar($this->session->userdata($this->session_prefix.'-upiid'));
                 }
 			}else{
 				$this->show404();
 			}
 		}
+        if($this->global_alert != ""){
+            $data['confirmed']  = false;
+        }else{
+            $data['confirmed']  = true;
+        }
+        $data['js']         = 'template/javascript/backend/ajax.upload.js';
 		$data['provinsi']	= $this->model_upi->_get_provinsi();
 		$data['content']	= 'pages_content/upi/view_edit_detail';
         $this->load->view('index',$data);
@@ -220,7 +226,7 @@ class Upi extends MY_Controller {
 				'noakta_upi'		=> $this->input->post('noakta')
 			);
 			$config['allowed_types']        = 'jpg|jpeg|pdf|doc|docx';
-			$config['overwrite']            = 1;
+			$config['overwrite']            = true;
             $config['max_size']             = 0; // unlimited file upload
 			$this->load->library('upload', $config);
 			$fileData = array();
@@ -278,6 +284,26 @@ class Upi extends MY_Controller {
     					@unlink($pathSiup);
     				}
     				$data['upi']['filesiup_upi'] = '/file/upi/file_siup/'.$fileData['siup']['file_name'];
+                } else {
+                    $extraError = $this->upload->display_errors();
+                    $this->nyast->notif_create_notification('Detail Gagal Dirubah \n'.$extraError,'Gagal');
+    				redirect(site_url('upi/edit_detail/'.$idupi));
+                }
+			}
+			if($this->input->post('file_name_npwp')!=null){
+				// upload file and replace
+				$config['upload_path'] = './file/upi/file_npwp';
+				$config['file_name'] = str_replace(' ','-',$this->input->post('nama')).'-'.str_replace(array('/','.'),'',$this->input->post('nonpwp'));
+                $this->upload->initialize($config);
+				if($this->upload->do_upload('file_npwp')){
+					$fileData['npwp'] = $this->upload->data();
+                    // remove old data
+    				$pathNpwp = '.'.$this->input->post('old_npwp_path');
+    				if(file_exists($pathNpwp)){
+                        // implement `@` to prevent error if linked data doesn't exists
+    					@unlink($pathNpwp);
+    				}
+    				$data['upi']['filenpwp_upi'] = '/file/upi/file_npwp/'.$fileData['npwp']['file_name'];
                 } else {
                     $extraError = $this->upload->display_errors();
                     $this->nyast->notif_create_notification('Detail Gagal Dirubah \n'.$extraError,'Gagal');
