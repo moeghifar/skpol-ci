@@ -195,7 +195,7 @@ $config['global_xss_filtering'] = TRUE;
 |--------------------------------------------------------------------------
 */
 $config['csrf_protection'] = TRUE;
-$config['csrf_token_name'] = md5(sha1('CSRF_TOKEN_SKPKKP'));
+$config['csrf_token_name'] = sha1(md5('CSRF_TOKEN_SKPKKP'));
 $config['csrf_cookie_name'] = sha1(md5('CSRF_COOKIE_SKPKKP'));
 $config['csrf_expire'] = 7200;
 $config['csrf_regenerate'] = TRUE;
@@ -220,7 +220,8 @@ $config['csrf_exclude_uris'] = array(
 	'skp/get_produk',
 	'skp/action_upload_skp_terbit',
 	'pengiriman/action_add_pengiriman',
-	'pengiriman/action_edit_pengiriman'
+	'pengiriman/action_edit_pengiriman',
+	'api/file_upload/*'
 );
 
 /*

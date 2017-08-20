@@ -1,6 +1,6 @@
 <!-- START modal-sm -->
 <div id="modalCreateSKP" class="modal fade">
-	<div class="modal-dialog modal-md">
+	<div class="modal-dialog modal-md" style="width:650px">
 		<div class="modal-content">
 			<div class="modal-header text-center">
 				<button type="button" class="close" data-dismiss="modal">×</button>
@@ -47,20 +47,26 @@
 							</div>
 						</div>
 						<div id="pemasaran">
+							<div class="form-group">
+								<label class="control-label col-sm-12">Tujuan Pemasaran Domestik (kota)</label>
+							</div>
 							<div class="col-sm-12">
 								<div class="row">
 									<div class="col-sm-10">
-										<div id="formKota"><input required placeholder="Tujuan Pemasaran Domestik (kota)" type="text" class="form-control mb10" name="kota[]"></div>
+										<div id="formKota"><input required placeholder="Pemasaran Domestik (kota)" type="text" class="form-control mb10" name="kota[]"></div>
 									</div>
 									<div class="col-sm-2">
 										<a class="btn btn-primary mb10" onclick="addKota()"><i class="ico ico-plus"></i></a>
 									</div>
 								</div>
 							</div>
+							<div class="form-group">
+								<label class="control-label col-sm-12">Tujuan Pemasaran Mancanegara (negara)</label>
+							</div>
 							<div class="col-sm-12">
 								<div class="row">
 									<div class="col-sm-10">
-										<div id="formNegara"><input required placeholder="Tujuan Pemasaran Mancanegara (negara)" type="text" class="form-control mb10" name="negara[]"></div>
+										<div id="formNegara"><input required placeholder="Pemasaran Mancanegara (negara)" type="text" class="form-control mb10" name="negara[]"></div>
 									</div>
 									<div class="col-sm-2">
 										<a class="btn btn-primary mb10" onclick="addNegara()"><i class="ico ico-plus"></i></a>

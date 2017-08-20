@@ -41,13 +41,14 @@
                             <td><?=date("d-m-Y", strtotime($k['tglmulai_skp_terbit']))?></td>
                             <td><?=date("d-m-Y", strtotime($k['tglkadaluarsa_skp_terbit']))?></td>
                             <td>
-								<a class="btn btn-sm btn-primary mb5" href="<?php echo base_url('skp/detail_skp/'.$k['idtbl_skp_terbit'].'/'.$k['idtbl_skp']);?>"><i class="ico ico-eye-open"></i></a>
+								<a class="btn btn-xs btn-primary mb5" href="<?php echo base_url('skp/detail_skp/'.$k['idtbl_skp_terbit'].'/'.$k['idtbl_skp']);?>"><i class="ico ico-eye-open"></i></a>
+                                <a data-toggle="modal" data-target="#deleteModal" data-url="<?=site_url('skp/delete_skp_terbit/'.$k['idtbl_skp_terbit']);?>" class="btn btn-xs btn-danger mb5"><i class="ico-remove"></i></a>
 								<?php
 									if($this->session->userdata($this->session_prefix.'-userlevel') == 'kp'){
 										if($k['file_skp_terbit']==""){
-											echo '<a class="btn btn-sm btn-default mb5" data-toggle="modal" data-target="#modalParamDirect" data-url="'.$k['idtbl_skp_terbit'].'"><i class="ico ico-file-upload"></i></a>';
+											echo '<a class="btn btn-xs btn-default mb5" data-toggle="modal" data-target="#modalParamDirect" data-url="'.$k['idtbl_skp_terbit'].'"><i class="ico ico-file-upload"></i></a>';
 										}else{
-											echo '<a class="btn btn-sm btn-default mb5" data-toggle="modal" data-target="#modalParamDirect" data-url="'.$k['idtbl_skp_terbit'].'"><i class="ico ico-upload7"></i></a>';
+											echo '<a class="btn btn-xs btn-default mb5" data-toggle="modal" data-target="#modalParamDirect" data-url="'.$k['idtbl_skp_terbit'].'"><i class="ico ico-upload7"></i></a>';
 										}
 									}
 								?>
@@ -97,3 +98,22 @@
 	</div><!-- /.modal-dialog -->
 </div>
 <!--/ END modal-sm -->
+
+<!-- START Delete modal -->
+<div id="deleteModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<i class="ico ico-warning"></i> Konfirmasi Hapus Data
+			</div>
+			<div class="modal-body">
+				Anda yakin ingin menghapus data ini ??
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+				<a id="target-href" class="btn btn-danger">Hapus</a>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<!--/ END modal -->

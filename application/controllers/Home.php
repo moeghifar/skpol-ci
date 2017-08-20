@@ -142,6 +142,8 @@ class Home extends MY_Controller {
 				$this->excel->getActiveSheet()->fromArray($v, NULL, $startPoint);
 				$startPoint++;
 			}
+			$lastRow = substr($startPoint,1);
+			$this->excel->getActiveSheet()->getStyle('S4:U'.$lastRow)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER);
 			break;
 
 			case 'skp_terbit':
@@ -152,7 +154,7 @@ class Home extends MY_Controller {
 			$heading = array(
 				'Nama UPI','Alamat UPI','No. Telp/Fax','Nama dan Nomor Kontak','Email','Propinsi','Kabupaten','Kecamatan','Kelurahan','Kode Pos','Nama Pemilik','Tahun Mulai Operasi','Omzet Tahunan','NPWP','No. SIUP','No. IUP','No. Akta Notaris','Jenis UPI','Jenis Olahan','Jenis Produk (bahasa)','Jenis Produk (english)','Tahapan Pengolahan (bahasa)','Tahapan Pengolahan (english)','Total Realisasi Produksi','Jenis Ikan Bahan Baku',
 				'Jumlah Unit Gudang Beku','Kapasitas Gudang Beku', 'Jumlah Unit Gudang Dingin', 'Kapasitas Gudang Dingin', 'Jumlah Unit ABF', 'Kapasitas ABF', 'Jumlah Unit Contact Plate Freezer', 'Kapasitas Contact Plate Freezer', 'Jumlah Unit Gudang Kering', 'Kapasitas Gudang Kering', 'Tenaga Kerja Laki2', 'Tenaga Kerja Perempuan', 'Jml Hari Kerja', 'Jml Shift',
-				'Jenis Permohonan','Tujuan Pemasaran Domestik','Tujuan Pemasaran Ekspor','SUPERVISI','No. Seri SKP','Tgl. Dikeluarkan','Tgl. Kadaluarsa','No. SKP','Penerbitan SKP','Masuk Direktur','Keluar Direktur','Masuk Dirjen','Keluar Dirjen','Kirim ke Dinas'
+				'Jenis Permohonan','Tujuan Pemasaran Domestik','Tujuan Pemasaran Ekspor','SUPERVISI','No. Seri SKP','Tgl. Dikeluarkan','Tgl. Kadaluarsa','No. SKP','Penerbitan SKP','Masuk Direktur','Keluar Direktur','Masuk Dirjen','SKP Terbit','SKP Dikirim'
 			);
 			$this->excel->getActiveSheet()->fromArray($heading, NULL, 'A3');
 			//coloring header
@@ -302,7 +304,7 @@ class Home extends MY_Controller {
 				if($vlog['status_log']=='Masuk Dirjen'){
 					$generated[$v['idtbl_skp_terbit']][] = $vlog['date_log'];
 				}
-				if($vlog['status_log']=='Keluar Dirjen'){
+				if($vlog['status_log']=='SKP Terbit'){
 					$generated[$v['idtbl_skp_terbit']][] = $vlog['date_log'];
 				}
 				if($vlog['status_log']=='SKP telah dikirim ke Dinas KP Provinsi'){
@@ -315,6 +317,8 @@ class Home extends MY_Controller {
 				$this->excel->getActiveSheet()->fromArray($v, NULL, $startPoint);
 				$startPoint++;
 			}
+			$lastRow = substr($startPoint,1);
+			$this->excel->getActiveSheet()->getStyle('O4:Q'.$lastRow)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER);
 			break;
 
 			default:

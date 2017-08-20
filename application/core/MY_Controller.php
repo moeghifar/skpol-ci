@@ -46,7 +46,7 @@ class MY_Controller extends CI_Controller {
 		}
 	}
 
-	function _send_email($conf=array()){
+	public function _send_email($conf=array()){
 		$this->load->library('email');
 		$subject = $conf['subject'];
 		$message = $conf['message'];

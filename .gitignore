@@ -1,10 +1,13 @@
 # OS junk files
 [Tt]humbs.db
-*.DS_Store
+**/.DS_Store
+**.log
 
 # Exclude file directory
-file/**
+**.pdf
+**.jpg
+**.jpeg
 
 # ignore database config & index php
-index.php
-application/config/database.php
+#index.php
+/application/config/database.php

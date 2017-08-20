@@ -72,7 +72,7 @@ class Model_skp extends CI_Model {
 			$q = $this->db->get_where('view_skp_terbit',array('idtbl_skp'=>$id, 'status_skp'=>$status));
 		}elseif($status == "penerbitan-skp"){
 			$this->db->join('tbl_tandatangan','tbl_tandatangan.skp_id = view_skp_terbit.skp_id');
-			$this->db->where("status_skp != 'terbit-skp'");
+			$this->db->where("status_skp != 'terbit-skp' AND status_skp != 'deleted'");
 			$q = $this->db->get('view_skp_terbit');
 		}else{
 			$q = $this->db->get_where('view_skp_terbit',array('status_skp'=>$status));
@@ -134,6 +134,16 @@ class Model_skp extends CI_Model {
 		}
 	}
 
+	function _update_skp_terbit_status($dt,$id){
+		$this->db->where(array('idtbl_skp_terbit'=>$id));
+		$q = $this->db->update('tbl_skp_terbit',$dt);
+		if($q){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 	function _get_rekomendasi_skp($id = null){
 		if ($id != null) {
 			$q = $this->db->get_where('view_skp_kunjungan',array('idtbl_skp'=>$id,'status_skp'=>'kunjungan-selesai-dinas','status_kunjungan'=>'Kunjungan Selesai','uker_kunjungan'=>'dinas'));
@@ -167,7 +177,7 @@ class Model_skp extends CI_Model {
 	}
 
 	function _get_alur_proses(){
-		$q = $this->db->get('tbl_alurproses');
+		$q = $this->db->get_where('tbl_alurproses',array('status'=>1));
 		return $q->result_array();
 	}
 
@@ -190,6 +200,16 @@ class Model_skp extends CI_Model {
 		}
 	}
 
+	function _soft_delete_alur_proses($id,$dt){
+		$this->db->where('idtbl_alurproses',$id);
+		$q = $this->db->update('tbl_alurproses',$dt);
+		if($q){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 	function _update_ttd($dt,$skpid,$ttdid){
 		$this->db->where(array('skp_id'=>$skpid,'idtbl_tandatangan'=>$ttdid));
 		$q = $this->db->update('tbl_tandatangan',$dt);
@@ -201,7 +221,7 @@ class Model_skp extends CI_Model {
 	}
 
 	function _get_print_skp_terbit($status,$idskp){
-		$q = $this->db->get_where('view_skp_terbit',array('status_skp'=>$status,'idtbl_skp'=>$idskp));
+		$q = $this->db->get_where('view_skp_terbit',array('status_skp'=>$status,'idtbl_skp'=>$idskp,'status'=>1));
 		return $q->result_array();
 	}
 
@@ -211,13 +231,28 @@ class Model_skp extends CI_Model {
 	}
 
 	function _get_skp_terbit_id($id){
-		$q = $this->db->get_where('tbl_skp_terbit',array('idtbl_skp_terbit'=>$id));
+		$q = $this->db->get_where('tbl_skp_terbit',array('idtbl_skp_terbit'=>$id,'status'=>1));
 		return $q->result_array();
 	}
 
 	function _update_skp_terbit($dt,$id){
-		$this->db->where(array('idtbl_skp_terbit'=>$id));
+		$this->db->where(array('idtbl_skp_terbit'=>$id,'status'=>1));
 		$q = $this->db->update('tbl_skp_terbit',$dt);
+		if($q){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	function _get_skp_by_terbit($id_terbit) {
+		$q = $this->db->get_where('tbl_skp_terbit',array('idtbl_skp_terbit'=>$id_terbit));
+		return $q->result_array();
+	}
+
+	function _delete_skp_table($id,$tbl,$where){
+		$this->db->where($where,$id);
+		$q = $this->db->delete($tbl);
 		if($q){
 			return true;
 		}else{

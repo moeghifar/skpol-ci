@@ -47,7 +47,7 @@
             <li class="<?php if($this->uri->segment(1) == 'skp' && $this->uri->segment(2) == 'create' && $this->uri->segment(3) == 'v2') echo "active";?>">
                 <a class="disabled" href="<?php echo base_url('skp/create/v2');?>">
                     <span class="figure"><i class="ico-briefcase"></i></span>
-                    <span class="text">Pengajuan SKP v2</span>
+                    <span class="text">Pengajuan SKP</span>
                 </a>
             </li>
 

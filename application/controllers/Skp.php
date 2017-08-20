@@ -496,7 +496,7 @@ class Skp extends MY_Controller {
 				$this->model_skp->_update_ttd(array('status_tandatangan'=>$k,'tgl_tandatangan'=>$tgl,'skp_id'=>$skpid),$skpid,$ttdid);
 				// create skp log
 				// update main skp status
-				if($k == 'kirim-dinas'){
+				if($k == 'SKP-dikirim'){
 					$this->model_skp->_create_skp_log('SKP telah dikirim ke Dinas KP Provinsi',$skpid,$tgl);
 					$this->model_skp->_update_skp_status(array('status_skp'=>'terbit-skp'),$skpid);
 				}else{
@@ -524,9 +524,10 @@ class Skp extends MY_Controller {
 	function action_add_alurproses(){
 		if( $this->input->post('submit') != NULL ){
 			$param = array(
-				'idtbl_alurproses'			=> '',
-				'nama_alurproses'		=> $this->input->post('nama'),
-				'name_alurproses'		=> $this->input->post('name')
+				'idtbl_alurproses'	=> '',
+				'nama_alurproses'	=> $this->input->post('nama'),
+				'name_alurproses'	=> $this->input->post('name'),
+				'status'			=> 1
 			);
 			if($this->model_skp->_insert_alur_proses($param)){
 				$this->nyast->notif_create_notification('Alur Proses Berhasil Ditambahkan','Penambahan Berhasil');
@@ -536,7 +537,7 @@ class Skp extends MY_Controller {
 	}
 
 	public function delete_alurproses($id){
-		if($this->model_skp->_delete_alur_proses($id)){
+		if($this->model_skp->_soft_delete_alur_proses($id,array('status'=>0))){
 			$this->nyast->notif_create_notification('Alur Proses Berhasil Dihapus','Alur Proses Dihapus');
 			redirect(site_url('skp/alurproses'));
 		}
@@ -615,6 +616,29 @@ class Skp extends MY_Controller {
 			$pdf->WriteHTML($html);
 			$pdf->Output($skpname.'.pdf');
 		}else{
+			$this->show404();
+		}
+	}
+
+	public function delete_skp_terbit($id) {
+		if($id != null && is_numeric($id) && $id > 0){
+			// get skp id
+			$id_skp = $this->model_skp->_get_skp_by_terbit($id);
+			// soft delete Skp
+			$dtskp = array(
+				'status_skp' => 'deleted'
+			);
+			$this->model_skp->_update_skp_status($dtskp,$id_skp[0]['skp_id']);
+			// soft delete Skp terbit
+			// update main skp status
+			$dtskpterbit = array(
+				'status' => 0
+			);
+			$this->model_skp->_update_skp_terbit_status($dtskpterbit,$id);
+			// redirect
+			$this->nyast->notif_create_notification('Hapus Data SKP Terbit Berhasil','Selamat');
+			redirect(site_url('skp/skp_list'));
+		} else {
 			$this->show404();
 		}
 	}

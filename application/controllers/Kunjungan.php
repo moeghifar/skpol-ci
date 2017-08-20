@@ -34,7 +34,7 @@ class Kunjungan extends MY_Controller {
 					$ke 			= explode('_',$k);
 					$idskp 			= $ke[0];
 					$idkunjungan 	= $ke[1];
-					
+
 					$pathPerbaikan = '.'.$ke[2];
 					if (file_exists($pathPerbaikan)) {
 						@unlink($pathPerbaikan);
@@ -257,7 +257,7 @@ class Kunjungan extends MY_Controller {
 				$this->nyast->notif_create_notification('Detail Gagal Dirubah','Gagal');
 				redirect(site_url('kunjungan/perbaikan_detail/'.$idskp));
 			}
-			
+
 		}
 	}
 
@@ -352,6 +352,7 @@ class Kunjungan extends MY_Controller {
 					'noseri_skp_terbit' 		=> $this->input->post('no_seri_skp'),
 					'no_skp_terbit' 			=> $this->input->post('no_skp'),
 					'skp_id' 					=> $idskp,
+					'status' 					=> 1,
 					'alurproses_id' 			=> $this->input->post('alur_proses')
 				);
 				$this->model_skp->_insert_skp_terbit($skpTerbit);

@@ -12,15 +12,15 @@ class Model_pengiriman extends CI_Model {
 		if ($par != null && $var != null) {
 			if($p != null){
 				$this->db->order_by('idtbl_pengiriman','desc');
-				$q = $this->db->get_where('view_pengiriman_skp_terbit',array('status_pengiriman'=>$p, $par=>$var));
+				$q = $this->db->get_where('view_pengiriman_skp_terbit',array('status_pengiriman'=>$p, $par=>$var,'status_skp <>'=>'deleted'));
 			}else{
 				$this->db->order_by('idtbl_pengiriman','desc');
 				$q = $this->db->get('view_pengiriman_skp_terbit', array($par=>$var));
-			}	
+			}
 		}else{
 			if($p != null){
 				$this->db->order_by('idtbl_pengiriman','desc');
-				$q = $this->db->get_where('view_pengiriman_skp_terbit',array('status_pengiriman'=>$p));
+				$q = $this->db->get_where('view_pengiriman_skp_terbit',array('status_pengiriman'=>$p,'status_skp <>'=>'deleted'));
 			}else{
 				$this->db->order_by('idtbl_pengiriman','desc');
 				$q = $this->db->get('view_pengiriman_skp_terbit');

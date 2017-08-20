@@ -43,9 +43,9 @@
 										}elseif($s['status_tandatangan'] == "keluar-direktur"){
 											$next = 'masuk-dirjen';
 										}elseif($s['status_tandatangan'] == "masuk-dirjen"){
-											$next = 'keluar-dirjen';
-										}elseif($s['status_tandatangan'] == "keluar-dirjen"){
-											$next = 'kirim-dinas';
+											$next = 'SKP-terbit';
+										}elseif($s['status_tandatangan'] == "SKP-terbit"){
+											$next = 'SKP-dikirim';
 										}
 										if($level == "kp"){
 											?><input name="update_ttd[<?=$s['idtbl_skp'].'-'.$s['idtbl_tandatangan']?>]" value="<?=$next?>" type="checkbox" /><?php
@@ -64,7 +64,13 @@
 											echo 'belum ada';
 										}else{
 											$exstat = explode('-',$s['status_tandatangan']);
-											echo ucfirst($exstat[0]).' '.ucfirst($exstat[1]);
+											echo '<span style="font-size:9pt">status saat ini:</span><br/>';
+											echo '<strong>'.ucfirst($exstat[0]).' '.ucfirst($exstat[1]).'</strong>';
+											if(isset($next)){
+												$nextstat = explode('-',$next);
+												echo '<br/><span style="font-size:9pt">status selanjutnya:</span><br/>';
+												echo '<strong>'.ucfirst($nextstat[0]).' '.ucfirst($nextstat[1]).'</strong>';
+											}
 										}
 										?>
 									</td>
