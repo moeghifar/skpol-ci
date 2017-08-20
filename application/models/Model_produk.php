@@ -8,11 +8,17 @@ class Model_produk extends CI_Model {
 
 	}
 
-	function _get_produk($p = null){
-		if($p != null){
+	function _get_produk($p = null, $id = null){
+		if($p != null && $id != null){
+			$this->db->order_by('idtbl_produk','desc');
+			$q = $this->db->get_where('tbl_produk',array('status_produk'=>$p,'idtbl_produk'=>$id));
+		}elseif($p != null){
 			$this->db->order_by('idtbl_produk','desc');
 			$q = $this->db->get_where('tbl_produk',array('status_produk'=>$p));
-		}else{
+		}elseif($id != null){
+			$this->db->order_by('idtbl_produk','desc');
+			$q = $this->db->get_where('tbl_produk',array('idtbl_produk'=>$id));
+		} else {
 			$this->db->order_by('idtbl_produk','desc');
 			$q = $this->db->get('tbl_produk');
 		}
@@ -28,7 +34,17 @@ class Model_produk extends CI_Model {
 		}
 	}
 
-	function _update_produk($id){
+	function _update_produk($id,$data){
+		$this->db->where('idtbl_produk',$id);
+		$q = $this->db->update('tbl_produk',$data);
+		if($q){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	function _confirm_produk($id){
 		$this->db->where('idtbl_produk',$id);
 		$q = $this->db->update('tbl_produk',array('status_produk'=>'1'));
 		if($q){

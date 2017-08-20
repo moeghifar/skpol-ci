@@ -11,6 +11,10 @@ class Skp extends MY_Controller {
 		$this->level = $this->session->userdata($this->session_prefix.'-userlevel');
 	}
 
+	public function index() {
+		$this->show404();
+	}
+
 	//Pengajuan SKP oleh UPI
 	public function create($version = 'v1'){
 		$data['page_title'] 	= 'Formulir Pengajuan SKP';

@@ -23,8 +23,9 @@
                             <td><?=$p['namaind_produk']?></td>
                             <td><?=$p['namaen_produk']?></td>
                             <td>
-                                <a class="btn btn-sm btn-success" href="<?=site_url('produk/confirm_product/'.$p['idtbl_produk']);?>"><i class="ico ico-checkmark4"></i></a>
-                                <a class="btn btn-sm btn-danger" href="<?=site_url('produk/delete_product/'.$p['idtbl_produk']);?>"><i class="ico ico-remove"></i></a>
+                                <a class="btn btn-xs btn-success" href="<?=site_url('produk/confirm_product/'.$p['idtbl_produk']);?>"><i class="ico ico-checkmark4"></i></a>
+                                <a class="btn btn-xs btn-default" href="<?=site_url('produk/view_edit_produk/'.$p['idtbl_produk']);?>"><i class="ico ico-edit"></i></a>
+                                <a class="btn btn-xs btn-danger" href="<?=site_url('produk/delete_product/'.$p['idtbl_produk']);?>"><i class="ico ico-remove"></i></a>
                             </td>
                         </tr>
                     <?php $x++; }?>

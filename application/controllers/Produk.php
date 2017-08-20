@@ -17,6 +17,7 @@ class Produk extends MY_Controller {
 		$data['content'] 	= 'pages_content/produk/view_produk_list';
         $this->load->view('index',$data);
 	}
+
 	public function view_approval_produk()
 	{
 		// session restriction
@@ -25,6 +26,20 @@ class Produk extends MY_Controller {
 		$data['produk']		= $this->model_produk->_get_produk("0");
 		$data['content'] = 'pages_content/produk/view_approval_produk';
         $this->load->view('index',$data);
+	}
+
+    public function view_edit_produk($id)
+	{
+		// session restriction
+		$this->_session_restrict(array('kp'));
+        if(is_numeric($id) && $id > 0 && $id != null) {
+            $data['page_title'] = 'Edit Pengajuan Produk Baru';
+    		$data['produk']		= $this->model_produk->_get_produk(0,$id);
+    		$data['content']    = 'pages_content/produk/view_edit_approval_produk';
+            $this->load->view('index',$data);
+        } else {
+            $this->show404();
+        }
 	}
 
 	public function action_add_product(){
@@ -45,10 +60,27 @@ class Produk extends MY_Controller {
 		}
 	}
 
+	public function action_edit_product(){
+        // session restriction
+		$this->_session_restrict(array('kp'));
+		if( $this->input->post('submit') != NULL ){
+			$param = array(
+				'kategori_produk'		=> $this->input->post('kategori_produk'),
+				'namaind_produk'		=> $this->input->post('nama_produk'),
+				'namaen_produk'			=> $this->input->post('product_name'),
+				'status_produk'			=> '0'
+			);
+			if($this->model_produk->_update_produk($this->input->post('id_produk'),$param)){
+				$this->nyast->notif_create_notification('Edit Pengajuan Produk Berhasil','Selamat');
+				redirect(site_url('produk/view_approval_produk'));
+			}
+		}
+	}
+
 	public function confirm_product($id){
         // session restriction
 		$this->_session_restrict(array('kp'));
-		if($this->model_produk->_update_produk($id)){
+		if($this->model_produk->_confirm_produk($id)){
 			$this->nyast->notif_create_notification('Produk Berhasil Ditambahkan','Konfirmasi Berhasil');
 			redirect(site_url('produk/view_approval_produk'));
 		}

@@ -9,6 +9,10 @@ class Upi extends MY_Controller {
 		$this->level = $this->session->userdata($this->session_prefix.'-userlevel');
     }
 
+    public function index() {
+		$this->show404();
+	}
+
 	public function filing_list(){
         // strict session page
         $this->_session_restrict(array('kp', 'dinas'));
