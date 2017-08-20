@@ -10,4 +10,4 @@
 
 # ignore database config & index php
 #index.php
-application/config/database.php
+/application/config/database.php
