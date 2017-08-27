@@ -3,7 +3,9 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title">Daftar Pengajuan SKP</h3>
+				<?php if($this->session->userdata($this->session_prefix.'-userlevel') == 'dinas'){ ?>
 				<div class="panel-toolbar text-right"><a href="" id="jadwalSekaligus" style="padding:5px 25px;" class="btn btn-success btn-sm pull-right disabled" data-toggle="modal" data-target="#modalCheckbox" data-formclass="form-penjadwalan-dinas">PEMBINAAN</a></div>
+				<?php } ?>
 			</div>
 			<div class="panel-body">
 				<form action="" method="POST" class="form-penjadwalan-dinas">
@@ -42,7 +44,7 @@
 		</div>
 	</div>
 </div>
-
+<?php if($this->session->userdata($this->session_prefix.'-userlevel') == 'dinas'){ ?>
 <!-- START modal-sm -->
 <div id="modalCheckbox" class="modal fade">
 	<div class="modal-dialog modal-md">
@@ -72,3 +74,4 @@
 	</div><!-- /.modal-dialog -->
 </div>
 <!--/ END modal-sm -->
+<?php } ?>

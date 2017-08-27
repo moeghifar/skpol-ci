@@ -11,15 +11,15 @@ class Model_home extends CI_Model {
 	function _get_last_status_skp($id = null, $idp = null){
 		if ($id != null) {
 			if ($idp != null) {
-				$q = $this->db->query("SELECT * FROM (SELECT max(sl.id_skp_log) as maxidlog FROM tbl_skp_log sl GROUP BY sl.skp_id) mxdl, tbl_skp_log tsl, view_upi_produk_skp ups WHERE tsl.id_skp_log = maxidlog AND ups.idtbl_skp = tsl.skp_id AND ups.id_user = '$id' AND ups.kode_provinsi = '$idp' AND ups.status_skp != 'terbit-skp'");
+				$q = $this->db->query("SELECT * FROM (SELECT max(sl.id_skp_log) as maxidlog FROM tbl_skp_log sl GROUP BY sl.skp_id) mxdl, tbl_skp_log tsl, view_upi_produk_skp ups WHERE tsl.id_skp_log = maxidlog AND ups.idtbl_skp = tsl.skp_id AND ups.id_user = '$id' AND ups.kode_provinsi = '$idp' AND ups.status_skp <> 'terbit-skp' AND ups.status_skp <> 'deleted'");
 			}else{
-				$q = $this->db->query("SELECT * FROM (SELECT max(sl.id_skp_log) as maxidlog FROM tbl_skp_log sl GROUP BY sl.skp_id) mxdl, tbl_skp_log tsl, view_upi_produk_skp ups WHERE tsl.id_skp_log = maxidlog AND ups.idtbl_skp = tsl.skp_id AND ups.id_user = '$id' AND ups.status_skp != 'terbit-skp'");
+				$q = $this->db->query("SELECT * FROM (SELECT max(sl.id_skp_log) as maxidlog FROM tbl_skp_log sl GROUP BY sl.skp_id) mxdl, tbl_skp_log tsl, view_upi_produk_skp ups WHERE tsl.id_skp_log = maxidlog AND ups.idtbl_skp = tsl.skp_id AND ups.id_user = '$id' AND ups.status_skp <> 'terbit-skp' AND ups.status_skp <> 'deleted'");
 			}
 		}else{
 			if ($idp != null) {
-				$q = $this->db->query("SELECT * FROM (SELECT max(sl.id_skp_log) as maxidlog FROM tbl_skp_log sl GROUP BY sl.skp_id) mxdl, tbl_skp_log tsl, view_upi_produk_skp ups WHERE tsl.id_skp_log = maxidlog AND ups.idtbl_skp = tsl.skp_id AND ups.kode_provinsi = '$idp' AND ups.status_skp != 'terbit-skp'");
+				$q = $this->db->query("SELECT * FROM (SELECT max(sl.id_skp_log) as maxidlog FROM tbl_skp_log sl GROUP BY sl.skp_id) mxdl, tbl_skp_log tsl, view_upi_produk_skp ups WHERE tsl.id_skp_log = maxidlog AND ups.idtbl_skp = tsl.skp_id AND ups.kode_provinsi = '$idp' AND ups.status_skp <> 'terbit-skp' AND ups.status_skp <> 'deleted'");
 			}else{
-				$q = $this->db->query("SELECT * FROM (SELECT max(sl.id_skp_log) as maxidlog FROM tbl_skp_log sl GROUP BY sl.skp_id) mxdl, tbl_skp_log tsl, view_upi_produk_skp ups WHERE tsl.id_skp_log = maxidlog AND ups.idtbl_skp = tsl.skp_id AND ups.status_skp != 'terbit-skp'");
+				$q = $this->db->query("SELECT * FROM (SELECT max(sl.id_skp_log) as maxidlog FROM tbl_skp_log sl GROUP BY sl.skp_id) mxdl, tbl_skp_log tsl, view_upi_produk_skp ups WHERE tsl.id_skp_log = maxidlog AND ups.idtbl_skp = tsl.skp_id AND ups.status_skp <> 'terbit-skp' AND ups.status_skp <> 'deleted'");
 			}
 		}
 		// $q = $this->db->get_where('view_upi_produk_skp',array('idtbl_upi'=>$id));
@@ -35,15 +35,15 @@ class Model_home extends CI_Model {
 	function _get_skp_terbit_id($id=null,$pr=null){
 		if ($id!=null) {
 			if ($pr!=null) {
-				$q = $this->db->get_where('view_skp_terbit',array('idtbl_upi'=>$id,'kode_provinsi'=>$pr));
+				$q = $this->db->get_where('view_skp_terbit',array('idtbl_upi'=>$id,'kode_provinsi'=>$pr,'status'=>1));
 			}else{
-				$q = $this->db->get_where('view_skp_terbit',array('idtbl_upi'=>$id));
+				$q = $this->db->get_where('view_skp_terbit',array('idtbl_upi'=>$id,'status'=>1));
 			}
 		}else{
 			if ($pr!=null) {
-				$q = $this->db->get_where('view_skp_terbit',array('kode_provinsi'=>$pr));
+				$q = $this->db->get_where('view_skp_terbit',array('kode_provinsi'=>$pr,'status'=>1));
 			}else{
-				$q = $this->db->get_where('view_skp_terbit');
+				$q = $this->db->get_where('view_skp_terbit',array('status'=>1));
 			}
 		}
 		return $q->result_array();

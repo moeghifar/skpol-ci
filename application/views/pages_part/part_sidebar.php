@@ -195,7 +195,7 @@
                             <span class="text">SKP Terbit</span>
                         </a>
                     </li>
-                    <?php if($sessionJen=='dinas'||$sessionJen=='admin'){?>
+                    <?php if($sessionJen=='kp'||$sessionJen=='dinas'||$sessionJen=='admin'){?>
                     <li class="<?php if ( $this->uri->segment(1) == 'skp' && $this->uri->segment(2) == 'pengajuan_list'  ) echo "active";?>">
                         <a href="<?php echo base_url('skp/pengajuan_list');?>">
                             <span class="text">Pengajuan SKP</span>
