@@ -19,6 +19,7 @@
 	                            <th>Perbaikan</th>
 	                            <th>Unit Kerja</th>
 	                            <th>Status</th>
+	                            <th>Note</th>
 	                        </tr>
 	                    </thead>
 	                    <tbody>
@@ -56,6 +57,15 @@
 	                            		<?=$v['status_kunjungan']?>
 	                            	<?php } ?>
 	                            	
+	                            </td>
+	                            <td>
+	                            	<?php
+	                            	if ($v['note_revisi_kunjungan'] != "") {
+	                            		echo $v['note_revisi_kunjungan'];
+	                            	}else{
+	                            		echo "-";
+	                            	}
+	                            	?>
 	                            </td>
 	                        </tr>
 							<?php $x++; } ?>

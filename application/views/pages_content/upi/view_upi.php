@@ -29,6 +29,9 @@
                                 <td>
                                     <a href="<?php echo base_url('upi/view_detail/'.$k['idtbl_upi']);?>" class="btn btn-sm btn-success"><i class="ico ico-search"></i></a>
                                     <a href="<?php echo base_url('upi/edit_detail/'.$k['idtbl_upi']);?>" class="btn btn-sm btn-info"><i class="ico ico-edit"></i></a>
+                                    <?php if($this->session->userdata($this->session_prefix.'-userlevel')=='kp'){?>
+                                        <a data-toggle="modal" data-target="#deleteModal" data-url="<?=site_url('upi/action_delete_upi/'.$k['idtbl_upi']);?>" class="btn btn-sm btn-danger"><i class="ico-remove"></i></a>
+                                    <?php } ?>
                                 </td>
                             </tr>
                         <?php $x++; } ?>
@@ -95,3 +98,23 @@
 	</div><!-- /.modal-dialog -->
 </div>
 <!--/ END modal-sm -->
+
+
+<!-- START Delete modal -->
+<div id="deleteModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="ico ico-warning"></i> Konfirmasi Hapus Data
+            </div>
+            <div class="modal-body">
+                Anda yakin ingin menghapus data UPI ini ??
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                <a id="target-href" class="btn btn-danger">Hapus</a>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!--/ END modal -->

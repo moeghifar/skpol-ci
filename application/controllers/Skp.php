@@ -8,6 +8,7 @@ class Skp extends MY_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model('model_skp');
+		$this->load->model('model_upi');
 		$this->level = $this->session->userdata($this->session_prefix.'-userlevel');
 	}
 
@@ -343,6 +344,8 @@ class Skp extends MY_Controller {
 		$data['lain']		= $this->model_skp->_get_by_skp('tbl_infolain',$ids);
 		$data['skp']		= $this->model_skp->_get_skp_terbit('terbit-skp',$ids);
 		$data['alur']		= $this->model_skp->_get_by_alur('tbl_alurproses',$id);
+
+		$data['upi']		= $this->model_upi->_get_upi_terdaftar($data['skp'][0]['upi_id']);
 		$data['content'] = 'pages_content/skp/view_detail_skp';
 		$this->load->view('index',$data);
 	}
@@ -418,12 +421,42 @@ class Skp extends MY_Controller {
 	//Tabel Rekomendasi SKP yang dikirimkan oleh dinas ke KP
 	public function rekomendasi_list()
 	{
+		if($this->level=='kp'||$this->level=='admin'){
+			$data['page_title'] = 'Daftar Rekomendasi SKP oleh Dinas';
+			$data['content'] = 'pages_content/skp/view_rekomendasi_list';
+			$data['alurproses']	= $this->model_skp->_get_alur_proses();
+			$data['rekomendasi'] = $this->model_skp->_get_rekomendasi_skp();
+			$this->load->view('index',$data);
+		}else{
+			$this->show404();
+		}
+	}
+
+	public function rekomendasi_dinas()
+	{
 		$data['page_title'] = 'Daftar Rekomendasi SKP oleh Dinas';
-		$data['content'] = 'pages_content/skp/view_rekomendasi_list';
-		$data['alurproses']	= $this->model_skp->_get_alur_proses();
-		$data['rekomendasi'] = $this->model_skp->_get_rekomendasi_skp();
+		$data['content'] = 'pages_content/skp/view_rekomendasi_dinas_list';
+		if($this->level=='dinas'){
+			$data['rekomendasi']		= $this->model_skp->_get_rekomendasi_skp(null, $this->session->userdata($this->session_prefix.'-userkodeprovinsi'));
+		}else{
+			$this->show404();
+		}
 		$this->load->view('index',$data);
 	}
+
+	public function edit_rekomendasi_dinas($id)
+	{
+		$data['page_title'] = 'Edit Rekomendasi SKP oleh Dinas';
+		$data['content'] = 'pages_content/skp/view_edit_rekomendasi_dinas_list';
+		if($this->level=='dinas'){
+			$data['rekomendasi']		= $this->model_skp->_get_rekomendasi_skp($id, $this->session->userdata($this->session_prefix.'-userkodeprovinsi'));
+		}else{
+			$this->show404();
+		}
+		$this->load->view('index',$data);
+	}
+
+
 
 	function action_supervisi($id = null){
 		if(null!=$this->input->post('submit')){

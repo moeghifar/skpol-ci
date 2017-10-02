@@ -81,6 +81,12 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label class="control-label col-sm-3">Note Revisi Kunjungan</label>
+                    <div class="col-sm-9">
+                        <p class="control-label" style="text-align: left;"><?=$perbaikan[0]['note_revisi_kunjungan']?></p>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label class="control-label col-sm-3">Tanggal Kunjungan</label>
                     <div class="col-sm-9">
                         <p class="control-label" style="text-align: left;"><?=$this->nyast->date_indo_format($perbaikan[0]['tgl_kunjungan'])?></p>
