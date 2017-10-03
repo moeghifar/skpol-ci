@@ -202,6 +202,15 @@
                         </a>
                     </li>
                     <?php }?>
+                    <!-- Rekomendasi Dinas -->
+                    <?php if($sessionJen=='dinas'||$sessionJen=='admin'){?>
+                    <li class="<?php if ( $this->uri->segment(1) == 'skp' && $this->uri->segment(2) == 'rekomendasi_dinas'  ) echo "active";?>">
+                        <a href="<?php echo base_url('skp/rekomendasi_dinas');?>">
+                            <span class="text">Rekomendasi Dinas</span>
+                        </a>
+                    </li>
+                    <?php }?>
+                    <!-- End Rekomendasi Dinas -->
                     <?php if($sessionJen=='kp'||$sessionJen=='admin'){?>
                     <li class="<?php if ( $this->uri->segment(1) == 'skp' && $this->uri->segment(2) == 'rekomendasi_list'  ) echo "active";?>">
                         <a href="<?php echo base_url('skp/rekomendasi_list');?>">

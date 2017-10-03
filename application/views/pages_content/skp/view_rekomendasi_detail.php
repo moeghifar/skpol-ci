@@ -256,7 +256,14 @@
             </div>
 
             <div class="panel-footer">
-                <a href="<?php echo base_url('skp/rekomendasi_list');?>" class="btn btn-success">Kembali</a>
+                <a href="<?php 
+                    $this->level = $this->session->userdata($this->session_prefix.'-userlevel');
+                    if ($this->level=='kp'||$this->level=='admin') {
+                        echo base_url('skp/rekomendasi_list');
+                    }elseif ($this->level=='dinas') {
+                        echo base_url('skp/rekomendasi_dinas');
+                    }
+                ?>" class="btn btn-success">Kembali</a>
             </div>
         </form>
         <!--/ Form horizontal layout striped -->

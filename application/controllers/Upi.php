@@ -336,7 +336,7 @@ class Upi extends MY_Controller {
         // check if id is valid integer
         if ($id != null && is_numeric($id) && $id > 0) {
             // delete from get user_id from tbl_register_upi
-            $result = $this->model_upi->_get_user_from_register_upi($id);
+            $result = $this->model_upi->_get_upi_terdaftar($id);
             // remove data from register upi
             $paths[] = '.'.$result[0]['filesiup_upi'];
             $paths[] = '.'.$result[0]['fileakta_upi'];
@@ -353,8 +353,9 @@ class Upi extends MY_Controller {
             if($this->model_upi->_delete_register_user($user_id)){
                 // delete from tbl_register_upi
                 $this->model_upi->_delete_reg_upi($id);
+                $this->nyast->notif_create_notification('Data UPI Telah Dihapus','Hapus Berhasil');
             }
-            redirect(site_url('upi/filing_list'));
+            redirect(site_url('upi/view_list'));
         }
     }
 }

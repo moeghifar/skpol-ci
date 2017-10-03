@@ -89,6 +89,16 @@
 							<div class="row">
 								<div class="col-sm-12">
 									<div class="form-group">
+										<label>Peringkat UPI</label>
+										<select name="peringkat_upi" class="form-control">
+											<option value="">...pilih peringkat UPI...</option>
+											<option value="a">A</option>
+											<option value="b">B</option>
+											<option value="c">C</option>
+											<option value="gagal">Gagal</option>
+										</select>
+									</div>
+									<div class="form-group">
 										<label>No Seri SKP</label>
 										<input type="text" name="no_seri_skp" class="form-control" placeholder="Nomor Seri SKP" required>
 									</div>

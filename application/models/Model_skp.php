@@ -144,11 +144,19 @@ class Model_skp extends CI_Model {
 		}
 	}
 
-	function _get_rekomendasi_skp($id = null){
+	function _get_rekomendasi_skp($id = null, $idp = null){
 		if ($id != null) {
-			$q = $this->db->get_where('view_skp_kunjungan',array('idtbl_skp'=>$id,'status_skp'=>'kunjungan-selesai-dinas','status_kunjungan'=>'Kunjungan Selesai','uker_kunjungan'=>'dinas'));
+			if ($idp == null) {
+				$q = $this->db->get_where('view_skp_kunjungan',array('idtbl_skp'=>$id,'status_skp'=>'kunjungan-selesai-dinas','status_kunjungan'=>'Kunjungan Selesai','uker_kunjungan'=>'dinas'));
+			}else{
+				$q = $this->db->get_where('view_skp_kunjungan',array('idtbl_skp'=>$id,'status_skp'=>'kunjungan-selesai-dinas','status_kunjungan'=>'Kunjungan Selesai','uker_kunjungan'=>'dinas', 'kode_provinsi'=>$idp));
+			}
 		}else{
-			$q = $this->db->get_where('view_skp_kunjungan',array('status_skp'=>'kunjungan-selesai-dinas','status_kunjungan'=>'Kunjungan Selesai','uker_kunjungan'=>'dinas'));
+			if ($idp == null) {
+				$q = $this->db->get_where('view_skp_kunjungan',array('status_skp'=>'kunjungan-selesai-dinas','status_kunjungan'=>'Kunjungan Selesai','uker_kunjungan'=>'dinas'));
+			}else{
+				$q = $this->db->get_where('view_skp_kunjungan',array('status_skp'=>'kunjungan-selesai-dinas','status_kunjungan'=>'Kunjungan Selesai','uker_kunjungan'=>'dinas', 'kode_provinsi'=>$idp));
+			}
 		}
 		return $q->result_array();
 	}

@@ -51,6 +51,12 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label class="control-label col-sm-3">Note Revisi Kunjungan</label>
+                    <div class="col-sm-9">
+                        <textarea class="form-control" style="max-width:100%;min-width:100%;min-height:80px;" name="note_revisi" placeholder="<?php if(isset($perbaikan[0]['note_revisi_kunjungan'])) {echo $perbaikan[0]['note_revisi_kunjungan'];}?>"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label class="control-label col-sm-3">Tanggal Kunjungan</label>
                     <div class="col-sm-9">
                         <input type="text" class="form-control" id="datepicker" placeholder="<?=$this->nyast->date_indo_format($perbaikan[0]['tgl_kunjungan'])?>" name="tanggal_kunjungan" required/>
