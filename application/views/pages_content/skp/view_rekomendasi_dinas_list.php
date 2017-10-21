@@ -3,10 +3,10 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title">Daftar Pengajuan SKP</h3>
-				<div class="panel-toolbar text-right"><a href="" style="padding:5px 25px;" class="btn btn-success btn-sm pull-right disabled" data-toggle="modal" data-target="#modalCheckbox" data-formclass="form-temuan-kunjungan">Edit Surat Rekomendasi</a></div>
+				<div class="panel-toolbar text-right"><a href="" style="padding:5px 25px;" class="btn btn-success btn-sm pull-right disabled" data-toggle="modal" data-target="#modalCheckbox" data-formclass="form-surat-rekomendasi">Edit Surat Rekomendasi</a></div>
 			</div>
 			<div class="panel-body">
-				<form action="" method="POST" class="form-penjadwalan-dinas">
+				<form action="" method="POST" class="form-surat-rekomendasi">
 					<table class="table table-striped table-bordered" id="table-checkbox">
 						<thead>
 							<tr>
@@ -26,7 +26,6 @@
 							<?php $i=1; foreach($rekomendasi as $k){ ?>
 								<tr>
 									<td>
-										<!-- <input name="supervisi[]" value="<?=$k['idtbl_skp'].'-'.$k['idtbl_kunjungan']?>" type="checkbox" /> -->
 										<input name="perbaikan_selesai[]" value="<?=$k['idtbl_skp'].'-'.$k['idtbl_kunjungan']?>" type="checkbox" />
 									</td>
 									<td><?=$i?></td>
@@ -56,7 +55,7 @@
 				<button type="button" class="close" data-dismiss="modal">×</button>
 				<h3 class="semibold modal-title text-primary">Surat Rekomendasi</h3>
 			</div>
-			<?=form_open_multipart(site_url('kunjungan/action_edit_rekomendasi'),array('class'=>'upload-temuan','method'=>'post'))?>
+			<?=form_open_multipart(site_url('kunjungan/action_edit_rekomendasi'),array('method'=>'post'))?>
 				<div class="modal-body">
 					<div class="form-group">
 						<div class="row">

@@ -76,13 +76,9 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
-	/* PRODUCTION */
-	// 'username' => 'user_dbskponline',
-	// 'password' => 'p4s5w0Rd_dbskponline',
-	// 'database' => 'db_skp_online',
 	'username' => 'root',
-	'password' => '',
-	'database' => 'db_skp_online_simulasi',
+	'password' => 'root',
+	'database' => 'db_skp_online_alpha',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

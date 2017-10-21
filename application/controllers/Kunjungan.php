@@ -287,7 +287,6 @@ class Kunjungan extends MY_Controller {
 				$fileData	= $this->upload->data();
 				foreach($this->input->post('perbaikan_selesai') as $k){
 					$ke 			= explode('-',$k);
-					$this->nyast->notif_create_notification('-'.$ke,'Selamat');
 					$idskp 			= $ke[0];
 					$idkunjungan 	= $ke[1];
 					$dt = array(
@@ -321,11 +320,10 @@ class Kunjungan extends MY_Controller {
 
 	function action_edit_rekomendasi(){
 		if(null!=$this->input->post('submit')){
-			$config['allowed_types']        = 'jpg|jpeg|pdf|doc|docx';
-			//$config['max_size']             = 25000;
-			$config['overwrite']            = 1;
-			$config['upload_path'] = './file/surat-rekomendasi';
-			$config['file_name'] = 'surat-rekomendasi-'.date('y-m-d--his');
+			$config['allowed_types']    = 'jpg|jpeg|pdf|doc|docx';
+			$config['overwrite']        = 1;
+			$config['upload_path'] 		= './file/surat-rekomendasi';
+			$config['file_name'] 		= 'surat-rekomendasi-'.date('y-m-d--his');
 			$this->load->library('upload', $config);
 			if($this->upload->do_upload('file_surek')){
 				$fileData	= $this->upload->data();
@@ -333,15 +331,11 @@ class Kunjungan extends MY_Controller {
 					$ke 			= explode('-',$k);
 					$idskp 			= $ke[0];
 					$idkunjungan 	= $ke[1];
-					
 					$dt = array(
 						'rekomendasi_kunjungan'	=> '/file/surat-rekomendasi/'.$fileData['file_name']
 					);
-					
 					// update kunjungan
 					$this->model_kunjungan->_update_kunjungan($dt,$idskp,$idkunjungan);
-					// $this->model_kunjungan->_update_kunjungan($data['kunjungan']['rekomendasi_kunjungan'],$idskp,$idkunjungan);
-
 				}
 				// perform redirect with notification
 				$this->nyast->notif_create_notification('Edit Surat Rekomendasi Berhasil','Selamat');
