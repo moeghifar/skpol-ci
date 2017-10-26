@@ -166,6 +166,25 @@ class Model_skp extends CI_Model {
 		return $q->result_array();
 	}
 
+	function _insert_revisi_rekomendasi($data) {
+		$q = $this->db->insert('tbl_revisi_rekomendasi',$data);
+		if($q){
+			return TRUE;
+		}else{
+			return FALSE;
+		}
+	}
+
+	function _update_revisi_rekomendasi($id, $data) {
+		$this->db->where(array('skp_id'=>$id));
+		$q = $this->db->update('tbl_revisi_rekomendasi',$data);
+		if($q){
+			return TRUE;
+		}else{
+			return FALSE;
+		}
+	}
+
 	function _cek_alur_proses($data){
 		$q = $this->db->get_where('tbl_alurproses',array('nama_alurproses' => $data));
 		return $q->result_array();
@@ -263,9 +282,9 @@ class Model_skp extends CI_Model {
 		return $q->result_array();
 	}
 
-	function _delete_skp_table($id,$tbl,$where){
-		$this->db->where($where,$id);
-		$q = $this->db->delete($tbl);
+	function _delete_skp($id){
+		$this->db->where('idtbl_skp',$id);
+		$q = $this->db->delete('tbl_skp');
 		if($q){
 			return true;
 		}else{

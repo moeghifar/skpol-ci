@@ -86,54 +86,12 @@
 		       			<div class="form-group">
 		                	<input name="nosiup" type="text" class="form-control input-md" placeholder="No SIUP" required>
 		                </div>
-		                <!--<div class="form-group">
-		                	<div class="row">
-			                	<div class="col-sm-12">
-									<div class="input-group">
-										<input name="file_name_siup" type="text" class="form-control" placeholder="Upload File SIUP" for="file_siup" readonly>
-										<span class="input-group-btn">
-											<div class="btn btn-primary btn-file">
-												<span class="icon iconmoon-file-3"></span> Upload <input type="file" name="file_siup">
-											</div>
-										</span>
-									</div>
-			                	</div>
-		                	</div>
-		                </div>-->
 		                <div class="form-group">
 		                	<input name="noiup" type="text" class="form-control input-md" placeholder="No IUP" required>
 		                </div>
-		                <!--<div class="form-group">
-		                	<div class="row">
-								<div class="col-sm-12">
-									<div class="input-group">
-										<input name="file_name_siup" type="text" class="form-control" placeholder="Upload File IUP" for="file_iup" readonly>
-										<span class="input-group-btn">
-											<div class="btn btn-primary btn-file">
-												<span class="icon iconmoon-file-3"></span> Upload <input type="file" name="file_iup">
-											</div>
-										</span>
-									</div>
-			                	</div>
-			                </div>
-		                </div>-->
 		                <div class="form-group">
 		                	<input name="noakta" type="text" class="form-control input-md" placeholder="No Akta Notaris" required>
 		                </div>
-		                <!--<div class="form-group">
-		                	<div class="row">
-								<div class="col-sm-12">
-									<div class="input-group">
-										<input name="file_name_siup" type="text" class="form-control" placeholder="Upload File Akta" for="file_akta" readonly>
-										<span class="input-group-btn">
-											<div class="btn btn-primary btn-file">
-												<span class="icon iconmoon-file-3"></span> Upload <input type="file" name="file_akta">
-											</div>
-										</span>
-									</div>
-			                	</div>
-			                </div>
-		                </div>-->
 						<input type="hidden" value="<?=$upi[0]['idtbl_upi']?>" name="idupi"/>
 		       		</div>
 		        </div>

@@ -161,7 +161,7 @@
 										<option value="2">Hapus Pengajuan (permanen)</option>
 									</select>
 								</div>
-								<div class="form-group" class="info_revisi">
+								<div class="form-group info_revisi">
 									<label>Info Revisi</label>
 									<input type="text" name="info_revisi" class="form-control" placeholder="Info Revisi" required>
 									<small>*wajib diisi untuk info revisi dokumen rekomendasi</small>

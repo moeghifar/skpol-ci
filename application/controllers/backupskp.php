@@ -20,7 +20,7 @@ class Skp extends MY_Controller {
 
 	function action_create_skp(){
 		$config['allowed_types']        = 'jpg|jpeg|pdf|doc|docx';
-		$config['max_size']             = 25000;
+		$config['max_size']             = 0;
 		$config['overwrite']            = 1;
 		$this->load->library('upload', $config);
 		if( $this->input->post('submit') != NULL ){
@@ -444,7 +444,7 @@ class Skp extends MY_Controller {
 
 			require_once(APPPATH.'third_party/html2pdf/html2pdf.class.php');
 			$pdf = new HTML2PDF('P','A4','en');
-			
+
 			$pdf->WriteHTML($html);
 			$pdf->Output('skp-terbit-.pdf');
 		}else{

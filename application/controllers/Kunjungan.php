@@ -23,7 +23,7 @@ class Kunjungan extends MY_Controller {
 	function action_tindak_lanjut(){
 		if(null!=$this->input->post('submit')){
 			$config['allowed_types']        = 'jpg|jpeg|pdf|doc|docx';
-			//$config['max_size']             = 25000;
+			$config['max_size']             = 0;
 			$config['overwrite']            = 1;
 			$config['upload_path'] = './file/perbaikan';
 			$config['file_name'] = 'perbaikan-'.date('y-m-d--his');
@@ -103,7 +103,7 @@ class Kunjungan extends MY_Controller {
 	function action_kunjungan_selesai(){
 		if(null!=$this->input->post('submit')){
 			$config['allowed_types']        = 'jpg|jpeg|pdf|doc|docx';
-			//$config['max_size']             = 25000;
+			$config['max_size']             = 0;
 			$config['overwrite']            = 1;
 			$config['upload_path'] = './file/temuan';
 			$config['file_name'] = 'temuan-'.date('y-m-d--his');
@@ -144,7 +144,7 @@ class Kunjungan extends MY_Controller {
 	function action_supervisi_selesai(){
 		if(null!=$this->input->post('submit')){
 			$config['allowed_types']        = 'jpg|jpeg|pdf|doc|docx';
-			//$config['max_size']             = 25000;
+			$config['max_size']             = 0;
 			$config['overwrite']            = 1;
 			$config['upload_path'] = './file/temuan';
 			$config['file_name'] = 'temuan-'.date('y-m-d--his');
@@ -278,7 +278,7 @@ class Kunjungan extends MY_Controller {
 	function action_surat_rekomendasi(){
 		if(null!=$this->input->post('submit')){
 			$config['allowed_types']        = 'jpg|jpeg|pdf|doc|docx';
-			//$config['max_size']             = 25000;
+			$config['max_size']             = 0;
 			$config['overwrite']            = 1;
 			$config['upload_path'] = './file/surat-rekomendasi';
 			$config['file_name'] = 'surat-rekomendasi-'.date('y-m-d--his');
@@ -315,13 +315,11 @@ class Kunjungan extends MY_Controller {
 		}
 	}
 
-	// yg ini belum jalan
-	// Bagian action edit rekomendasi
-
 	function action_edit_rekomendasi(){
 		if(null!=$this->input->post('submit')){
 			$config['allowed_types']    = 'jpg|jpeg|pdf|doc|docx';
 			$config['overwrite']        = 1;
+			$config['max_size']        	= 0;
 			$config['upload_path'] 		= './file/surat-rekomendasi';
 			$config['file_name'] 		= 'surat-rekomendasi-'.date('y-m-d--his');
 			$this->load->library('upload', $config);
@@ -336,6 +334,15 @@ class Kunjungan extends MY_Controller {
 					);
 					// update kunjungan
 					$this->model_kunjungan->_update_kunjungan($dt,$idskp,$idkunjungan);
+					// update revisi rekomendasi skp
+					$reject = $this->model_skp->_check_revisi_rekomendasi($idskp);
+					if(count($reject) > 0 && $reject[0]['status'] == 1) {
+						$data = array(
+							'status' => 2,
+							'deskripsi' => ''
+						);
+						$this->model_skp->_update_revisi_rekomendasi($idskp, $data);
+					}
 				}
 				// perform redirect with notification
 				$this->nyast->notif_create_notification('Edit Surat Rekomendasi Berhasil','Selamat');
@@ -370,6 +377,16 @@ class Kunjungan extends MY_Controller {
 
 				// update main skp status
 				$this->model_skp->_update_skp_status(array('status_skp' => 'penerbitan-skp'),$idskp);
+
+				// update revisi rekomendasi skp
+				$reject = $this->model_skp->_check_revisi_rekomendasi($idskp);
+				if(count($reject) > 0 && $reject[0]['status'] == 1) {
+					$data = array(
+						'status' => 0,
+						'deskripsi' => ''
+					);
+					$this->model_skp->_update_revisi_rekomendasi($idskp, $data);
+				}
 
 				// // cek alur proses
 				// $alpros = $this->model_skp->_cek_alur_proses();
