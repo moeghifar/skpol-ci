@@ -426,6 +426,16 @@ class Skp extends MY_Controller {
 			$data['content'] = 'pages_content/skp/view_rekomendasi_list';
 			$data['alurproses']	= $this->model_skp->_get_alur_proses();
 			$data['rekomendasi'] = $this->model_skp->_get_rekomendasi_skp();
+			foreach ($data['rekomendasi'] as $k => $v) {
+				$skpid = $v['idtbl_skp'];
+				$getRevisi = $this->model_skp->_check_revisi_rekomendasi($skpid);
+				$data['rekomendasi'][$k]['info_revisi'] = '<small>Belum direvisi</small>';
+				if (count($getRevisi) > 0) {
+					if ($getRevisi[0]['status'] == 1) {
+						$data['rekomendasi'][$k]['info_revisi'] = '<small>Revisi sudah diajukan ke dinas</small>';
+					}
+				}
+			}
 			$this->load->view('index',$data);
 		}else{
 			$this->show404();
@@ -437,7 +447,17 @@ class Skp extends MY_Controller {
 		$data['page_title'] = 'Daftar Rekomendasi SKP oleh Dinas';
 		$data['content'] = 'pages_content/skp/view_rekomendasi_dinas_list';
 		if($this->level=='dinas'){
-			$data['rekomendasi']		= $this->model_skp->_get_rekomendasi_skp(null, $this->session->userdata($this->session_prefix.'-userkodeprovinsi'));
+			$data['rekomendasi'] = $this->model_skp->_get_rekomendasi_skp(null, $this->session->userdata($this->session_prefix.'-userkodeprovinsi'));
+			foreach ($data['rekomendasi'] as $k => $v) {
+				$skpid = $v['idtbl_skp'];
+				$getRevisi = $this->model_skp->_check_revisi_rekomendasi($skpid);
+				$data['rekomendasi'][$k]['info_revisi'] = '<small>tidak ada</small>';
+				if (count($getRevisi) > 0) {
+					if ($getRevisi[0]['status'] == 1) {
+						$data['rekomendasi'][$k]['info_revisi'] = '<small>'.$getRevisi[0]['deskripsi'].'</small>';
+					}
+				}
+			}
 		}else{
 			$this->show404();
 		}
@@ -488,6 +508,27 @@ class Skp extends MY_Controller {
 			// perform redirect with notification
 			$this->nyast->notif_create_notification('Penjadwalan Supervisi SKP Berhasil','Selamat');
 			redirect(site_url('skp/rekomendasi_list'));
+		}else{
+			$this->show404();
+		}
+	}
+
+	function action_reject_skp($id = null){
+		if(null!=$this->input->post('submit')){
+			$action = $this->input->post('reject_action');
+			foreach($this->input->post('supervisi') as $k){
+				$ke 			= explode('-',$k);
+				$key 			= $ke[0];
+				if ($action == 1) { // action revisi dokumen
+					echo 'revisi dokumen';
+				} else { // action delete skp rekom
+					echo 'hapus skp';
+				}
+				var_dump($k);
+			}
+			// perform redirect with notification
+			// $this->nyast->notif_create_notification('Reject SKP Berhasil','Selamat');
+			// redirect(site_url('skp/rekomendasi_list'));
 		}else{
 			$this->show404();
 		}

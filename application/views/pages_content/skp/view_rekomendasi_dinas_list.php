@@ -19,6 +19,7 @@
 								<th>Tanggal Kunjungan Dinas</th>
 								<th>File Rekomendasi</th>
 								<th>Nama Produk</th>
+								<th>Info Revisi</th>
 								<th>View</th>
 							</tr>
 						</thead>
@@ -34,6 +35,7 @@
 									<td><?=date("d-m-Y", strtotime($k['tgl_kunjungan']))?></td>
 									<td><a class="btn btn-xs btn-inverse" href="<?=base_url($k['rekomendasi_kunjungan'])?>" target="_blank"><i class="ico ico-file"></i> Lihat File</a></td>
 									<td><?=$k['namaind_produk']?></td>
+									<td><?=$k['info_revisi']?></td>
 									<td>
 										<a class="btn btn-xs btn-primary" href="<?php echo base_url('skp/detail_rekomendasi_skp/'.$k['idtbl_skp']);?>"><i class="ico ico-search"></i>Lihat Detail</a>
 									</td>

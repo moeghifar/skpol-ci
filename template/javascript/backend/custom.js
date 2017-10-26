@@ -233,6 +233,14 @@ $(document).ready(function(){
 			return false;
 		}
 	});
+	/* reject skp */
+	$('.reject_skp select').on('change',function(){
+		if($(this).val()==2) {
+			$('.reject_skp .info_revisi').hide();
+		} else {
+			$('.reject_skp .info_revisi').show();
+		}
+	});
 });
 function remove_table_produk(num) {
 	$('#tbl-produk-container .tbl-tr-'+num).remove();

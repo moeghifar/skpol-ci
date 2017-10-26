@@ -161,6 +161,11 @@ class Model_skp extends CI_Model {
 		return $q->result_array();
 	}
 
+	function _check_revisi_rekomendasi($idskp) {
+		$q = $this->db->get_where('tbl_revisi_rekomendasi',array('skp_id' => $idskp));
+		return $q->result_array();
+	}
+
 	function _cek_alur_proses($data){
 		$q = $this->db->get_where('tbl_alurproses',array('nama_alurproses' => $data));
 		return $q->result_array();

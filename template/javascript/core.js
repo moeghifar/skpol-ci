@@ -879,6 +879,16 @@
 		});
 	});
 
+	$('#modalCheckboxThree').on('show.bs.modal', function (event) {
+		var button = $(event.relatedTarget);
+		var fc = button.data('formclass');
+		var modal = $(this);
+		$('.formContainer').html('');
+		$('.'+fc+' :checkbox:checked').each(function(){
+			$('.formContainer').append('<input type="hidden" name="'+$(this).attr('name')+'" value="'+$(this).val()+'">');
+		});
+	});
+
 	$('#modalParamDirect').on('show.bs.modal', function (event) {
 		var button = $(event.relatedTarget);
 		var url = button.data('url');

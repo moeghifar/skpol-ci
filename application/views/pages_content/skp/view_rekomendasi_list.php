@@ -4,6 +4,7 @@
 			<div class="panel-heading">
 				<h3 class="panel-title">Daftar Pengajuan SKP</h3>
 				<div class="panel-toolbar text-right">
+					<a href="" style="padding:5px 25px;" class="btn btn-danger btn-sm disabled" data-toggle="modal" data-target="#modalCheckboxThree" data-formclass="form-penjadwalan-dinas">REJECT</a>
 					<a href="" style="padding:5px 25px;" class="btn btn-success btn-sm disabled" data-toggle="modal" data-target="#modalCheckboxTwo" data-formclass="form-penjadwalan-dinas">TERBITKAN SKP</a>
 					<a href="" style="padding:5px 25px;" class="btn btn-primary btn-sm disabled" data-toggle="modal" data-target="#modalCheckbox" data-formclass="form-penjadwalan-dinas">SUPERVISI</a>
 				</div>
@@ -22,6 +23,7 @@
 								<th>Tanggal Kunjungan Dinas</th>
 								<th>File Rekomendasi</th>
 								<th>Nama Produk</th>
+								<th>Info Revisi</th>
 								<th style="width:40px;">View</th>
 							</tr>
 						</thead>
@@ -35,6 +37,7 @@
 									<td><?=date("d-m-Y", strtotime($k['tgl_kunjungan']))?></td>
 									<td><a class="btn btn-xs btn-inverse" href="<?=base_url($k['rekomendasi_kunjungan'])?>" target="_blank"><i class="ico ico-file"></i> Lihat File</a></td>
 									<td><?=$k['namaind_produk']?></td>
+									<td><?=$k['info_revisi']?></td>
 									<td>
 										<a class="btn btn-sm btn-xs btn-primary" href="<?php echo base_url('skp/detail_rekomendasi_skp/'.$k['idtbl_skp']);?>"><i class="ico ico-search"></i>Lihat Detail</a>
 									</td>
@@ -122,6 +125,47 @@
 									<!-- <input id="alurproses" type="text" name="alur_proses" class="form-control" placeholder="Alur Proses" required> -->
 								</div>
 								<div class="ui-front"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<div class="formContainer"></div>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+					<input type="submit" name="submit" value="Simpan" class="btn btn-primary">
+				</div>
+			</form>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<!--/ END modal-sm -->
+
+<!-- START modal-sm -->
+<div id="modalCheckboxThree" class="modal fade">
+	<div class="modal-dialog modal-md">
+		<div class="modal-content">
+			<div class="modal-header text-center">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h3 class="semibold modal-title text-primary">Reject SKP</h3>
+			</div>
+			<form class="reject_skp" action="<?=site_url('skp/action_reject_skp')?>" method="post">
+				<div class="modal-body">
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="form-group">
+									<label>Reject Action</label>
+									<select name="reject_action" class="form-control">
+										<option value="">...pilih reject action...</option>
+										<option value="1">Revisi Dokumen</option>
+										<option value="2">Hapus Pengajuan (permanen)</option>
+									</select>
+								</div>
+								<div class="form-group" class="info_revisi">
+									<label>Info Revisi</label>
+									<input type="text" name="info_revisi" class="form-control" placeholder="Info Revisi" required>
+									<small>*wajib diisi untuk info revisi dokumen rekomendasi</small>
+								</div>
 							</div>
 						</div>
 					</div>

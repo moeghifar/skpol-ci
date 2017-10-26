@@ -213,6 +213,7 @@ $config['csrf_exclude_uris'] = array(
 	'setting/check_username_email',
 	'kunjungan/action_tindak_lanjut',
 	'skp/action_supervisi',
+	'skp/action_reject_skp',
 	'kunjungan/action_supervisi_selesai',
 	'kunjungan/action_terbit_skp',
 	'skp/action_update_ttd',
