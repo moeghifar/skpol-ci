@@ -341,6 +341,11 @@ class Upi extends MY_Controller {
             $paths[] = '.'.$result[0]['filesiup_upi'];
             $paths[] = '.'.$result[0]['fileakta_upi'];
             $paths[] = '.'.$result[0]['fileiup_upi'];
+            $paths[] = '.'.$result[0]['filektp_upi'];
+            $paths[] = '.'.$result[0]['filenpwp_upi'];
+            $paths[] = '.'.$result[0]['filesewamenyewa_upi'];
+            $paths[] = '.'.$result[0]['filesertifikatpengolahikan_upi'];
+            $paths[] = '.'.$result[0]['filesptpajak_upi'];
             // remove file if exists
             foreach($paths as $v) {
                 if(file_exists($v)){
@@ -350,11 +355,10 @@ class Upi extends MY_Controller {
             }
             $user_id = $result[0]['user_id'];
             // delete from tbl_user
-            if($this->model_upi->_delete_register_user($user_id)){
-                // delete from tbl_register_upi
-                $this->model_upi->_delete_reg_upi($id);
-                $this->nyast->notif_create_notification('Data UPI Telah Dihapus','Hapus Berhasil');
-            }
+            $this->model_upi->_delete_register_user($user_id);
+            // delete from tbl_register_upi
+            $this->model_upi->_delete_reg_upi($id);
+            $this->nyast->notif_create_notification('Data UPI Telah Dihapus','Hapus Berhasil');
             redirect(site_url('upi/view_list'));
         }
     }

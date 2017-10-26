@@ -236,8 +236,10 @@ $(document).ready(function(){
 	/* reject skp */
 	$('.reject_skp select').on('change',function(){
 		if($(this).val()==2) {
+			$('input[name="info_revisi"]').removeAttr('required');
 			$('.reject_skp .info_revisi').hide();
 		} else {
+			$('input[name="info_revisi"]').attr('required','required');
 			$('.reject_skp .info_revisi').show();
 		}
 	});

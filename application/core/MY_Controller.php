@@ -19,7 +19,11 @@ class MY_Controller extends CI_Controller {
 		if(count($cekr) == 0){
 			$this->global_alert = '';
 		}else{
-			$this->global_alert = $cekr[0]['alasan'];
+			if ($cekr[0]['revisi'] != '') {
+				$this->global_alert = 'revised';
+			} else {
+				$this->global_alert = $cekr[0]['alasan'];
+			}
 		}
 	}
 

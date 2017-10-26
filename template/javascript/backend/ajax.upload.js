@@ -1,13 +1,12 @@
 $(document).ready(function(){
-    const URI_SPLIT = window.location.pathname.split( '/' );
-    const URI_PATH = '/'+URI_SPLIT[1];
     $('body').on('click','#ajax_upload_file',function(){
         var data        = {};
+        var ini         = $(this);
         var formData    = new FormData();
-        var dataFile    = $(this).data('file');
-        var dataPath    = $(this).data('path');
-        var dataId      = $(this).data('id');
-        var dataTbl     = $(this).data('tbl');
+        var dataFile    = ini.data('file');
+        var dataPath    = ini.data('path');
+        var dataId      = ini.data('id');
+        var dataTbl     = ini.data('tbl');
         var idFile      = '#'+dataFile+' ';
         var fileData    = $(idFile+'input[type=file]')[0].files[0];
         var nameAttr    = $(idFile+'input[type=file]').attr('name');
@@ -19,7 +18,7 @@ $(document).ready(function(){
         formData.append('file_field', dataFile);
         formData.append(nameAttr, fileData);
         $.ajax({
-            url: URI_PATH+'/api/file_upload/',
+            url: BASE_URL+'api/file_upload/',
             dataType: 'text',
             cache: false,
             contentType: false,
@@ -27,13 +26,14 @@ $(document).ready(function(){
             data: formData,
             type: 'post',
             beforeSend: function(){
-                $(this).addClass('disabled');
-                $(this).val('uploading.....');
+                ini.addClass('disabled');
+                ini.val('Uploading....');
             }
         }).done(function(response){
+            alert(response);
             location.reload();
         }).error(function(response){
-            alert(response);
+            console.log(response);
         });
     });
 });

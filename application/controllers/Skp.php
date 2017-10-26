@@ -42,8 +42,9 @@ class Skp extends MY_Controller {
 	}
 
 	function action_create_skp(){
-		$config['allowed_types']        = 'jpg|jpeg|pdf|doc|docx';
-		$config['overwrite']            = 1;
+		$config['allowed_types']       = 'jpg|jpeg|pdf|doc|docx';
+		$config['overwrite']           = 1;
+		$config['max_size']            = 0;
 		$this->load->library('upload', $config);
 		if( $this->input->post('submit') != NULL ){
 			$fileUpload = array(
@@ -429,10 +430,12 @@ class Skp extends MY_Controller {
 			foreach ($data['rekomendasi'] as $k => $v) {
 				$skpid = $v['idtbl_skp'];
 				$getRevisi = $this->model_skp->_check_revisi_rekomendasi($skpid);
-				$data['rekomendasi'][$k]['info_revisi'] = '<small>Belum direvisi</small>';
+				$data['rekomendasi'][$k]['info_revisi'] = '<small>tidak ada</small>';
 				if (count($getRevisi) > 0) {
 					if ($getRevisi[0]['status'] == 1) {
 						$data['rekomendasi'][$k]['info_revisi'] = '<small>Revisi sudah diajukan ke dinas</small>';
+					}elseif ($getRevisi[0]['status'] == 2) {
+						$data['rekomendasi'][$k]['info_revisi'] = '<small>Perbaikan sudah dilakukan</small>';
 					}
 				}
 			}
@@ -455,6 +458,8 @@ class Skp extends MY_Controller {
 				if (count($getRevisi) > 0) {
 					if ($getRevisi[0]['status'] == 1) {
 						$data['rekomendasi'][$k]['info_revisi'] = '<small>'.$getRevisi[0]['deskripsi'].'</small>';
+					} elseif($getRevisi[0]['status'] == 2) {
+						$data['rekomendasi'][$k]['info_revisi'] = '<small>Perbaikan sudah diberikan</small>';
 					}
 				}
 			}
@@ -469,14 +474,12 @@ class Skp extends MY_Controller {
 		$data['page_title'] = 'Edit Rekomendasi SKP oleh Dinas';
 		$data['content'] = 'pages_content/skp/view_edit_rekomendasi_dinas_list';
 		if($this->level=='dinas'){
-			$data['rekomendasi']		= $this->model_skp->_get_rekomendasi_skp($id, $this->session->userdata($this->session_prefix.'-userkodeprovinsi'));
+			$data['rekomendasi'] = $this->model_skp->_get_rekomendasi_skp($id, $this->session->userdata($this->session_prefix.'-userkodeprovinsi'));
 		}else{
 			$this->show404();
 		}
 		$this->load->view('index',$data);
 	}
-
-
 
 	function action_supervisi($id = null){
 		if(null!=$this->input->post('submit')){
@@ -503,6 +506,15 @@ class Skp extends MY_Controller {
 				$dtskp = array(
 					'status_skp'	=> 'penjadwalan-kunjungan-supervisi'
 				);
+				// update revisi rekomendasi skp
+				$reject = $this->model_skp->_check_revisi_rekomendasi($key);
+				if(count($reject) > 0 && $reject[0]['status'] == 1) {
+					$data = array(
+						'status' => 0,
+						'deskripsi' => ''
+					);
+					$this->model_skp->_update_revisi_rekomendasi($key, $data);
+				}
 				$this->model_skp->_update_skp_status($dtskp,$key);
 			}
 			// perform redirect with notification
@@ -518,17 +530,26 @@ class Skp extends MY_Controller {
 			$action = $this->input->post('reject_action');
 			foreach($this->input->post('supervisi') as $k){
 				$ke 			= explode('-',$k);
-				$key 			= $ke[0];
+				$idskp 			= $ke[0];
 				if ($action == 1) { // action revisi dokumen
-					echo 'revisi dokumen';
+					$reject = $this->model_skp->_check_revisi_rekomendasi($idskp);
+					$data = array(
+						'status' => 1,
+						'deskripsi' => $this->input->post('info_revisi')
+					);
+					if(count($reject) > 0) {
+						$this->model_skp->_update_revisi_rekomendasi($id, $data);
+					} else {
+						$data['skp_id'] = $idskp;
+						$this->model_skp->_insert_revisi_rekomendasi($data);
+					}
 				} else { // action delete skp rekom
-					echo 'hapus skp';
+					$this->model_skp->_delete_skp($idskp);
 				}
-				var_dump($k);
 			}
 			// perform redirect with notification
-			// $this->nyast->notif_create_notification('Reject SKP Berhasil','Selamat');
-			// redirect(site_url('skp/rekomendasi_list'));
+			$this->nyast->notif_create_notification('Action reject SKP rekomendasi Berhasil','Selamat');
+			redirect(site_url('skp/rekomendasi_list'));
 		}else{
 			$this->show404();
 		}
@@ -636,6 +657,7 @@ class Skp extends MY_Controller {
 			// upload file
 			$config['allowed_types']    = 'jpg|jpeg|pdf|doc|docx';
 			$config['upload_path'] 		= './file/skp-terbit';
+			$config['max_size'] 		= 0;
 			$config['file_name'] 		= $skpData[0]['idtbl_skp_terbit'].'-'.str_replace(array('/','.'),'',$skpData[0]['noseri_skp_terbit']);
 			$this->load->library('upload', $config);
 			$fileData = array();
@@ -706,8 +728,8 @@ class Skp extends MY_Controller {
 			$dtskp = array(
 				'status_skp' => 'deleted'
 			);
-			$this->model_skp->_update_skp_status($dtskp,$id_skp[0]['skp_id']);
 			// soft delete Skp terbit
+			$this->model_skp->_update_skp_status($dtskp,$id_skp[0]['skp_id']);
 			// update main skp status
 			$dtskpterbit = array(
 				'status' => 0

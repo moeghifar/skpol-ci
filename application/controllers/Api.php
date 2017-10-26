@@ -31,9 +31,10 @@ class Api extends MY_Controller {
 							$fileUploaded = $this->upload->data('file_name');
 							$f_path = '/'.$post['file_upload_path'].'/'.$fileUploaded;
 							if($post['file_tbl'] == 'upi') {
-								$this->upi_update_execute($post['file_id'], $post['file_field'], $f_path);
+								if($this->upi_update_execute($post['file_id'], $post['file_field'], $f_path)){
+									echo 'File successfully uploaded';
+								}
 							}
-							echo 'File successfully uploaded';
 						} else {
 							echo $this->upload->display_errors();
 						}
@@ -42,6 +43,8 @@ class Api extends MY_Controller {
 				    echo 'Please choose a file';
 				}
 			}
+		} else {
+			$this->show404();
 		}
 	}
 
@@ -49,8 +52,12 @@ class Api extends MY_Controller {
 	{
 		$oldData = $this->model_upi->_get_upi_terdaftar($id);
 		$fileUnlink = '.'.$oldData[0][$field];
-		if (file_exists($fileUnlink)){
-			@unlink($fileUnlink);
+		if ($fileUnlink != $filePath) {
+			if (file_exists($fileUnlink)){
+				@unlink($fileUnlink);
+			} else {
+				return false;
+			}
 		}
 		$updateQuery = array(
 			$field => $filePath

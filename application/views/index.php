@@ -7,6 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>KKP SKP ONLINE</title>
         <?php $this->load->view('pages_part/part_head');?>
+        <script>
+            const BASE_URL = "<?php echo base_url(); ?>";
+        </script>
     </head>
     <!--/ END Head -->
 
@@ -36,6 +39,14 @@
             <!-- Page Header -->
 			<?
 				if($this->global_alert != ""){
+                    if($this->global_alert == "revised"){
+            ?>
+				<div class="alert alert-info fade in">
+				<h4 class="semibold">Revisi sudah diajukan!</h4>
+				<h6 class="semibold">Harap menunggu verfikasi dari KKP</h6>
+				</div>
+			<?php
+                    } else {
 			?>
 				<div class="alert alert-danger fade in">
 				<h4 class="semibold">Peringatan, Anda Belum Bisa Mengajukan SKP!</h4>
@@ -43,6 +54,7 @@
 				<a href="<?=site_url('upi/edit_detail')?>" class="btn btn-xs btn-danger">Kunjungi Halaman Ini</a>
 				</div>
 			<?php
+                    }
 				}
 				// var_dump($this->session->userdata());
                 if(isset($content)){

@@ -50,6 +50,7 @@ class Setting extends MY_Controller {
 			if(is_uploaded_file($_FILES['file_url']['tmp_name'])){
 				$config['allowed_types'] 	= 'pdf|doc|docx';
 				$config['overwrite']	 	= true;
+				$config['max_size']	 		= 0;
 				$config['upload_path']		= './file/master-file';
 				$config['file_name'] 		= str_replace(array('/','.'),'_',$this->input->post('file_name'));
 				$this->load->library('upload', $config);

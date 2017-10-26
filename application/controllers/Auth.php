@@ -105,7 +105,7 @@ class Auth extends MY_Controller {
 	public function action_register(){
 		$config['allowed_types']        = 'jpg|jpeg|pdf|doc|docx|application/pdf|application/unknown';
 		$config['overwrite']			= true;
-		// $config['max_size']             = 25000;
+		$config['max_size']             = 0;
 		$this->load->library('upload', $config);
 		if( $this->input->post('submit') != NULL ){
 			if($this->check_file('file_siup') || $this->check_file('file_iup')){
