@@ -55,6 +55,7 @@ class Model_auth extends CI_Model {
 		if($level=='dinas'){
 			$q = $this->db->get_where('view_user_dinas_provinsi',array('username'=>$u));
 		}elseif($level=='upi'){
+			$this->db->order_by("idtbl_upi", "desc");
 			$q = $this->db->get_where('view_user_upi_provinsi',array('username'=>$u));
 		}else{
 			$q = $this->db->get_where('tbl_user',array('username'=>$u));
