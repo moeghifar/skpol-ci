@@ -37,7 +37,7 @@
                 </div>
             </div>
             <!-- Page Header -->
-			<?
+			<?php
 				if($this->global_alert != ""){
                     if($this->global_alert == "revised"){
             ?>

@@ -35,7 +35,7 @@
                     <label class="control-label col-sm-3">Nama Pemilik</label>
                     <div class="col-sm-9">
                         <div class="col-sm-7" style="padding-left: 0px;">
-                            <input type="text" class="form-control" name="pemilik" value="<?=$upi[0]['pemilik_upi']?>">
+                            <input type="text" class="form-control" name="pemilik" value="<?php echo $upi[0]['pemilik_upi']; ?>">
                         </div>
                     </div>
                 </div>
