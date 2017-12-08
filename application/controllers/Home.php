@@ -137,10 +137,11 @@ class Home extends MY_Controller {
 				$generated[$vupi['idtbl_upi']][] = $vupi['noakta_upi'];
 			}
 			// --- //
-			$startPoint = 'A4';
+			$startValue = 4;
 			foreach($generated as $v){
+				$startPoint = 'A'.$startValue;
 				$this->excel->getActiveSheet()->fromArray($v, NULL, $startPoint);
-				$startPoint++;
+				$startValue++;
 			}
 			$lastRow = substr($startPoint,1);
 			$this->excel->getActiveSheet()->getStyle('S4:U'.$lastRow)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER);
@@ -312,10 +313,11 @@ class Home extends MY_Controller {
 				}
 			}
 			// --- //
-			$startPoint = 'A4';
+			$startValue = 4;
 			foreach($generated as $v){
+				$startPoint = 'A'.$startValue;
 				$this->excel->getActiveSheet()->fromArray($v, NULL, $startPoint);
-				$startPoint++;
+				$startValue++;
 			}
 			$lastRow = substr($startPoint,1);
 			$this->excel->getActiveSheet()->getStyle('O4:Q'.$lastRow)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER);
