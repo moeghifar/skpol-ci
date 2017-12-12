@@ -28,9 +28,9 @@
                                     <td><?=$k['pemilik_upi']?></td>
                                     <td><?=$this->nyast->date_indo_format($k['registration_date'])?></td>
                                     <td>
-                                    <a class="btn btn-sm btn-primary mb10" href="<?php echo base_url('upi/filing_detail/'.$k['idtbl_upi']);?>"><i class="ico ico-eye-open"></i></a>
-                                    <button class="btn btn-sm btn-success mb10" data-idupi="<?=$k['idtbl_upi']?>" data-toggle="modal" data-target="#modalParam"><i class="ico ico-checkmark4"></i></button>
-                                    <a class="btn btn-sm btn-danger mb10" data-toggle="modal" data-target="#deleteModal" data-url="<?=site_url('upi/action_delete_upi/'.$k['idtbl_upi']);?>"><i class="ico ico-trash"></i></a>
+                                    <a class="btn btn-sm btn-primary mb5" href="<?php echo base_url('upi/filing_detail/'.$k['idtbl_upi']);?>"><i class="ico ico-eye-open"></i></a>
+                                    <button class="btn btn-sm btn-success mb5" data-idupi="<?=$k['idtbl_upi']?>" data-toggle="modal" data-target="#modalParam"><i class="ico ico-checkmark4"></i></button>
+                                    <a class="btn btn-sm btn-danger mb5" data-toggle="modal" data-target="#deleteModal" data-url="<?=site_url('upi/action_delete_upi/'.$k['idtbl_upi']);?>"><i class="ico ico-trash"></i></a>
                                 </td>
                             </tr>
                             <?php $x++; } ?>

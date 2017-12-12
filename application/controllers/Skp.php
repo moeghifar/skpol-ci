@@ -411,8 +411,10 @@ class Skp extends MY_Controller {
 		$data['es']			= $this->model_skp->_get_by_skp('tbl_asales',$id);
 		$data['air']		= $this->model_skp->_get_by_skp('tbl_airbersih',$id);
 		$data['lain']		= $this->model_skp->_get_by_skp('tbl_infolain',$id);
-		$data['content'] = 'pages_content/skp/view_pengajuan_skp_detail';
-		if ($data['skp'][0]['kode_provinsi']==$this->session->userdata($this->session_prefix.'-userkodeprovinsi')) {
+		$data['content'] 	= 'pages_content/skp/view_pengajuan_skp_detail';
+		if ($this->session->userdata($this->session_prefix.'-userlevel') == 'kp') {
+			$this->load->view('index',$data);
+		}elseif ($this->session->userdata($this->session_prefix.'-userlevel') == 'dinas' && $data['skp'][0]['kode_provinsi'] == $this->session->userdata($this->session_prefix.'-userkodeprovinsi')) {
 			$this->load->view('index',$data);
 		}else{
 			$this->show404();

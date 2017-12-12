@@ -60,8 +60,8 @@
 										?>
 									</td>
 									<td>
-										<a class="btn btn-xs btn-success" href="<?php echo site_url('kunjungan/perbaikan_edit/'.$value['idtbl_skp']);?>"><i class="ico ico-edit"></i></a>
-										<a class="btn btn-xs btn-primary" href="<?php echo site_url('kunjungan/perbaikan_detail/'.$value['idtbl_skp']);?>"><i class="ico ico-search"></i></a>
+										<a class="btn btn-xs btn-success mb5" href="<?php echo site_url('kunjungan/perbaikan_edit/'.$value['idtbl_skp']);?>"><i class="ico ico-edit"></i></a>
+										<a class="btn btn-xs btn-primary mb5" href="<?php echo site_url('kunjungan/perbaikan_detail/'.$value['idtbl_skp']);?>"><i class="ico ico-search"></i></a>
 									</td>
 								</tr>
 							<?php $x++; } ?>

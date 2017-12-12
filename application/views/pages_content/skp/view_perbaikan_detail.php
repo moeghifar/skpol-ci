@@ -47,7 +47,7 @@
                 <div class="form-group">
                     <label class="control-label col-sm-3">File GMPSSOP</label>
                     <div class="col-sm-9">
-                        <p class="control-label" style="text-align: left;"><a href="<?=base_url($perbaikan[0]['filegmpssop_skp'])?>">GMPSSOP.pdf</a></p>
+                        <p class="control-label" style="text-align: left;"><a target="_blank" href="<?=base_url($perbaikan[0]['filegmpssop_skp'])?>">GMPSSOP.pdf</a></p>
                     </div>
                 </div>
                 <div class="form-group">
@@ -55,7 +55,7 @@
                     <div class="col-sm-9">
                         <p class="control-label" style="text-align: left;">
                             <?php if($perbaikan[0]['temuan_kunjungan']!=''){?>
-                                <a href="<?=base_url($perbaikan[0]['temuan_kunjungan'])?>">Temuan Kunjungan</a>
+                                <a target="_blank" href="<?=base_url($perbaikan[0]['temuan_kunjungan'])?>">Temuan Kunjungan</a>
                             <?php }else{?>
                                 Tidak ada temuan
                             <?php }?>
@@ -67,7 +67,7 @@
                     <div class="col-sm-9">
                         <p class="control-label" style="text-align: left;">
                             <?php if($perbaikan[0]['perbaikan_kunjungan']!=''){?>
-                                <a href="<?=base_url($perbaikan[0]['perbaikan_kunjungan'])?>">Perbaikan Kunjungan</a>
+                                <a target="_blank" href="<?=base_url($perbaikan[0]['perbaikan_kunjungan'])?>">Perbaikan Kunjungan</a>
                             <?php }else{?>
                                 Belum ada perbaikan
                             <?php }?>
