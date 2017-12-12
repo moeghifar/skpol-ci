@@ -51,10 +51,10 @@
 							<td><?=$p['resi_pengiriman']?></td>
 							<td><?=$p['tgl_pengiriman']?></td>
 							<td style="text-align:center">
-								<a href="<?=site_url('pengiriman/detail_pengiriman/'.$p['idtbl_pengiriman']);?>" class="btn btn-xs btn-primary"><i class="ico-eye"></i></a>
+								<a href="<?=site_url('pengiriman/detail_pengiriman/'.$p['idtbl_pengiriman']);?>" class="btn btn-xs btn-primary mb5"><i class="ico-eye"></i></a>
 								<?php if($sessionJen=='kp'||$sessionJen=='admin'){ ?>
-								<a data-toggle="modal" data-target="#deleteModal" data-url="<?=site_url('pengiriman/delete_pengiriman/'.$p['idtbl_pengiriman']);?>" class="btn btn-xs btn-danger"><i class="ico-remove"></i></a>
-								<a href="<?=site_url('pengiriman/edit_pengiriman/'.$p['idtbl_pengiriman']);?>" class="btn btn-xs btn-success"><i class="ico-edit"></i></a>
+								<a data-toggle="modal" data-target="#deleteModal" data-url="<?=site_url('pengiriman/delete_pengiriman/'.$p['idtbl_pengiriman']);?>" class="btn btn-xs btn-danger mb5"><i class="ico-remove"></i></a>
+								<a href="<?=site_url('pengiriman/edit_pengiriman/'.$p['idtbl_pengiriman']);?>" class="btn btn-xs btn-success mb5"><i class="ico-edit"></i></a>
 								<?php } ?>
 							</td>
 						</tr>
