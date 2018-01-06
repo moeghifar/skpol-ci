@@ -34,8 +34,8 @@
                             ?>
                             </td>
                             <td>
-								<a href="<?php echo(base_url('user/upi_detail/'.$u['level'].'/'.$u['id_user']));?>" class="btn btn-sm btn-primary"><i class="ico-eye-open"></i></a>
-                                <a href="<?php echo(base_url('user/upi_edit/'.$u['level'].'/'.$u['id_user']));?>" class="btn btn-sm btn-success"><i class="ico-edit"></i></a>
+								<a href="<?php echo(base_url('user/upi_detail/'.$u['level'].'/'.$u['id_user']));?>" class="btn btn-sm btn-primary mb5"><i class="ico-eye-open"></i></a>
+                                <a href="<?php echo(base_url('user/upi_edit/'.$u['level'].'/'.$u['id_user']));?>" class="btn btn-sm btn-success mb5"><i class="ico-edit"></i></a>
                             </td>
                         </tr>
                         <?php $x++; } ?>

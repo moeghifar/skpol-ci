@@ -68,6 +68,7 @@ class Model_skp extends CI_Model {
 	}
 
 	function _get_skp_terbit($status, $id = null){
+		$this->db->order_by('idtbl_skp','desc');
 		if($id != null){
 			$q = $this->db->get_where('view_skp_terbit',array('idtbl_skp'=>$id, 'status_skp'=>$status));
 		}elseif($status == "penerbitan-skp"){
@@ -145,6 +146,7 @@ class Model_skp extends CI_Model {
 	}
 
 	function _get_rekomendasi_skp($id = null, $idp = null){
+		$this->db->order_by('idtbl_skp','desc');
 		if ($id != null) {
 			if ($idp == null) {
 				$q = $this->db->get_where('view_skp_kunjungan',array('idtbl_skp'=>$id,'status_skp'=>'kunjungan-selesai-dinas','status_kunjungan'=>'Kunjungan Selesai','uker_kunjungan'=>'dinas'));

@@ -170,7 +170,7 @@ class Upi extends MY_Controller {
         if($this->level=='dinas'){
     		$data['upi']		= $this->model_upi->_get_upi_revisi(null,$this->session->userdata($this->session_prefix.'-userkodeprovinsi'));
     	}else{
-    		$data['upi']		= $this->model_upi->_get_upi_revisi();
+    		$data['upi']		= $this->model_upi->_get_upi_revisi($id);
     	}
 		$data['content'] = 'pages_content/upi/view_upi_detail';
         $data['prev_page'] = site_url('upi/view_upi_revisi');
@@ -198,13 +198,14 @@ class Upi extends MY_Controller {
         $this->load->view('index',$data);
 	}
 
-
 	public function action_update_upi(){
 		if( $this->input->post('submit') != NULL ){
             // DEBUG ONLY !!!!
-            // $data['siup'] = $this->input->post('file_name_siup');
+            // $data['npwp'] = $this->input->post('file_name_npwp');
             // $data['iup'] = $this->input->post('file_name_iup');
+            // $data['siup'] = $this->input->post('file_name_siup');
             // $data['akta'] = $this->input->post('file_name_akta');
+            // $data['idupi'] = $this->input->post('idupi');
             // var_dump($data);
             $idupi = $this->input->post('idupi');
 			// building data
@@ -237,7 +238,7 @@ class Upi extends MY_Controller {
 			if($this->input->post('file_name_akta')!=null){
 				// upload file and replace
 				$config['upload_path'] = './file/upi/file_akta';
-				$config['file_name'] = str_replace(' ','-',$this->input->post('nama')).'-'.str_replace(array('/','.'),'',$this->input->post('noakta'));
+				$config['file_name'] = str_replace(array('/','.'),'-',$this->input->post('nama')).'-'.str_replace(array('/','.'),'',$this->input->post('noakta'));
 				$this->upload->initialize($config);
 				if($this->upload->do_upload('file_akta')){
 					$fileData['akta'] = $this->upload->data();
@@ -246,18 +247,18 @@ class Upi extends MY_Controller {
     				if(file_exists($pathAkta)){
                         // implement `@` to prevent error if linked data doesn't exists
     					@unlink($pathAkta);
-    				}
+					}
     				$data['upi']['fileakta_upi'] = '/file/upi/file_akta/'.$fileData['akta']['file_name'];
             	} else {
                     $extraError = $this->upload->display_errors();
                     $this->nyast->notif_create_notification('Detail Gagal Dirubah \n'.$extraError,'Gagal');
-    				redirect(site_url('upi/edit_detail/'.$idupi));
+    				redirect(site_url('upi/edit_detail/'));
                 }
 			}
 			if($this->input->post('file_name_iup')!=null){
 				// upload file and replace
 				$config['upload_path'] = './file/upi/file_iup';
-				$config['file_name'] = str_replace(' ','-',$this->input->post('nama')).'-'.str_replace(array('/','.'),'',$this->input->post('noiup'));
+				$config['file_name'] = str_replace(array('/','.'),'-',$this->input->post('nama')).'-'.str_replace(array('/','.'),'',$this->input->post('noiup'));
 				$this->upload->initialize($config);
 				if($this->upload->do_upload('file_iup')){
 					$fileData['iup'] = $this->upload->data();
@@ -277,7 +278,7 @@ class Upi extends MY_Controller {
 			if($this->input->post('file_name_siup')!=null){
 				// upload file and replace
 				$config['upload_path'] = './file/upi/file_siup';
-				$config['file_name'] = str_replace(' ','-',$this->input->post('nama')).'-'.str_replace(array('/','.'),'',$this->input->post('nosiup'));
+				$config['file_name'] = str_replace(array('/','.'),'-',$this->input->post('nama')).'-'.str_replace(array('/','.'),'',$this->input->post('nosiup'));
                 $this->upload->initialize($config);
 				if($this->upload->do_upload('file_siup')){
 					$fileData['siup'] = $this->upload->data();
@@ -297,7 +298,7 @@ class Upi extends MY_Controller {
 			if($this->input->post('file_name_npwp')!=null){
 				// upload file and replace
 				$config['upload_path'] = './file/upi/file_npwp';
-				$config['file_name'] = str_replace(' ','-',$this->input->post('nama')).'-'.str_replace(array('/','.'),'',$this->input->post('nonpwp'));
+				$config['file_name'] = str_replace(array('/','.'),'-',$this->input->post('nama')).'-'.str_replace(array('/','.'),'',preg_replace("/[^A-Za-z0-9]/", '', $this->input->post('nonpwp')));
                 $this->upload->initialize($config);
 				if($this->upload->do_upload('file_npwp')){
 					$fileData['npwp'] = $this->upload->data();

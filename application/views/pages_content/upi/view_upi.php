@@ -27,10 +27,10 @@
                                 <td><?=$k['pemilik_upi']?></td>
                                 <td><?=$this->nyast->date_indo_format($k['registration_date'])?></td>
                                 <td>
-                                    <a href="<?php echo base_url('upi/view_detail/'.$k['idtbl_upi']);?>" class="btn btn-sm btn-success"><i class="ico ico-search"></i></a>
-                                    <a href="<?php echo base_url('upi/edit_detail/'.$k['idtbl_upi']);?>" class="btn btn-sm btn-info"><i class="ico ico-edit"></i></a>
+                                    <a href="<?php echo base_url('upi/view_detail/'.$k['idtbl_upi']);?>" class="btn btn-sm btn-success mb5"><i class="ico ico-search"></i></a>
+                                    <a href="<?php echo base_url('upi/edit_detail/'.$k['idtbl_upi']);?>" class="btn btn-sm btn-info mb5" ><i class="ico ico-edit"></i></a>
                                     <?php if($this->session->userdata($this->session_prefix.'-userlevel')=='kp'){?>
-                                        <a data-toggle="modal" data-target="#deleteModal" data-url="<?=site_url('upi/action_delete_upi/'.$k['idtbl_upi']);?>" class="btn btn-sm btn-danger"><i class="ico-remove"></i></a>
+                                        <a data-toggle="modal" data-target="#deleteModal" data-url="<?=site_url('upi/action_delete_upi/'.$k['idtbl_upi']);?>" class="btn btn-sm btn-danger mb5"><i class="ico-remove"></i></a>
                                     <?php } ?>
                                 </td>
                             </tr>

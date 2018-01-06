@@ -47,7 +47,7 @@
                 <div class="form-group">
                     <label class="control-label col-sm-3">File GMPSSOP</label>
                     <div class="col-sm-9">
-                        <p class="control-label" style="text-align: left;"><a href="<?=$skp[0]['filegmpssop_skp']?>">GMPSSOP.pdf</a></p>
+                        <p class="control-label" style="text-align: left;"><a target="_blank" href="<?=BASE_URL($skp[0]['filegmpssop_skp'])?>">GMPSSOP.pdf</a></p>
                     </div>
                 </div>
                 <div class="form-group">

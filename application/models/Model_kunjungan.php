@@ -15,6 +15,7 @@ class Model_kunjungan extends CI_Model {
 
 	function _get_kunjungan($status=null, $uker, $idskp = null){
 		$kodeProv = $this->session->userdata($this->session_prefix.'-userkodeprovinsi');
+		$this->db->order_by('idtbl_skp','desc');
 		if ($idskp != null) {
 			if($status == ''){
 				if($uker == 'dinas'){

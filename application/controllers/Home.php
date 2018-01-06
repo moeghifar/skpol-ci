@@ -257,59 +257,59 @@ class Home extends MY_Controller {
 						$generated[$v['idtbl_skp_terbit']][] = $vsarpras['value_sarpras'];
 					}
 				}
-			}
-			// tenaga kerja lk
-			$generated[$v['idtbl_skp_terbit']][] = $kar[0]['admasinglk_karyawan']+$kar[0]['olahasinglk_karyawan']+$kar[0]['admtetaplk_karyawan']+$kar[0]['olahtetaplk_karyawan']+$kar[0]['admharilk_karyawan']+$kar[0]['olahharilk_karyawan'];
-			// tenaga kerja pr
-			$generated[$v['idtbl_skp_terbit']][] = $kar[0]['admasingpr_karyawan']+$kar[0]['olahasingpr_karyawan']+$kar[0]['admtetappr_karyawan']+$kar[0]['olahtetappr_karyawan']+$kar[0]['admharipr_karyawan']+$kar[0]['olahharipr_karyawan'];
-			// hari kerja
-			$generated[$v['idtbl_skp_terbit']][] = $kar[0]['harikerja_karyawan'];
-			// shift
-			$generated[$v['idtbl_skp_terbit']][] = $kar[0]['shift_karyawan'];
-			// jenis permohonan
-			$generated[$v['idtbl_skp_terbit']][] = $v['permohonan_skp'];
-			$mancaready = '';
-			$domready = '';
-			foreach($pemas as $vpemas){
-				if($vpemas['jenis_pemasaran']=='domestik'){
-					$domready .= ucfirst($vpemas['tujuan_pemasaran']).'; ';
+				// tenaga kerja lk
+				$generated[$v['idtbl_skp_terbit']][] = $kar[0]['admasinglk_karyawan']+$kar[0]['olahasinglk_karyawan']+$kar[0]['admtetaplk_karyawan']+$kar[0]['olahtetaplk_karyawan']+$kar[0]['admharilk_karyawan']+$kar[0]['olahharilk_karyawan'];
+				// tenaga kerja pr
+				$generated[$v['idtbl_skp_terbit']][] = $kar[0]['admasingpr_karyawan']+$kar[0]['olahasingpr_karyawan']+$kar[0]['admtetappr_karyawan']+$kar[0]['olahtetappr_karyawan']+$kar[0]['admharipr_karyawan']+$kar[0]['olahharipr_karyawan'];
+				// hari kerja
+				$generated[$v['idtbl_skp_terbit']][] = $kar[0]['harikerja_karyawan'];
+				// shift
+				$generated[$v['idtbl_skp_terbit']][] = $kar[0]['shift_karyawan'];
+				// jenis permohonan
+				$generated[$v['idtbl_skp_terbit']][] = $v['permohonan_skp'];
+				$mancaready = '';
+				$domready = '';
+				foreach($pemas as $vpemas){
+					if($vpemas['jenis_pemasaran']=='domestik'){
+						$domready .= ucfirst($vpemas['tujuan_pemasaran']).'; ';
+					}
+					if($vpemas['jenis_pemasaran']=='mancanegara'){
+						$mancaready .= ucfirst($vpemas['tujuan_pemasaran']).'; ';
+					}
 				}
-				if($vpemas['jenis_pemasaran']=='mancanegara'){
-					$mancaready .= ucfirst($vpemas['tujuan_pemasaran']).'; ';
-				}
-			}
-			// tujuan domestik
-			$generated[$v['idtbl_skp_terbit']][] = $domready;
-			// tujuan internasional
-			$generated[$v['idtbl_skp_terbit']][] = $mancaready;
-			// no seri skp
-			$generated[$v['idtbl_skp_terbit']][] = '-';
-			// no seri skp
-			$generated[$v['idtbl_skp_terbit']][] = '#'.$v['noseri_skp_terbit'];
-			// tgl skp terbit
-			$generated[$v['idtbl_skp_terbit']][] = $v['tglmulai_skp_terbit'];
-			// tgl kadaluarsa
-			$generated[$v['idtbl_skp_terbit']][] = $v['tglkadaluarsa_skp_terbit'];
-			// no skp
-			$generated[$v['idtbl_skp_terbit']][] = $v['no_skp_terbit'];
-			foreach($log as $vlog){
-				if($vlog['status_log']=='Penerbitan SKP'){
-					$generated[$v['idtbl_skp_terbit']][] = $vlog['date_log'];
-				}
-				if($vlog['status_log']=='Masuk Direktur'){
-					$generated[$v['idtbl_skp_terbit']][] = $vlog['date_log'];
-				}
-				if($vlog['status_log']=='Keluar Direktur'){
-					$generated[$v['idtbl_skp_terbit']][] = $vlog['date_log'];
-				}
-				if($vlog['status_log']=='Masuk Dirjen'){
-					$generated[$v['idtbl_skp_terbit']][] = $vlog['date_log'];
-				}
-				if($vlog['status_log']=='SKP Terbit'){
-					$generated[$v['idtbl_skp_terbit']][] = $vlog['date_log'];
-				}
-				if($vlog['status_log']=='SKP telah dikirim ke Dinas KP Provinsi'){
-					$generated[$v['idtbl_skp_terbit']][] = $vlog['date_log'];
+				// tujuan domestik
+				$generated[$v['idtbl_skp_terbit']][] = $domready;
+				// tujuan internasional
+				$generated[$v['idtbl_skp_terbit']][] = $mancaready;
+				// no seri skp
+				$generated[$v['idtbl_skp_terbit']][] = '-';
+				// no seri skp
+				$generated[$v['idtbl_skp_terbit']][] = '#'.$v['noseri_skp_terbit'];
+				// tgl skp terbit
+				$generated[$v['idtbl_skp_terbit']][] = $v['tglmulai_skp_terbit'];
+				// tgl kadaluarsa
+				$generated[$v['idtbl_skp_terbit']][] = $v['tglkadaluarsa_skp_terbit'];
+				// no skp
+				$generated[$v['idtbl_skp_terbit']][] = $v['no_skp_terbit'];
+				foreach($log as $vlog){
+					if($vlog['status_log']=='Penerbitan SKP'){
+						$generated[$v['idtbl_skp_terbit']][] = $vlog['date_log'];
+					}
+					if($vlog['status_log']=='Masuk Direktur'){
+						$generated[$v['idtbl_skp_terbit']][] = $vlog['date_log'];
+					}
+					if($vlog['status_log']=='Keluar Direktur'){
+						$generated[$v['idtbl_skp_terbit']][] = $vlog['date_log'];
+					}
+					if($vlog['status_log']=='Masuk Dirjen'){
+						$generated[$v['idtbl_skp_terbit']][] = $vlog['date_log'];
+					}
+					if($vlog['status_log']=='SKP Terbit'){
+						$generated[$v['idtbl_skp_terbit']][] = $vlog['date_log'];
+					}
+					if($vlog['status_log']=='SKP telah dikirim ke Dinas KP Provinsi'){
+						$generated[$v['idtbl_skp_terbit']][] = $vlog['date_log'];
+					}
 				}
 			}
 			// --- //
