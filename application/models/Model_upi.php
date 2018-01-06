@@ -18,6 +18,7 @@ class Model_upi extends CI_Model {
 	}
 
 	function _get_upi_baru($id = null, $idp = null){
+		$this->db->order_by('idtbl_upi', 'DESC');
 		if($id != null){
 			if ($idp != null) {
 				$q = $this->db->get_where('view_user_register_upi',array('idtbl_upi'=>$id, 'kode_provinsi'=>$idp));
@@ -35,6 +36,7 @@ class Model_upi extends CI_Model {
 	}
 
 	function _get_upi_terdaftar($id = null, $idp = null){
+		$this->db->order_by('idtbl_upi', 'DESC');
 		if($id != null){
 			if ($idp != null) {
 				$q = $this->db->query("SELECT * FROM view_user_upi_provinsi where idtbl_upi='$id' AND kode_provinsi='$idp' AND idtbl_upi NOT IN (SELECT upi_id FROM tbl_rejected WHERE upi_id IS NOT NULL)");
@@ -52,6 +54,7 @@ class Model_upi extends CI_Model {
 	}
 
 	function _get_upi_revisi($id = null, $idp = null){
+		$this->db->order_by("idtbl_upi", "desc");
 		$this->db->join('tbl_rejected', 'upi_id = idtbl_upi');
 		if($id != null){
 			if ($idp != null) {
