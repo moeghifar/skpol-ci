@@ -10,6 +10,5 @@
 
 # ignore database config & index php
 application/config/database.php
-/application/config/database.php
 # ignore data from file/*
 /file/*
