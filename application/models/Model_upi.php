@@ -36,18 +36,17 @@ class Model_upi extends CI_Model {
 	}
 
 	function _get_upi_terdaftar($id = null, $idp = null){
-		$this->db->order_by('idtbl_upi', 'DESC');
 		if($id != null){
 			if ($idp != null) {
-				$q = $this->db->query("SELECT * FROM view_user_upi_provinsi where idtbl_upi='$id' AND kode_provinsi='$idp' AND idtbl_upi NOT IN (SELECT upi_id FROM tbl_rejected WHERE upi_id IS NOT NULL)");
+				$q = $this->db->query("SELECT * FROM view_user_upi_provinsi where idtbl_upi='$id' AND kode_provinsi='$idp' AND idtbl_upi NOT IN (SELECT upi_id FROM tbl_rejected WHERE upi_id IS NOT NULL) ORDER BY idtbl_upi DESC");
 			}else{
-				$q = $this->db->query("SELECT * FROM view_user_upi_provinsi where idtbl_upi='$id' AND idtbl_upi NOT IN (SELECT upi_id FROM tbl_rejected WHERE upi_id IS NOT NULL)");
+				$q = $this->db->query("SELECT * FROM view_user_upi_provinsi where idtbl_upi='$id' AND idtbl_upi NOT IN (SELECT upi_id FROM tbl_rejected WHERE upi_id IS NOT NULL) ORDER BY idtbl_upi DESC");
 			}
 		}else{
 			if ($idp != null) {
-				$q = $this->db->query("SELECT * FROM view_user_upi_provinsi where kode_provinsi='$idp' AND idtbl_upi NOT IN (SELECT upi_id FROM tbl_rejected WHERE upi_id IS NOT NULL)");
+				$q = $this->db->query("SELECT * FROM view_user_upi_provinsi where kode_provinsi='$idp' AND idtbl_upi NOT IN (SELECT upi_id FROM tbl_rejected WHERE upi_id IS NOT NULL) ORDER BY idtbl_upi DESC");
 			}else{
-				$q = $this->db->query("SELECT * FROM view_user_upi_provinsi where idtbl_upi NOT IN (SELECT upi_id FROM tbl_rejected WHERE upi_id IS NOT NULL)");
+				$q = $this->db->query("SELECT * FROM view_user_upi_provinsi where idtbl_upi NOT IN (SELECT upi_id FROM tbl_rejected WHERE upi_id IS NOT NULL) ORDER BY idtbl_upi DESC");
 			}
 		}
 		return $q->result_array();
@@ -157,6 +156,7 @@ class Model_upi extends CI_Model {
 
 	// get user_id from tbl_register_upi
 	function _get_user_from_register_upi($id) {
+		$this->db->order_by("idtbl_upi", "desc");		
 		$q = $this->db->get_where('tbl_register_upi',array('idtbl_upi'=>$id));
 		return $q->result_array();
 	}

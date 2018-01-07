@@ -47,19 +47,19 @@
                     <label class="control-label col-sm-3">PIC Kunjungan</label>
                     <div class="col-sm-9">
                         <!-- <p class="control-label" style="text-align: left;"><?=$perbaikan[0]['pic_kunjungan']?></p> -->
-                        <input type="text" class="form-control" name="pic_kunjungan" placeholder="<?=$perbaikan[0]['pic_kunjungan']?>" required/>
+                        <input type="text" class="form-control" name="pic_kunjungan" value="<?=$perbaikan[0]['pic_kunjungan']?>" required/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-3">Note Revisi Kunjungan</label>
                     <div class="col-sm-9">
-                        <textarea class="form-control" style="max-width:100%;min-width:100%;min-height:80px;" name="note_revisi" placeholder="<?php if(isset($perbaikan[0]['note_revisi_kunjungan'])) {echo $perbaikan[0]['note_revisi_kunjungan'];}?>"></textarea>
+                        <textarea class="form-control" style="max-width:100%;min-width:100%;min-height:80px;" name="note_revisi"><?php if(isset($perbaikan[0]['note_revisi_kunjungan'])) {echo $perbaikan[0]['note_revisi_kunjungan'];}?></textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-3">Tanggal Kunjungan</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="datepicker" placeholder="<?=$this->nyast->date_indo_format($perbaikan[0]['tgl_kunjungan'])?>" name="tanggal_kunjungan" required/>
+                        <input type="text" class="form-control" id="datepicker" value="<?=$perbaikan[0]['tgl_kunjungan']?>" placeholder="Tanggal Kunjungan" name="tanggal_kunjungan" required/>
                     </div>
                 </div>
             </div>
