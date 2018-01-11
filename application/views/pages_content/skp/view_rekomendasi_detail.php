@@ -71,7 +71,15 @@
                 <div class="form-group">
                     <label class="control-label col-sm-3">Total Realisasi Produksi</label>
                     <div class="col-sm-9">
-                        <p class="control-label" style="text-align: left;"><?=number_format($rekomendasi[0]['realisasiproduksi_skp'],'0',',','.')?> Kg/Tahun</p>
+                        <p class="control-label" style="text-align: left;">
+                            <?php 
+                                if($rekomendasi[0]['realisasiproduksi_skp'] > 0) {
+                                    echo number_format($rekomendasi[0]['realisasiproduksi_skp'],'0',',','.');
+                                } else {
+                                    echo "0";
+                                }
+                            ?> Kg/Tahun
+                        </p>
                     </div>
                 </div>
                 <div class="form-group">
