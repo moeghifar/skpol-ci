@@ -271,7 +271,10 @@
                         <?php
 							foreach($sarpras as $sp){
 	                        	if ($sp['nama_sarpras']!='-') {
-	                            	echo '<p class="control-label" style="text-align: left;">'.$sp['nama_sarpras'].' : '.number_format($sp['kuantitas_sarpras'],'0',',','.').' unit, kapasitas '.number_format($sp['value_sarpras'],'0',',','.').' Kg/unit</p>';
+                                    if($sp['kuantitas_sarpras'] > 0){
+                                        $value = number_format($sp['kuantitas_sarpras'],'0',',','.');
+                                    }
+	                            	echo '<p class="control-label" style="text-align: left;">'.$sp['nama_sarpras'].' : '.$value.' unit, kapasitas '.number_format($sp['value_sarpras'],'0',',','.').' Kg/unit</p>';
 	                        	}
                         	}
 						?>
