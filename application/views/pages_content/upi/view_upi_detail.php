@@ -79,7 +79,7 @@
                         <p class="control-label" style="text-align: left;">                    
                             <?php
                                 if($upi[0]['filenpwp_upi'] != "" && file_exists('.'.$upi[0]['filenpwp_upi'])) {
-                                    $file = '<i class="ico ico-file" style="color:green"></i> ada';
+                                    $file = '<i class="ico ico-check" style="color:green"></i> ada';
                                     $url = base_url($upi[0]['filenpwp_upi']);
                                 } else {
                                     $file = '<i class="ico ico-file" style="color:red"></i> belum ada';
@@ -97,7 +97,7 @@
                         <p class="control-label" style="text-align: left;">
                             <?php
                                 if($upi[0]['filesiup_upi'] != "" && file_exists('.'.$upi[0]['filesiup_upi'])) {
-                                    $file = '<i class="ico ico-file" style="color:green"></i> ada';
+                                    $file = '<i class="ico ico-check" style="color:green"></i> ada';
                                     $url = base_url($upi[0]['filesiup_upi']);
                                 } else {
                                     $file = '<i class="ico ico-file" style="color:red"></i> belum ada';
@@ -115,7 +115,7 @@
                         <p class="control-label" style="text-align: left;">
                            <?php
                                 if($upi[0]['fileiup_upi'] != "" && file_exists('.'.$upi[0]['fileiup_upi'])) {
-                                    $file = '<i class="ico ico-file" style="color:green"></i> ada';
+                                    $file = '<i class="ico ico-check" style="color:green"></i> ada';
                                     $url = base_url($upi[0]['fileiup_upi']);
                                 } else {
                                     $file = '<i class="ico ico-file" style="color:red"></i> belum ada';
