@@ -331,7 +331,7 @@
                     <div class="col-sm-9" id="filektp_upi">
 						<div class="col-sm-3" style="padding-left: 0px;">
                             <?php
-                                if($upi[0]['filektp_upi'] != "" && file_exists('.'.$upi[0]['fileakta_upi'])) {
+                                if($upi[0]['filektp_upi'] != "" && file_exists('.'.$upi[0]['filektp_upi'])) {
                                     $file = '<i class="ico ico-check" style="color:green"></i> ada';
                                     $url = base_url($upi[0]['filektp_upi']);
                                 } else {
