@@ -168,7 +168,7 @@ class Upi extends MY_Controller {
 	{
 		$data['page_title'] = 'Detail UPI Revisi';
         if($this->level=='dinas'){
-    		$data['upi']		= $this->model_upi->_get_upi_revisi(null,$this->session->userdata($this->session_prefix.'-userkodeprovinsi'));
+    		$data['upi']		= $this->model_upi->_get_upi_revisi($id,$this->session->userdata($this->session_prefix.'-userkodeprovinsi'));
     	}else{
     		$data['upi']		= $this->model_upi->_get_upi_revisi($id);
     	}
