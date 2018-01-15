@@ -271,6 +271,7 @@
                         <?php
 							foreach($sarpras as $sp){
 	                        	if ($sp['nama_sarpras']!='-') {
+                                    $value = 0;
                                     if($sp['kuantitas_sarpras'] > 0){
                                         $value = number_format($sp['kuantitas_sarpras'],'0',',','.');
                                     }
