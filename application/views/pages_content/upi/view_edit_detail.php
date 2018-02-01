@@ -324,8 +324,10 @@
                         </div>
                     </div>
                 </div>
-                <?php if($confirmed == true) { ?>
                 <!-- FILE KTP -->
+                <div class="form-group">
+                    <label class="control-label col-sm-12 mb10" style="text-align:center;"><strong>FILE UPLOAD TAMBAHAN</strong></label>
+                </div>
                 <div class="form-group">
                     <label class="control-label col-sm-3">File KTP</label>
                     <div class="col-sm-9" id="filektp_upi">
@@ -449,7 +451,6 @@
                         </div>
                     </div>
                 </div>
-                <?php } ?>
 				<?php if($this->global_alert != ""){ ?>
 					<div class="form-group">
 	                    <label class="control-label col-sm-3">Pesan Perbaikan Data</label>
