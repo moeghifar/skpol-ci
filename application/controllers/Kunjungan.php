@@ -12,6 +12,16 @@ class Kunjungan extends MY_Controller {
 		$this->level = $this->session->userdata($this->session_prefix.'-userlevel');
 	}
 
+	public function gen_unik()
+	{
+		$len = rand(1, 10);
+		$unique = "";
+		for($i=0;$i<=$len;$i++){
+			$unique .= uniqid();
+		}
+		return md5($unique);
+	}
+
 	public function tindak_lanjut()
 	{
 		$data['page_title'] = 'Tindak Lanjut Temuan';
@@ -26,7 +36,7 @@ class Kunjungan extends MY_Controller {
 			$config['max_size']             = 0;
 			$config['overwrite']            = 1;
 			$config['upload_path'] = './file/perbaikan';
-			$config['file_name'] = 'perbaikan-'.date('y-m-d--his');
+			$config['file_name'] = 'perbaikan-'.$this->gen_unik().date('y-m-d-his');
 			$this->load->library('upload', $config);
 			if($this->upload->do_upload('file_perbaikan')){
 				$fileData	= $this->upload->data();
@@ -106,7 +116,7 @@ class Kunjungan extends MY_Controller {
 			$config['max_size']             = 0;
 			$config['overwrite']            = 1;
 			$config['upload_path'] = './file/temuan';
-			$config['file_name'] = 'temuan-'.date('y-m-d--his');
+			$config['file_name'] = 'temuan-'.$this->gen_unik().date('y-m-d-his');
 			$this->load->library('upload', $config);
 			if($this->upload->do_upload('file_temuan')){
 				$fileData	= $this->upload->data();
@@ -147,7 +157,7 @@ class Kunjungan extends MY_Controller {
 			$config['max_size']             = 0;
 			$config['overwrite']            = 1;
 			$config['upload_path'] = './file/temuan';
-			$config['file_name'] = 'temuan-'.date('y-m-d--his');
+			$config['file_name'] = 'temuan-'.$this->gen_unik().date('y-m-d-his');
 			$this->load->library('upload', $config);
 			if($this->upload->do_upload('file_temuan')){
 				$fileData	= $this->upload->data();
@@ -228,7 +238,7 @@ class Kunjungan extends MY_Controller {
 			if($this->input->post('file_name_temuan')!=null){
 				// upload file and replace
 				$config['upload_path'] = './file/temuan';
-				$config['file_name'] = 'temuan-'.date('y-m-d--his');
+				$config['file_name'] = 'temuan-'.$this->gen_unik().'-'.date('y-m-d-his');
 				$this->upload->initialize($config);
 				if($this->upload->do_upload('file_temuan')){
 					$fileData['temuan_kunjungan'] = $this->upload->data();
@@ -281,7 +291,7 @@ class Kunjungan extends MY_Controller {
 			$config['max_size']             = 0;
 			$config['overwrite']            = 1;
 			$config['upload_path'] = './file/surat-rekomendasi';
-			$config['file_name'] = 'surat-rekomendasi-'.date('y-m-d--his');
+			$config['file_name'] = 'surat-rekomendasi-'.$this->gen_unik().date('y-m-d-his');
 			$this->load->library('upload', $config);
 			if($this->upload->do_upload('file_surek')){
 				$fileData	= $this->upload->data();
@@ -321,7 +331,7 @@ class Kunjungan extends MY_Controller {
 			$config['overwrite']        = 1;
 			$config['max_size']        	= 0;
 			$config['upload_path'] 		= './file/surat-rekomendasi';
-			$config['file_name'] 		= 'surat-rekomendasi-'.date('y-m-d--his');
+			$config['file_name'] 		= 'surat-rekomendasi-'.$this->gen_unik().date('y-m-d-his');
 			$this->load->library('upload', $config);
 			if($this->upload->do_upload('file_surek')){
 				$fileData	= $this->upload->data();

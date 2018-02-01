@@ -4,12 +4,11 @@
 **.log
 
 # Exclude file directory
-**.pdf
-**.jpg
-**.jpeg
+/file/**/**.pdf
+/file/**/**.jpg
+/file/**/**.jpeg
 
 # ignore database config & index php
 application/config/database.php
-/application/config/database.php
 # ignore data from file/*
 /file/*
