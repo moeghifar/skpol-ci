@@ -751,10 +751,18 @@ class Skp extends MY_Controller {
 		}
 	}
 
-	public function send_email_notification($msg = array('message_subject' => 'Notifikasi SKP - Online')) {
+	public function send_email_notif($email){
+		$arr = array(
+			'message_body' => 'Test message body',
+			'target_email' => $email
+		);
+		$this->send_email_notification($arr);
+	}
+
+	private function send_email_notification($msg = array()) {
 		if($msg['message_body']!='' && $msg['target_email']!='') {
 			$conf = array(
-				'subject' 	=> $msg['message_subject'],
+				'subject' 	=> 'Notifikasi SKP - Online',
 				'message' 	=> $msg['message_body'],
 				'from'		=> 'skpolp2hp@gmail.com',
 				'to'		=> $msg['target_email']

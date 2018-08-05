@@ -440,10 +440,10 @@ class Kunjungan extends MY_Controller {
 		}
 	}
 	
-	public function send_email_notification($msg = array('message_subject' => 'Notifikasi SKP - Online')) {
+	private function send_email_notification($msg = array()) {
 		if($msg['message_body']!='' && $msg['target_email']!='') {
 			$conf = array(
-				'subject' 	=> $msg['message_subject'],
+				'subject' 	=> 'Notifikasi SKP - Online',
 				'message' 	=> $msg['message_body'],
 				'from'		=> 'skpolp2hp@gmail.com',
 				'to'		=> $msg['target_email']
