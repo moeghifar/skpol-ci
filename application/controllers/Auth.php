@@ -156,7 +156,6 @@ class Auth extends MY_Controller {
 						$fieldIup = '/file/upi/file_iup/'.$fileData['file_iup']['file_name'];
 					}
 					$data['upi'] = array(
-						'idtbl_upi'				=> '',
 						'nama_upi'				=> strtoupper($this->input->post('nama_upi')),
 						// 'pemilik_upi'			=> $this->input->post('nama_pemilik'),
 						// 'penanggungjawab_upi'	=> $this->input->post('nama_penanggungjawab'),
