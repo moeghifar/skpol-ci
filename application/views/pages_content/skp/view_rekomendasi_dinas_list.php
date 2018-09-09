@@ -2,7 +2,7 @@
 	<div class="col-md-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">Daftar Pengajuan SKP</h3>
+				<h3 class="panel-title">Daftar Rekomendasi SKP</h3>
 				<div class="panel-toolbar text-right"><a href="" style="padding:5px 25px;" class="btn btn-success btn-sm pull-right disabled" data-toggle="modal" data-target="#modalCheckbox" data-formclass="form-surat-rekomendasi">Edit Surat Rekomendasi</a></div>
 			</div>
 			<div class="panel-body">

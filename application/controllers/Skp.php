@@ -303,6 +303,7 @@ class Skp extends MY_Controller {
 					$this->model_skp->_insert_for_skp('tbl_infolain',$data['lainnya']);
 					// create skp log
 					$this->model_skp->_create_skp_log('Pengajuan SKP',$skpid);
+					$this->send_email_notification(array('message_body' => 'Status SKP Anda saat ini, <strong>Pengajuan SKP</strong>','target_email' => $this->session->userdata($this->session_prefix.'-useremail')));
 				}
 				// perform redirect with notification
 				$this->nyast->notif_create_notification('Pengajuan SKP Berhasil','Selamat');
@@ -384,6 +385,7 @@ class Skp extends MY_Controller {
 				$this->model_skp->_insert_penjadwalan($dt);
 				// create skp log
 				$this->model_skp->_create_skp_log('Penjadwalan Pembinaan Dinas',$key);
+				$this->send_email_notification(array('message_body' => 'Status SKP Anda saat ini, <strong>Penjadwalan Pembinaan Dinas</strong>','target_email' => $this->session->userdata($this->session_prefix.'-useremail')));
 				// update main skp status
 				$dtskp = array(
 					'status_skp'	=> 'penjadwalan-kunjungan'
@@ -505,6 +507,7 @@ class Skp extends MY_Controller {
 				$this->model_skp->_insert_penjadwalan($dt);
 				// create skp log
 				$this->model_skp->_create_skp_log('Penjadwalan Supervisi Kantor Pusat',$key);
+				$this->send_email_notification(array('message_body' => 'Status SKP Anda saat ini, <strong>Penjadwalan Supervisi Kantor Pusat</strong>','target_email' => $this->session->userdata($this->session_prefix.'-useremail')));
 				// update main skp status
 				$dtskp = array(
 					'status_skp'	=> 'penjadwalan-kunjungan-supervisi'
@@ -598,13 +601,15 @@ class Skp extends MY_Controller {
 				$this->model_skp->_update_ttd(array('status_tandatangan'=>$k,'tgl_tandatangan'=>$tgl,'skp_id'=>$skpid),$skpid,$ttdid);
 				// create skp log
 				// update main skp status
+				$log_info = $statlog;
+				$status_skp = "penerbitan-skp";
 				if($k == 'SKP-dikirim'){
-					$this->model_skp->_create_skp_log('SKP telah dikirim ke Dinas KP Provinsi',$skpid,$tgl);
-					$this->model_skp->_update_skp_status(array('status_skp'=>'terbit-skp'),$skpid);
-				}else{
-					$this->model_skp->_create_skp_log($statlog,$skpid,$tgl);
-					$this->model_skp->_update_skp_status(array('status_skp'=>'penerbitan-skp'),$skpid);
+					$log_info = 'SKP telah dikirim ke Dinas KP Provinsi';
+					$status_skp = "terbit-skp";
 				}
+				$this->model_skp->_create_skp_log($log_info,$skpid,$tgl);
+				$this->model_skp->_update_skp_status(array('status_skp'=>$status_skp),$skpid);
+				$this->send_email_notification(array('message_body' => 'Status SKP Anda saat ini, <strong>' . $log_info . '</strong>','target_email' => $this->session->userdata($this->session_prefix.'-useremail')));
 			}
 			// perform redirect with notification
 			$this->nyast->notif_create_notification('Update Tanda Tangan Berhasil','Selamat');
@@ -743,6 +748,26 @@ class Skp extends MY_Controller {
 			redirect(site_url('skp/skp_list'));
 		} else {
 			$this->show404();
+		}
+	}
+
+	public function send_email_notif($email){
+		$arr = array(
+			'message_body' => 'Test message body',
+			'target_email' => $email
+		);
+		$this->send_email_notification($arr);
+	}
+
+	private function send_email_notification($msg = array()) {
+		if($msg['message_body']!='' && $msg['target_email']!='') {
+			$conf = array(
+				'subject' 	=> 'Notifikasi SKP - Online',
+				'message' 	=> $msg['message_body'],
+				'from'		=> 'skpolp2hp@gmail.com',
+				'to'		=> $msg['target_email']
+			);
+			$this->_send_email($conf);
 		}
 	}
 }

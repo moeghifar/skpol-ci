@@ -64,7 +64,8 @@ class Auth extends MY_Controller {
 						$sessprefix.'-username' => $username,
 						$sessprefix.'-userkodeprovinsi' => $getForSession[0]['kode_provinsi'],
 						$sessprefix.'-userprovinsi' => $getForSession[0]['nama_provinsi'],
-						$sessprefix.'-userlevel' => $getForSession[0]['level']
+						$sessprefix.'-userlevel' => $getForSession[0]['level'],
+						$sessprefix.'-useremail' => $getForSession[0]['email']
 					);
 				}elseif($this->levelInfo == 'pejabat-dirjen' || $this->levelInfo == 'pejabat-direktur'){
 					$getForSession = $this->model_auth->_get_for_session($username,$this->levelInfo);
@@ -170,7 +171,7 @@ class Auth extends MY_Controller {
 						'email_upi'				=> $this->input->post('email'),
 						// 'kontak_upi'			=> $this->input->post('kontak_upi'),
 						// 'kontakperson_upi'		=> $this->input->post('kontakperson_upi'),
-						// 'omzet_upi'				=> $this->input->post('omzet_tahunan'),
+						'omzet_upi'				=> $this->input->post('omzet_tahunan'),
 						// 'tahunmulai_upi'		=> $this->input->post('tahun_mulai'),
 						'nosiup_upi'			=> $this->input->post('nosiup'),
 						'noiup_upi'				=> $this->input->post('noiup'),
