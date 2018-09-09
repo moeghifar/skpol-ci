@@ -94,14 +94,12 @@ class Model_skp extends CI_Model {
 	function _create_skp_log($log,$id,$datelog=null){
 		if($datelog == null){
 			$data = array(
-				'id_skp_log'	=> '',
 				'skp_id'		=> $id,
 				'status_log'	=> $log,
 				'date_log'		=> date('Y-m-d')
 			);
 		}else{
 			$data = array(
-				'id_skp_log'	=> '',
 				'skp_id'		=> $id,
 				'status_log'	=> $log,
 				'date_log'		=> $datelog
@@ -285,9 +283,32 @@ class Model_skp extends CI_Model {
 	}
 
 	function _delete_skp($id){
-		$this->db->where('idtbl_skp',$id);
+		$this->db->where('idtbl_skp', $id);
 		$q = $this->db->delete('tbl_skp');
 		if($q){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	function _delete_skp_log($skpid) {
+		$this->db->where('skp_id',$skpid);
+		$q = $this->db->delete('tbl_skp_log');
+		if($q){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	function _delete_skp_with_dependency($skpid) {
+		$tables = array('tbl_airbersih', 'tbl_asales', 'tbl_bahanbaku', 'tbl_infolain', 'tbl_karyawan', 'tbl_kunjungan', 'tbl_pemasaran', 'tbl_penanggungjawab', 'tbl_sarpras', 'tbl_sni', 'tbl_skp_log');
+		$this->db->where('skp_id', $skpid);
+		$this->db->delete($tables);
+		$this->db->reset_query();
+		$del = $this->db->delete('tbl_skp', array('idtbl_skp' => $skpid));
+		if ($del) {
 			return true;
 		}else{
 			return false;

@@ -340,7 +340,8 @@ class Kunjungan extends MY_Controller {
 					$idskp 			= $ke[0];
 					$idkunjungan 	= $ke[1];
 					$dt = array(
-						'rekomendasi_kunjungan'	=> '/file/surat-rekomendasi/'.$fileData['file_name']
+						'rekomendasi_kunjungan'	=> '/file/surat-rekomendasi/'.$fileData['file_name'],
+						'tgl_rekomendasi' => 'NOW()'
 					);
 					// update kunjungan
 					$this->model_kunjungan->_update_kunjungan($dt,$idskp,$idkunjungan);

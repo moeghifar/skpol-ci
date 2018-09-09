@@ -90,7 +90,6 @@ class Skp extends MY_Controller {
 				$sni	 	= $this->input->post('sni');
 				foreach($nama_produk as $kk => $vv) {
 					$data['skp']	= array(
-						'idtbl_skp'				=> '',
 						'filegmpssop_skp'		=> $file_gmpssop,
 						'filesp_skp'			=> $file_spskp,
 						'permohonan_skp'		=> $jenis_pengajuan[$kk],
@@ -106,7 +105,6 @@ class Skp extends MY_Controller {
 					$domestik = explode(',',$kota[$kk]);
 					foreach($domestik as $k => $i){
 						$data['domestik'] = array(
-							'idtbl_pemasaran'=>'',
 							'tujuan_pemasaran'=>$i,
 							'jenis_pemasaran'=>'domestik',
 							'skp_id'=>$skpid
@@ -118,7 +116,6 @@ class Skp extends MY_Controller {
 					foreach($mancanegara as $k => $i){
 						if($i != ""){
 							$data['negara'] = array(
-								'idtbl_pemasaran'=>'',
 								'tujuan_pemasaran'=>$i,
 								'jenis_pemasaran'=>'mancanegara',
 								'skp_id'=>$skpid
@@ -133,7 +130,6 @@ class Skp extends MY_Controller {
 						$jenis = explode(",",$t_jenis[$kk]);
 						$bentuk = explode(",",$t_bentuk[$kk]);
 						if($i != ""){
-							$data['bahanbaku']['t'][$k]['idtbl_bahanbaku']='';
 							$data['bahanbaku']['t'][$k]['asal_bahanbaku']=$i;
 							$data['bahanbaku']['t'][$k]['jenis_bahanbaku']=$jenis[$k];
 							$data['bahanbaku']['t'][$k]['bentuk_bahanbaku']=$bentuk[$k];
@@ -152,7 +148,6 @@ class Skp extends MY_Controller {
 						$jenis = explode(",",$b_jenis[$kk]);
 						$bentuk = explode(",",$b_bentuk[$kk]);
 						if($i != ""){
-							$data['bahanbaku']['b'][$k]['idtbl_bahanbaku']='';
 							$data['bahanbaku']['b'][$k]['asal_bahanbaku']=$i;
 							$data['bahanbaku']['b'][$k]['jenis_bahanbaku']=$jenis[$k];
 							$data['bahanbaku']['b'][$k]['bentuk_bahanbaku']=$bentuk[$k];
@@ -171,7 +166,6 @@ class Skp extends MY_Controller {
 						$jenis = explode(",",$i_jenis[$kk]);
 						$bentuk = explode(",",$i_bentuk[$kk]);
 						if($i != ""){
-							$data['bahanbaku']['i'][$k]['idtbl_bahanbaku']='';
 							$data['bahanbaku']['i'][$k]['asal_bahanbaku']=$i;
 							$data['bahanbaku']['i'][$k]['jenis_bahanbaku']=$jenis[$k];
 							$data['bahanbaku']['i'][$k]['bentuk_bahanbaku']=$bentuk[$k];
@@ -187,7 +181,6 @@ class Skp extends MY_Controller {
 					// insert sni
 					foreach($sni as $k){
 						$data['sni'] = array(
-							'idtbl_sni'=>'',
 							'nama_sni'=>$k,
 							'skp_id'=>$skpid
 						);
@@ -225,7 +218,6 @@ class Skp extends MY_Controller {
 					// insert sarpras
 					foreach($data['ksp'] as $k => $i){
 						$data['inpksp'] = array(
-							'idtbl_sarpras' =>	'',
 							'nama_sarpras' => $k,
 							'value_sarpras' => $i,
 							'kuantitas_sarpras' => $data['uksp'][$k],
@@ -235,7 +227,6 @@ class Skp extends MY_Controller {
 					}
 					// insert data karyawan
 					$data['karyawan'] = array(
-						'idtbl_karyawan' 		=> '',
 						'admasinglk_karyawan' 	=> $this->input->post('tka_administrasi_l'),
 						'admasingpr_karyawan' 	=> $this->input->post('tka_administrasi_p'),
 						'admtetaplk_karyawan' 	=> $this->input->post('tt_administrasi_l'),
@@ -254,7 +245,6 @@ class Skp extends MY_Controller {
 					);
 					$this->model_skp->_insert_for_skp('tbl_karyawan',$data['karyawan']);
 					$data['penanggungjawab'] = array(
-						'idtbl_penanggungjawab' 				=> '',
 						'upinama_penanggungjawab' 				=> $this->input->post('pj_upi_pabrik_nama'),
 						'upipendidikan_penanggungjawab' 		=> $this->input->post('pj_upi_pabrik_pendidikan'),
 						'upipelatihan_penanggungjawab' 			=> $this->input->post('pj_upi_pabrik_sertifikat'),
@@ -268,7 +258,6 @@ class Skp extends MY_Controller {
 					);
 					$this->model_skp->_insert_for_skp('tbl_penanggungjawab',$data['penanggungjawab']);
 					$data['airbersih'] = array(
-						'id_airbersih' 		=> '',
 						'sumber_air' 		=> $this->input->post('sumber_air'),
 						'pengolahan_air' 	=> $this->input->post('pengolahan_air'),
 						'volume_air' 		=> $this->input->post('volume_air'),
@@ -281,7 +270,6 @@ class Skp extends MY_Controller {
 					if(null!==($this->input->post('penggunaan_es')))
 					{$pe = implode(',',$this->input->post('penggunaan_es'));}
 					$data['asales'] = array(
-						'idtbl_asales' 				=> '',
 						'sendiri_asales' 			=> $this->input->post('produksi_sendiri'),
 						'pembelian_asales' 			=> $this->input->post('pembelian_dari'),
 						'pembelianjumlah_asales' 	=> $this->input->post('pembelianjumlah'),
@@ -291,7 +279,6 @@ class Skp extends MY_Controller {
 					);
 					$this->model_skp->_insert_for_skp('tbl_asales',$data['asales']);
 					$data['lainnya'] = array(
-						'idtbl_infolain' 			=> '',
 						'bahanpenolong_infolain' 	=> $this->input->post('bahan_penolong_tambahan'),
 						'bahankimia_infolain' 		=> $this->input->post('bahan_kimia_tambahan'),
 						'bahanlain_infolain' 		=> $this->input->post('bahan_lainnya'),
@@ -347,7 +334,7 @@ class Skp extends MY_Controller {
 		$data['skp']		= $this->model_skp->_get_skp_terbit('terbit-skp',$ids);
 		$data['alur']		= $this->model_skp->_get_by_alur('tbl_alurproses',$id);
 
-		$data['upi']		= $this->model_upi->_get_upi_terdaftar($data['skp'][0]['upi_id']);
+		$data['upi']		= $this->model_upi->_get_upi_detail($data['skp'][0]['upi_id']);
 		$data['content'] = 'pages_content/skp/view_detail_skp';
 		$this->load->view('index',$data);
 	}
@@ -370,13 +357,8 @@ class Skp extends MY_Controller {
 			$tgl = $this->input->post('tanggal_kunjungan');
 			foreach($this->input->post('penjadwalan_dinas') as $key){
 				$dt = array(
-					'idtbl_kunjungan'		=> '',
 					'tgl_kunjungan'			=> $tgl,
-					'pic_kunjungan'			=> '',
 					'uker_kunjungan'		=> 'dinas',
-					'temuan_kunjungan'		=> '',
-					'perbaikan_kunjungan'	=> '',
-					'survey_kunjungan'		=> '',
 					'status_kunjungan'		=> 'Penjadwalan',
 					'skp_id'				=> $key
 				);
@@ -491,13 +473,8 @@ class Skp extends MY_Controller {
 				$ke 			= explode('-',$k);
 				$key 			= $ke[0];
 				$dt = array(
-					'idtbl_kunjungan'		=> '',
 					'tgl_kunjungan'			=> $tgl,
-					'pic_kunjungan'			=> '',
 					'uker_kunjungan'		=> 'kp',
-					'temuan_kunjungan'		=> '',
-					'perbaikan_kunjungan'	=> '',
-					'survey_kunjungan'		=> '',
 					'status_kunjungan'		=> 'Penjadwalan',
 					'skp_id'				=> $key
 				);
@@ -626,7 +603,6 @@ class Skp extends MY_Controller {
 	function action_add_alurproses(){
 		if( $this->input->post('submit') != NULL ){
 			$param = array(
-				'idtbl_alurproses'	=> '',
 				'nama_alurproses'	=> $this->input->post('nama'),
 				'name_alurproses'	=> $this->input->post('name'),
 				'status'			=> 1
@@ -743,6 +719,37 @@ class Skp extends MY_Controller {
 			redirect(site_url('skp/skp_list'));
 		} else {
 			$this->show404();
+		}
+	}
+
+	public function delete_skp_pengajuan($idskp) {
+		if($idskp != null && is_numeric($idskp) && $idskp > 0){
+			// get data by idskp
+			$skp_data = $this->model_skp->_get_skp($idskp);
+			// $this->output->set_content_type('application/json')->set_output(json_encode($skp_data));
+			// remove files
+			if($skp_data[0]['filegmpssop_skp'] != ""){
+				$this->delete_file($skp_data[0]['filegmpssop_skp']);
+			}
+			if($skp_data[0]['filesp_skp'] != ""){
+				$this->delete_file($skp_data[0]['filesp_skp']);
+			}
+			// remove skp with dependencies
+			$this->model_skp->_delete_skp_with_dependency($idskp);
+			$this->nyast->notif_create_notification('Hapus SKP Berhasil','Selamat');
+			redirect(site_url('skp/pengajuan_list'));
+		} else {
+			$this->nyast->notif_create_notification('Hapus SKP Gagal','Error');
+			redirect(site_url('skp/pengajuan_list'));
+		}
+	}
+
+	public function delete_file($filepath) {
+		if($filepath != ""){
+			$oldPath = '.'.$filepath;
+			if(file_exists($oldPath)){
+				unlink($oldPath);
+			}
 		}
 	}
 }

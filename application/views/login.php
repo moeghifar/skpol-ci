@@ -53,8 +53,12 @@
             <!--/ END Template Container -->
         </section>
         <!--/ END Template Main -->
-        <?php $this->load->view('pages_part/part_js');?>
-        <?php $this->load->view('pages_part/part_login_js');?>
+		<?php 
+		$this->load->view('pages_part/part_js');
+		if($pos == 'registrasi'){
+			$this->load->view('pages_part/part_login_js');
+		}
+		?>
     </body>
     <!--/ END Body -->
 </html>

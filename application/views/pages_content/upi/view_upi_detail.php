@@ -214,6 +214,41 @@
                         </p>
                     </div>
                 </div>
+                
+                <div class="form-group">
+                    <label class="control-label col-sm-3">Surat Pernyataan Hiu/Lobster/Rajungan/Kepiting</label>
+                    <div class="col-sm-9">
+                        <p class="control-label" style="text-align: left;">                        
+                            <?php
+                                if($upi[0]['filehiulobsterrajungankepiting_upi'] != "" && file_exists('.'.$upi[0]['filehiulobsterrajungankepiting_upi'])) {
+                                    $file = '<i class="ico ico-check" style="color:green"></i> ada';
+                                    $url = base_url($upi[0]['filehiulobsterrajungankepiting_upi']);
+                                } else {
+                                    $file = '<i class="ico ico-file" style="color:red"></i> belum ada';
+                                    $url = 'javascript:void(0)';
+                                }
+                            ?>
+                            <a  class="btn btn-xs btn-default" target="_blank" href="<?=$url?>"><?php echo $file; ?></a>
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3">Surat Nomor Induk Berusaha (NIB)</label>
+                    <div class="col-sm-9">
+                        <p class="control-label" style="text-align: left;">                        
+                            <?php
+                                if($upi[0]['filenib_upi'] != "" && file_exists('.'.$upi[0]['filenib_upi'])) {
+                                    $file = '<i class="ico ico-check" style="color:green"></i> ada';
+                                    $url = base_url($upi[0]['filenib_upi']);
+                                } else {
+                                    $file = '<i class="ico ico-file" style="color:red"></i> belum ada';
+                                    $url = 'javascript:void(0)';
+                                }
+                            ?>
+                            <a  class="btn btn-xs btn-default" target="_blank" href="<?=$url?>"><?php echo $file; ?></a>
+                        </p>
+                    </div>
+                </div>
             </div>
 
             <div class="panel-footer">

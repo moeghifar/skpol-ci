@@ -50,19 +50,17 @@ class Api extends MY_Controller {
 
 	public function upi_update_execute($id, $field, $filePath)
 	{
-		$oldData = $this->model_upi->_get_upi_terdaftar($id);
+		$oldData = $this->model_upi->_get_upi_detail($id);
 		$fileUnlink = '.'.$oldData[0][$field];
-		if ($fileUnlink != $filePath) {
+		if ($oldData[0][$field] != $filePath) {
 			if (file_exists($fileUnlink)){
 				@unlink($fileUnlink);
-			} else {
-				return false;
 			}
 		}
 		$updateQuery = array(
 			$field => $filePath
 		);
-		$this->model_upi->_update_upi($id,$updateQuery);
+		$this->model_upi->_update_upi($id, $updateQuery);
 		return true;
 	}
 }
