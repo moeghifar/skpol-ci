@@ -130,13 +130,13 @@ class Upi extends MY_Controller {
             if($this->level == 'upi') {
                 redirect(site_url('upi/edit_detail'));
             }
-			$data['upi']	= $this->model_upi->_get_upi_terdaftar($id);
+			$data['upi']	= $this->model_upi->_get_upi_detail($id);
 		}else{
 			if($this->level == 'upi'){
                 if($this->global_alert != ""){
                     $data['upi']       = $this->model_upi->_get_upi_revisi($this->session->userdata($this->session_prefix.'-upiid'));
                 } else {
-                    $data['upi']	   = $this->model_upi->_get_upi_terdaftar($this->session->userdata($this->session_prefix.'-upiid'));
+                    $data['upi']	   = $this->model_upi->_get_upi_detail($this->session->userdata($this->session_prefix.'-upiid'));
                 }
 			}else{
 				$this->show404();
@@ -146,7 +146,7 @@ class Upi extends MY_Controller {
             $data['confirmed']  = false;
         }else{
             $data['confirmed']  = true;
-        }
+		}
         $data['js']         = 'template/javascript/backend/ajax.upload.js';
 		$data['provinsi']	= $this->model_upi->_get_provinsi();
 		$data['content']	= 'pages_content/upi/view_edit_detail';
@@ -181,7 +181,7 @@ class Upi extends MY_Controller {
 	{
 		$data['page_title'] = 'List UPI Terdaftar';
 		if($this->level=='dinas'){
-    		$data['upi']		= $this->model_upi->_get_upi_terdaftar(null,$this->session->userdata($this->session_prefix.'-userkodeprovinsi'));
+    		$data['upi']		= $this->model_upi->_get_upi_detail(null,$this->session->userdata($this->session_prefix.'-userkodeprovinsi'));
     	}else{
     		$data['upi']		= $this->model_upi->_get_upi_terdaftar();
 		}
@@ -192,7 +192,7 @@ class Upi extends MY_Controller {
 	public function view_detail($id)
 	{
 		$data['page_title'] = 'Detail UPI';
-		$data['upi']		= $this->model_upi->_get_upi_terdaftar($id);
+		$data['upi']		= $this->model_upi->_get_upi_detail($id);
 		$data['content'] = 'pages_content/upi/view_upi_detail';
         $data['prev_page'] = site_url('upi/view_list');
         $this->load->view('index',$data);
@@ -337,7 +337,7 @@ class Upi extends MY_Controller {
         // check if id is valid integer
         if ($id != null && is_numeric($id) && $id > 0) {
             // delete from get user_id from tbl_register_upi
-            $result = $this->model_upi->_get_upi_terdaftar($id);
+            $result = $this->model_upi->_get_upi_detail($id);
             // remove data from register upi
             $paths[] = '.'.$result[0]['filesiup_upi'];
             $paths[] = '.'.$result[0]['fileakta_upi'];

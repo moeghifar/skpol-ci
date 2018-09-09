@@ -15,7 +15,7 @@ class Model_kunjungan extends CI_Model {
 
 	function _get_kunjungan($status=null, $uker, $idskp = null){
 		$kodeProv = $this->session->userdata($this->session_prefix.'-userkodeprovinsi');
-		$this->db->order_by('idtbl_skp','desc');
+		$this->db->order_by('date_updated desc','idtbl_kunjungan desc');
 		if ($idskp != null) {
 			if($status == ''){
 				if($uker == 'dinas'){
@@ -53,6 +53,7 @@ class Model_kunjungan extends CI_Model {
 	}
 
 	function _insert_kunjungan($data){
+		$data['date_updated'] = 'NOW()';
 		$q = $this->db->insert('tbl_kunjungan',$data);
 		if($q){
 			return true;
@@ -62,6 +63,7 @@ class Model_kunjungan extends CI_Model {
 	}
 
 	function _update_kunjungan($dt,$idskp,$idkunjungan){
+		$dt['date_updated'] = 'NOW()';
 		$this->db->where(array('skp_id'=>$idskp,'idtbl_kunjungan'=>$idkunjungan));
 		$q = $this->db->update('tbl_kunjungan',$dt);
 		if($q){

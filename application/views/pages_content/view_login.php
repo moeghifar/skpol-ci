@@ -17,7 +17,6 @@
 	                    <i class="ico-lock2 form-control-icon"></i>
 	                </div>
 	            </div>
-
 	            <div class="form-group">
 	                <div class="row">
 	                    <div class="col-xs-12 text-center">

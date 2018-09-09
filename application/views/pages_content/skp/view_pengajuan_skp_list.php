@@ -20,7 +20,7 @@
 								<th>Provinsi</th>
 								<th>Kabupaten</th>
 								<th>Nama Produk</th>
-								<th style="width:40px;">View</th>
+								<th>View</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -33,7 +33,8 @@
 									<td><?=$k['kabupaten_upi']?></td>
 									<td><?=$k['namaind_produk']?></td>
 									<td>
-										<a class="btn btn-sm btn-xs btn-primary" href="<?php echo base_url('skp/detail_pengajuan_skp/'.$k['idtbl_skp']);?>"><i class="ico ico-search"></i>Lihat Detail</a>
+										<a style="margin-bottom:5px;" class="btn btn-xs btn-primary" href="<?php echo base_url('skp/detail_pengajuan_skp/'.$k['idtbl_skp']);?>"><i class="ico ico-search"></i></a>
+										<a data-toggle="modal" data-target="#deleteModal" data-url="<?=site_url('skp/delete_skp_pengajuan/'.$k['idtbl_skp']);?>" class="btn btn-xs btn-danger mb5"><i class="ico-remove"></i></a>
 									</td>
 								</tr>
 							<?php $i++; } ?>
@@ -74,4 +75,25 @@
 	</div><!-- /.modal-dialog -->
 </div>
 <!--/ END modal-sm -->
+<?php } elseif($this->session->userdata($this->session_prefix.'-userlevel') == 'kp'){ ?>
+
+<!-- START Delete modal -->
+<div id="deleteModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<i class="ico ico-warning"></i> Konfirmasi Hapus Data
+			</div>
+			<div class="modal-body">
+				Anda yakin ingin menghapus data ini ??
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+				<a id="target-href" class="btn btn-danger">Hapus</a>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<!--/ END modal -->
+
 <?php } ?>

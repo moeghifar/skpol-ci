@@ -51,6 +51,22 @@ class Model_upi extends CI_Model {
 		}
 		return $q->result_array();
 	}
+	
+	function _get_upi_detail($upi_id) {
+		$sql = "SELECT 
+			upi.*,
+			user.email as user_email,
+			user.level as user_level,
+			user.login_status as user_login_status,
+			p.nama_provinsi
+		FROM tbl_upi upi, tbl_user user, tbl_provinsi p 
+		WHERE p.id_provinsi = upi.provinsi_upi
+		AND user.id_user = upi.user_id
+		AND idtbl_upi = ?
+		ORDER BY user_id DESC";
+		$q = $this->db->query($sql, $upi_id);
+		return $q->result_array();
+	}
 
 	function _get_upi_revisi($id = null, $idp = null){
 		$this->db->order_by("idtbl_upi", "desc");
