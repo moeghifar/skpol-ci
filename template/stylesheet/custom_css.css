@@ -59,3 +59,17 @@
 	-moz-border-radius: 0px;
 	background-image: none;
 }
+
+.info-mini {
+	font-size: 80%;
+	color: #0088cc;
+	padding:0px 0px 5px 5px;
+	margin-bottom:12px;
+}
+.info-mini-2 {
+	padding:10px 0px 5px 5px !important;
+}
+.info-lihat-detail {
+	margin-left:20px;
+	margin-top:-1px;
+}

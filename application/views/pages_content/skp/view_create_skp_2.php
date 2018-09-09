@@ -234,13 +234,15 @@
 					<div class="col-sm-9">
 						<div class="row">
 							<div class="col-sm-4">
-								<input type="text" required group-field="gedungbeku" class="form-control numb mb10" placeholder="Jumlah Unit" name="ugudang_beku">
+								<input type="text" required group-field="gedungbeku" class="form-control numb mb10" placeholder="Jumlah Unit" Value="0" name="ugudang_beku">
+								<div class="info-mini">Jumlah Unit</div>
 							</div>
 							<div class="col-sm-5">
 								<div class="input-group">
-									<input type="text" class="form-control numb" group-field="gedungbeku" placeholder="Jumlah Kapasitas" name="gudang_beku">
+									<input type="text" class="form-control numb" group-field="gedungbeku" placeholder="Jumlah Kapasitas" Value="0" name="gudang_beku">
 									<span class="input-group-addon">Kg</span>
 								</div>
+								<div class="info-mini info-mini-2">Jumlah Kapasitas</div>
 							</div>
 						</div>
 					</div>
@@ -250,13 +252,15 @@
 					<div class="col-sm-9">
 						<div class="row">
 							<div class="col-sm-4">
-								<input type="text" required group-field="gudangdingin" class="form-control numb mb10" placeholder="Jumlah Unit" name="ugudang_dingin">
+								<input type="text" required group-field="gudangdingin" class="form-control numb mb10" placeholder="Jumlah Unit" Value="0" name="ugudang_dingin">
+								<div class="info-mini">Jumlah Unit</div>
 							</div>
 							<div class="col-sm-5">
 								<div class="input-group">
-									<input type="text" class="form-control numb" group-field="gudang-dingin" placeholder="Jumlah Kapasitas" name="gudang_dingin">
+									<input type="text" class="form-control numb" group-field="gudang-dingin" placeholder="Jumlah Kapasitas" Value="0" name="gudang_dingin">
 									<span class="input-group-addon">Kg</span>
 								</div>
+								<div class="info-mini info-mini-2">Jumlah Kapasitas</div>
 							</div>
 						</div>
 					</div>
@@ -266,13 +270,15 @@
 					<div class="col-sm-9">
 						<div class="row">
 							<div class="col-sm-4">
-								<input type="text" required group-field="abf" class="form-control numb mb10" placeholder="Jumlah Unit" name="uabf">
+								<input type="text" required group-field="abf" class="form-control numb mb10" placeholder="Jumlah Unit" Value="0" name="uabf">
+								<div class="info-mini">Jumlah Unit</div>
 							</div>
 							<div class="col-sm-5">
 								<div class="input-group">
-									<input type="text" class="form-control numb" group-field="abf" placeholder="Jumlah Kapasitas" name="abf">
+									<input type="text" class="form-control numb" group-field="abf" placeholder="Jumlah Kapasitas" Value="0" name="abf">
 									<span class="input-group-addon">Kg</span>
 								</div>
+								<div class="info-mini info-mini-2">Jumlah Kapasitas</div>
 							</div>
 						</div>
 					</div>
@@ -282,13 +288,15 @@
 					<div class="col-sm-9">
 						<div class="row">
 							<div class="col-sm-4">
-								<input type="text" required group-field="cpf" class="form-control numb mb10" placeholder="Jumlah Unit" name="ucpf">
+								<input type="text" required group-field="cpf" class="form-control numb mb10" placeholder="Jumlah Unit" Value="0" name="ucpf">
+								<div class="info-mini">Jumlah Unit</div>
 							</div>
 							<div class="col-sm-5">
 								<div class="input-group">
-									<input type="text" class="form-control numb" group-field="cpf" placeholder="Jumlah Kapasitas" name="cpf">
+									<input type="text" class="form-control numb" group-field="cpf" placeholder="Jumlah Kapasitas" Value="0" name="cpf">
 									<span class="input-group-addon">Kg</span>
 								</div>
+								<div class="info-mini info-mini-2">Jumlah Kapasitas</div>
 							</div>
 						</div>
 					</div>
@@ -298,13 +306,15 @@
 					<div class="col-sm-9">
 						<div class="row">
 							<div class="col-sm-4">
-								<input type="text" required group-field="tf" class="form-control numb mb10" placeholder="Jumlah Unit" name="utf">
+								<input type="text" required group-field="tf" class="form-control numb mb10" placeholder="Jumlah Unit" Value="0" name="utf">
+								<div class="info-mini">Jumlah Unit</div>
 							</div>
 							<div class="col-sm-5">
 								<div class="input-group">
-									<input type="text" class="form-control numb" group-field="tf" placeholder="Jumlah Kapasitas" name="tf">
+									<input type="text" class="form-control numb" group-field="tf" placeholder="Jumlah Kapasitas" Value="0" name="tf">
 									<span class="input-group-addon">Kg</span>
 								</div>
+								<div class="info-mini info-mini-2">Jumlah Kapasitas</div>
 							</div>
 						</div>
 					</div>
@@ -314,13 +324,15 @@
 					<div class="col-sm-9">
 						<div class="row">
 							<div class="col-sm-4">
-								<input type="text" required group-field="bf" class="form-control numb mb10" placeholder="Jumlah Unit" name="ubf">
+								<input type="text" required group-field="bf" class="form-control numb mb10" placeholder="Jumlah Unit" Value="0" name="ubf">
+								<div class="info-mini">Jumlah Unit</div>
 							</div>
 							<div class="col-sm-5">
 								<div class="input-group">
-									<input type="text" class="form-control numb" group-field="bf" placeholder="Jumlah Kapasitas" name="bf">
+									<input type="text" class="form-control numb" group-field="bf" placeholder="Jumlah Kapasitas" Value="0" name="bf">
 									<span class="input-group-addon">Kg</span>
 								</div>
+								<div class="info-mini info-mini-2">Jumlah Kapasitas</div>
 							</div>
 						</div>
 					</div>
@@ -330,13 +342,15 @@
 					<div class="col-sm-9">
 						<div class="row">
 							<div class="col-sm-4">
-								<input type="text" class="form-control numb mb10" required group-field="retor" placeholder="Jumlah Unit" name="uretor">
+								<input type="text" class="form-control numb mb10" required group-field="retor" placeholder="Jumlah Unit" Value="0" name="uretor">
+								<div class="info-mini">Jumlah Unit</div>
 							</div>
 							<div class="col-sm-5">
 								<div class="input-group">
-									<input type="text" class="form-control numb" group-field="retor" placeholder="Jumlah Kapasitas" name="retor">
+									<input type="text" class="form-control numb" group-field="retor" placeholder="Jumlah Kapasitas" Value="0" name="retor">
 									<span class="input-group-addon">Kg</span>
 								</div>
+								<div class="info-mini info-mini-2">Jumlah Kapasitas</div>
 							</div>
 						</div>
 					</div>
@@ -346,13 +360,15 @@
 					<div class="col-sm-9">
 						<div class="row">
 							<div class="col-sm-4">
-								<input type="text" class="form-control numb mb10" required group-field="seamer" placeholder="Jumlah Unit" name="useamer">
+								<input type="text" class="form-control numb mb10" required group-field="seamer" placeholder="Jumlah Unit" Value="0" name="useamer">
+								<div class="info-mini">Jumlah Unit</div>
 							</div>
 							<div class="col-sm-5">
 								<div class="input-group">
-									<input type="text" class="form-control numb" group-field="seamer" placeholder="Jumlah Kapasitas" name="seamer">
+									<input type="text" class="form-control numb" group-field="seamer" placeholder="Jumlah Kapasitas" Value="0" name="seamer">
 									<span class="input-group-addon">Kg</span>
 								</div>
+								<div class="info-mini info-mini-2">Jumlah Kapasitas</div>
 							</div>
 						</div>
 					</div>
@@ -362,13 +378,15 @@
 					<div class="col-sm-9">
 						<div class="row">
 							<div class="col-sm-4">
-								<input type="text" class="form-control numb mb10" required group-field="gudangkering" placeholder="Jumlah Unit" name="ugudang_kering">
+								<input type="text" class="form-control numb mb10" required group-field="gudangkering" placeholder="Jumlah Unit" Value="0" name="ugudang_kering">
+								<div class="info-mini">Jumlah Unit</div>
 							</div>
 							<div class="col-sm-5">
 								<div class="input-group">
-									<input type="text" class="form-control numb" group-field="gudangkering" placeholder="Jumlah Kapasitas" name="gudang_kering">
+									<input type="text" class="form-control numb" group-field="gudangkering" placeholder="Jumlah Kapasitas" Value="0" name="gudang_kering">
 									<span class="input-group-addon">Kg</span>
 								</div>
+								<div class="info-mini info-mini-2">Jumlah Kapasitas</div>
 							</div>
 						</div>
 					</div>
@@ -378,13 +396,15 @@
 					<div class="col-sm-9">
 						<div class="row">
 							<div class="col-sm-4">
-								<input type="text" class="form-control numb mb10" required group-field="bakcuci" placeholder="Jumlah Unit" name="ubak_cuci">
+								<input type="text" class="form-control numb mb10" required group-field="bakcuci" placeholder="Jumlah Unit" Value="0" name="ubak_cuci">
+								<div class="info-mini">Jumlah Unit</div>
 							</div>
 							<div class="col-sm-5">
 								<div class="input-group">
-									<input type="text" class="form-control numb" group-field="bakcuci" placeholder="Jumlah Kapasitas" name="bak_cuci">
+									<input type="text" class="form-control numb" group-field="bakcuci" placeholder="Jumlah Kapasitas" Value="0" name="bak_cuci">
 									<span class="input-group-addon">Kg</span>
 								</div>
+								<div class="info-mini info-mini-2">Jumlah Kapasitas</div>
 							</div>
 						</div>
 					</div>
@@ -394,13 +414,15 @@
 					<div class="col-sm-9">
 						<div class="row">
 							<div class="col-sm-4">
-								<input type="text" class="form-control numb mb10" required group-field="bakpenampungan" placeholder="Jumlah Unit" name="ubak_tampung">
+								<input type="text" class="form-control numb mb10" required group-field="bakpenampungan" placeholder="Jumlah Unit" Value="0" name="ubak_tampung">
+								<div class="info-mini">Jumlah Unit</div>
 							</div>
 							<div class="col-sm-5">
 								<div class="input-group">
-									<input type="text" class="form-control numb" group-field="bakpenampungan" placeholder="Jumlah Kapasitas" name="bak_tampung">
+									<input type="text" class="form-control numb" group-field="bakpenampungan" placeholder="Jumlah Kapasitas" Value="0" name="bak_tampung">
 									<span class="input-group-addon">Kg</span>
 								</div>
+								<div class="info-mini info-mini-2">Jumlah Kapasitas</div>
 							</div>
 						</div>
 					</div>
@@ -444,27 +466,31 @@
 				<div class="col-sm-9" style="padding-left: 0px">
 					<div class="col-sm-3 mb10">
 						<div class="input-group">
-							<input type="text" required class="form-control numb" placeholder="Administrasi" name="tka_administrasi_l">
+							<input type="text" required class="form-control numb" placeholder="Administrasi" value="0" name="tka_administrasi_l">
 							<span class="input-group-addon">L</span>
 						</div>
+						<div class="info-mini info-mini-2">Administrasi</div>
 					</div>
 					<div class="col-sm-3 mb10">
 						<div class="input-group">
-							<input type="text" required class="form-control numb" placeholder="Administrasi" name="tka_administrasi_p">
+							<input type="text" required class="form-control numb" placeholder="Administrasi" value="0" name="tka_administrasi_p">
 							<span class="input-group-addon">P</span>
 						</div>
+						<div class="info-mini info-mini-2">Administrasi</div>
 					</div>
 					<div class="col-sm-3 mb10">
 						<div class="input-group">
-							<input type="text" required class="form-control numb" placeholder="Pengolahan" name="tka_pengolahan_l">
+							<input type="text" required class="form-control numb" placeholder="Pengolahan" value="0" name="tka_pengolahan_l">
 							<span class="input-group-addon">L</span>
 						</div>
+						<div class="info-mini info-mini-2">Pengolahan</div>
 					</div>
 					<div class="col-sm-3 mb10">
 						<div class="input-group">
-							<input type="text" required class="form-control numb" placeholder="Pengolahan" name="tka_pengolahan_p">
+							<input type="text" required class="form-control numb" placeholder="Pengolahan" value="0" name="tka_pengolahan_p">
 							<span class="input-group-addon">P</span>
 						</div>
+						<div class="info-mini info-mini-2">Pengolahan</div>
 					</div>
 				</div>
 			</div>
@@ -473,27 +499,31 @@
 				<div class="col-sm-9" style="padding-left: 0px">
 					<div class="col-sm-3 mb10">
 						<div class="input-group">
-							<input type="text" required class="form-control numb" placeholder="Administrasi" name="tt_administrasi_l">
+							<input type="text" required class="form-control numb" placeholder="Administrasi" value="0" name="tt_administrasi_l">
 							<span class="input-group-addon">L</span>
 						</div>
+						<div class="info-mini info-mini-2">Administrasi</div>
 					</div>
 					<div class="col-sm-3 mb10">
 						<div class="input-group">
-							<input type="text" required class="form-control numb" placeholder="Administrasi" name="tt_administrasi_p">
+							<input type="text" required class="form-control numb" placeholder="Administrasi" value="0" name="tt_administrasi_p">
 							<span class="input-group-addon">P</span>
 						</div>
+						<div class="info-mini info-mini-2">Administrasi</div>
 					</div>
 					<div class="col-sm-3 mb10">
 						<div class="input-group">
-							<input type="text" required class="form-control numb" placeholder="Pengolahan" name="tt_pengolahan_l">
+							<input type="text" required class="form-control numb" placeholder="Pengolahan" value="0" name="tt_pengolahan_l">
 							<span class="input-group-addon">L</span>
 						</div>
+						<div class="info-mini info-mini-2">Pengolahan</div>
 					</div>
 					<div class="col-sm-3 mb10">
 						<div class="input-group">
-							<input type="text" required class="form-control numb" placeholder="Pengolahan" name="tt_pengolahan_p">
+							<input type="text" required class="form-control numb" placeholder="Pengolahan" value="0" name="tt_pengolahan_p">
 							<span class="input-group-addon">P</span>
 						</div>
+						<div class="info-mini info-mini-2">Pengolahan</div>
 					</div>
 				</div>
 			</div>
@@ -502,27 +532,31 @@
 				<div class="col-sm-9" style="padding-left: 0px">
 					<div class="col-sm-3 mb10">
 						<div class="input-group">
-							<input type="text" required class="form-control numb" placeholder="Administrasi" name="th_administrasi_l">
+							<input type="text" required class="form-control numb" placeholder="Administrasi" value="0" name="th_administrasi_l">
 							<span class="input-group-addon">L</span>
 						</div>
+						<div class="info-mini info-mini-2">Administrasi</div>
 					</div>
 					<div class="col-sm-3 mb10">
 						<div class="input-group">
-							<input type="text" required class="form-control numb" placeholder="Administrasi" name="th_administrasi_p">
+							<input type="text" required class="form-control numb" placeholder="Administrasi" value="0" name="th_administrasi_p">
 							<span class="input-group-addon">P</span>
 						</div>
+						<div class="info-mini info-mini-2">Administrasi</div>
 					</div>
 					<div class="col-sm-3 mb10">
 						<div class="input-group">
-							<input type="text" required class="form-control numb" placeholder="Pengolahan" name="th_pengolahan_l">
+							<input type="text" required class="form-control numb" placeholder="Pengolahan" value="0" name="th_pengolahan_l">
 							<span class="input-group-addon">L</span>
 						</div>
+						<div class="info-mini info-mini-2">Pengolahan</div>
 					</div>
 					<div class="col-sm-3 mb10">
 						<div class="input-group">
-							<input type="text" required class="form-control numb" placeholder="Pengolahan" name="th_pengolahan_p">
+							<input type="text" required class="form-control numb" placeholder="Pengolahan" value="0" name="th_pengolahan_p">
 							<span class="input-group-addon">P</span>
 						</div>
+						<div class="info-mini info-mini-2">Pengolahan</div>
 					</div>
 				</div>
 			</div>
@@ -530,7 +564,7 @@
 				<label class="control-label col-sm-3">Jumlah Hari Kerja</label>
 				<div class="col-sm-9" style="padding-left: 0px">
 					<div class="col-sm-6">
-						<input type="text" class="numb" id="bs-harikerja" name="jumlah_hari_kerja" required>
+						<input type="text" class="numb" id="bs-harikerja" name="jumlah_hari_kerja" value="0" required>
 					</div>
 				</div>
 			</div>
@@ -538,7 +572,7 @@
 				<label class="control-label col-sm-3">Jumlah Shift</label>
 				<div class="col-sm-9" style="padding-left: 0px">
 					<div class="col-sm-6">
-						<input type="text" class="numb" id="bs-shift" name="jumlah_shift" required>
+						<input type="text" class="numb" id="bs-shift" name="jumlah_shift" value="0" required>
 					</div>
 				</div>
 			</div>

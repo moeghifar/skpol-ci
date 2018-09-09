@@ -17,14 +17,32 @@
 						<input name="nama_upi" type="text" class="form-control input-md" placeholder="Nama UPI" style="text-transform: uppercase;" required>
 					</div>
 					<div class="form-group">
-						<select class="form-control input-md" name="jenis_upi">
-							<option value="">...pilih entitas UPI...</option>
-							<option value="PT" >PT</option>
-							<option value="CV" >CV</option>
-							<option value="UD" >UD</option>
-							<option value="Koperasi" >Koperasi</option>
-							<option value="Lainnya" >Lainnya</option>
-						</select>
+						<div class="row">
+							<div class="col-lg-6">
+								<select class="form-control input-md" name="jenis_upi">
+									<option value="">Entitas Upi</option>
+									<option value="PT" >PT</option>
+									<option value="CV" >CV</option>
+									<option value="UD" >UD</option>
+									<option value="Koperasi" >Koperasi</option>
+									<option value="Lainnya" >Lainnya</option>
+								</select>
+							</div>
+							<div class="col-lg-6">
+								<select class="form-control" name="omzet">
+									<option>Omzet Tahunan</option>
+									<?php
+										$st = array('<2.5'=>'< 2.5 Milyar','2.5 - 50'=>'2.5 Milyar - 50 Milyar','> 50'=>'> 50 Milyar'); foreach($st as $k => $v){
+												if($upi[0]['omzet_upi'] == $k){
+													echo '<option selected value="'.$k.'">'.$v.'</option>';
+												}else{
+													echo '<option value="'.$k.'">'.$v.'</option>';
+												}
+											}
+									?>
+								</select>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="col-lg-6">

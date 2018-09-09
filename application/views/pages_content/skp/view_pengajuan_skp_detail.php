@@ -10,7 +10,10 @@
                 <div class="form-group">
                     <label class="control-label col-sm-3">Nama UPI</label>
                     <div class="col-sm-9">
-                        <p class="control-label" style="text-align: left;"><?=$skp[0]['nama_upi']?></p>
+                        <p class="control-label" style="text-align: left;">
+                            <?=$skp[0]['nama_upi']?>
+                            <a class="btn btn-xs btn-primary info-lihat-detail" href="<?php echo base_url('upi/view_detail/'.$skp[0]['idtbl_upi']);?>"><i class="ico ico-eye-open"></i> Lihat Info UPI</a>
+                        </p>
                     </div>
                 </div>
                 <div class="form-group">

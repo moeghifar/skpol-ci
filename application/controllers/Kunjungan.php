@@ -58,17 +58,20 @@ class Kunjungan extends MY_Controller {
 
 					$getUker = $this->model_kunjungan->_get_uker($idkunjungan);
 
+					// uker_kunjungan == 'dinas'
+					$log_status = 'Menunggu Persetujuan Pembina Mutu Dinas';
+					$log_status_skp = 'menunggu-persetujuan-perbaikan-dinas';
+					// uker_kunjungan == 'kp'
 					if($getUker[0]['uker_kunjungan'] == 'kp'){
-						// create skp log
-						$this->model_skp->_create_skp_log('Menunggu Persetujuan Pembina Mutu Pusat',$idskp);
-						// update main skp status
-						$this->model_skp->_update_skp_status(array('status_skp' => 'menunggu-persetujuan-perbaikan-kp'),$idskp);
-					}elseif($getUker[0]['uker_kunjungan'] == 'dinas'){
-						// create skp log
-						$this->model_skp->_create_skp_log('Menunggu Persetujuan Pembina Mutu Dinas',$idskp);
-						// update main skp status
-						$this->model_skp->_update_skp_status(array('status_skp' => 'menunggu-persetujuan-perbaikan-dinas'),$idskp);
+						$log_status = 'Menunggu Persetujuan Pembina Mutu Pusat';
+						$log_status_skp = 'menunggu-persetujuan-perbaikan-kp';
 					}
+					// create skp log
+					$this->model_skp->_create_skp_log($log_status, $idskp);
+					// update main skp status
+					$this->model_skp->_update_skp_status(array('status_skp' => $log_status_skp),$idskp);
+					// kirim email notifikasi
+					$this->send_email_notification(array('message_body' => 'Status SKP Anda saat ini, <strong>' . $log_status . '</strong>','target_email' => $this->session->userdata($this->session_prefix.'-useremail')));
 				}
 				// perform redirect with notification
 				$this->nyast->notif_create_notification('Upload File Perbaikan Berhasil','Selamat');
@@ -133,6 +136,7 @@ class Kunjungan extends MY_Controller {
 					$this->model_kunjungan->_update_kunjungan($dt,$idskp,$idkunjungan);
 					// create skp log
 					$this->model_skp->_create_skp_log('Perbaikan Pembinaan Dinas',$idskp);
+					$this->send_email_notification(array('message_body' => 'Status SKP Anda saat ini, <strong>Perbaikan Pembinaan Dinas</strong>','target_email' => $this->session->userdata($this->session_prefix.'-useremail')));					
 					// update main skp status
 					$dtskp = array(
 						'status_skp'	=> 'temuan-kunjungan-dinas'
@@ -174,6 +178,7 @@ class Kunjungan extends MY_Controller {
 					$this->model_kunjungan->_update_kunjungan($dt,$idskp,$idkunjungan);
 					// create skp log
 					$this->model_skp->_create_skp_log('Perbaikan Supervisi Kantor Pusat',$idskp);
+					$this->send_email_notification(array('message_body' => 'Status SKP Anda saat ini, <strong>Perbaikan Supervisi Kantor Pusat</strong>','target_email' => $this->session->userdata($this->session_prefix.'-useremail')));					
 					// update main skp status
 					$dtskp = array(
 						'status_skp'	=> 'temuan-supervisi-kp'
@@ -251,6 +256,7 @@ class Kunjungan extends MY_Controller {
     				$data['kunjungan']['temuan_kunjungan'] = '/file/temuan/'.$fileData['temuan_kunjungan']['file_name'];
 
                 	$this->model_skp->_create_skp_log('Revisi Perbaikan',$idskp);
+					$this->send_email_notification(array('message_body' => 'Status SKP Anda saat ini, <strong>Revisi Perbaikan</strong>','target_email' => $this->session->userdata($this->session_prefix.'-useremail')));					
             	} else {
                     $extraError = $this->upload->display_errors();
                     $this->nyast->notif_create_notification('Detail Gagal Dirubah \n'.$extraError,'Gagal');
@@ -307,6 +313,7 @@ class Kunjungan extends MY_Controller {
 					$this->model_kunjungan->_update_kunjungan($dt,$idskp,$idkunjungan);
 					// create skp log
 					$this->model_skp->_create_skp_log('Keluar Rekomendasi ke KKP',$idskp);
+					$this->send_email_notification(array('message_body' => 'Status SKP Anda saat ini, <strong>Keluar Rekomendasi ke KKP</strong>','target_email' => $this->session->userdata($this->session_prefix.'-useremail')));					
 					// update main skp status
 					$dtskp = array(
 						'status_skp'	=> 'kunjungan-selesai-dinas'
@@ -385,6 +392,7 @@ class Kunjungan extends MY_Controller {
 
 				// create skp log
 				$this->model_skp->_create_skp_log('Penerbitan SKP',$idskp);
+				$this->send_email_notification(array('message_body' => 'Status SKP Anda saat ini, <strong>Penerbitan SKP</strong>','target_email' => $this->session->userdata($this->session_prefix.'-useremail')));				
 
 				// update main skp status
 				$this->model_skp->_update_skp_status(array('status_skp' => 'penerbitan-skp'),$idskp);
@@ -430,6 +438,18 @@ class Kunjungan extends MY_Controller {
 			redirect(site_url('skp/rekomendasi_list'));
 		}else{
 			$this->show404();
+		}
+	}
+	
+	private function send_email_notification($msg = array()) {
+		if($msg['message_body']!='' && $msg['target_email']!='') {
+			$conf = array(
+				'subject' 	=> 'Notifikasi SKP - Online',
+				'message' 	=> $msg['message_body'],
+				'from'		=> 'skpolp2hp@gmail.com',
+				'to'		=> $msg['target_email']
+			);
+			$this->_send_email($conf);
 		}
 	}
 }
