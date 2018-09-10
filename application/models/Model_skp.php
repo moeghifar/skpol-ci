@@ -14,11 +14,6 @@ class Model_skp extends CI_Model {
 		return $q->result_array();
 	}
 
-	function _check_reject($id){
-		$q = $this->db->query("SELECT * FROM tbl_user u, tbl_upi up, tbl_rejected r WHERE u.id_user = '$id' AND u.id_user = up.user_id AND r.upi_id = up.idtbl_upi");
-		return $q->result_array();
-	}
-
 	function _get_produk_bykat($kat){
 		$q = $this->db->get_where('tbl_produk',array('status_produk'=>1,'kategori_produk'=>$kat));
 		return $q->result_array();

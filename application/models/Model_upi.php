@@ -17,6 +17,11 @@ class Model_upi extends CI_Model {
 		}
 	}
 
+	function _check_reject($id){
+		$q = $this->db->query("SELECT up.user_id, up.idtbl_upi, r.alasan, r.revisi FROM tbl_user u, tbl_upi up, tbl_rejected r WHERE u.id_user = '$id' AND u.id_user = up.user_id AND r.upi_id = up.idtbl_upi");
+		return $q->result_array();
+	}
+
 	function _get_upi_baru($id = null, $idp = null){
 		$this->db->order_by('idtbl_upi', 'DESC');
 		if($id != null){
@@ -49,22 +54,6 @@ class Model_upi extends CI_Model {
 				$q = $this->db->query("SELECT * FROM view_user_upi_provinsi where idtbl_upi NOT IN (SELECT upi_id FROM tbl_rejected WHERE upi_id IS NOT NULL) ORDER BY idtbl_upi DESC");
 			}
 		}
-		return $q->result_array();
-	}
-	
-	function _get_upi_detail($upi_id) {
-		$sql = "SELECT 
-			upi.*,
-			user.email as user_email,
-			user.level as user_level,
-			user.login_status as user_login_status,
-			p.nama_provinsi
-		FROM tbl_upi upi, tbl_user user, tbl_provinsi p 
-		WHERE p.id_provinsi = upi.provinsi_upi
-		AND user.id_user = upi.user_id
-		AND idtbl_upi = ?
-		ORDER BY user_id DESC";
-		$q = $this->db->query($sql, $upi_id);
 		return $q->result_array();
 	}
 
@@ -176,4 +165,40 @@ class Model_upi extends CI_Model {
 		$q = $this->db->get_where('tbl_register_upi',array('idtbl_upi'=>$id));
 		return $q->result_array();
 	}
+
+	// query without view
+
+	function _get_upi_detail($upi_id) {
+		$sql = "SELECT 
+			upi.*,
+			user.email as user_email,
+			user.level as user_level,
+			user.login_status as user_login_status,
+			p.nama_provinsi
+		FROM tbl_upi upi, tbl_user user, tbl_provinsi p 
+		WHERE p.id_provinsi = upi.provinsi_upi
+		AND user.id_user = upi.user_id
+		AND idtbl_upi = ?
+		ORDER BY user_id DESC";
+		$q = $this->db->query($sql, $upi_id);
+		return $q->result_array();
+	}
+
+	function _get_rejected_upi($upi_id) {
+		$sql = "SELECT 
+			upi.*,
+			user.email as user_email,
+			user.level as user_level,
+			user.login_status as user_login_status,
+			p.nama_provinsi,
+			ur.alasan,
+			ur.revisi
+		FROM tbl_upi_rejected ur, tbl_upi upi, tbl_user user, tbl_provinsi p 
+		WHERE p.id_provinsi = upi.provinsi_upi
+		AND user.id_user = upi.user_id
+		AND upi.idtbl_upi = ur.upi_id
+		AND idtbl_upi = ?
+		ORDER BY user_id DESC";
+	}
+
 }

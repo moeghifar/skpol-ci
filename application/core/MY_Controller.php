@@ -29,8 +29,8 @@ class MY_Controller extends CI_Controller {
 
 	public function cek_rejected(){
 		$currentLevel = $this->session->userdata($this->session_prefix.'-userlevel');
-		$this->load->model('model_skp');
-		return $this->model_skp->_check_reject($this->session->userdata($this->session_prefix.'-userid'));
+		$this->load->model('model_upi');
+		return $this->model_upi->_check_reject($this->session->userdata($this->session_prefix.'-userid'));
 	}
 
 	public function _session_engine(){
