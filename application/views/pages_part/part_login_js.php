@@ -89,7 +89,6 @@
 				return false;
 			}
 		});
-		<?php $this->nyast->js_notif(); ?>
 	});
 	function check_other_field(ot,p,ju,siup,iup,akta){
 		if(ot.val() == "" || p.val() == "" || ju.val() == ""){
