@@ -45,7 +45,6 @@ class Pengiriman extends MY_Controller {
 			if( $this->input->post('submit') != NULL ){
 				foreach($this->input->post('kirim') as $k){
 					$param = array(
-						'idtbl_pengiriman'		=> '',
 						'kurir_pengiriman'		=> $this->input->post('kurir'),
 						'tgl_pengiriman'		=> $this->input->post('tanggal'),
 						'resi_pengiriman'		=> $this->input->post('resi'),
