@@ -47,7 +47,6 @@ class Produk extends MY_Controller {
 		$this->_session_restrict(array('kp','dinas'));
 		if( $this->input->post('submit') != NULL ){
 			$param = array(
-				'idtbl_produk'			=> '',
 				'kategori_produk'		=> $this->input->post('kategori_produk'),
 				'namaind_produk'		=> $this->input->post('nama_produk'),
 				'namaen_produk'			=> $this->input->post('product_name'),

@@ -90,7 +90,6 @@ class Skp extends MY_Controller {
 				$sni	 	= $this->input->post('sni');
 				foreach($nama_produk as $kk => $vv) {
 					$data['skp']	= array(
-						'idtbl_skp'				=> '',
 						'filegmpssop_skp'		=> $file_gmpssop,
 						'filesp_skp'			=> $file_spskp,
 						'permohonan_skp'		=> $jenis_pengajuan[$kk],
@@ -106,7 +105,6 @@ class Skp extends MY_Controller {
 					$domestik = explode(',',$kota[$kk]);
 					foreach($domestik as $k => $i){
 						$data['domestik'] = array(
-							'idtbl_pemasaran'=>'',
 							'tujuan_pemasaran'=>$i,
 							'jenis_pemasaran'=>'domestik',
 							'skp_id'=>$skpid
@@ -118,7 +116,6 @@ class Skp extends MY_Controller {
 					foreach($mancanegara as $k => $i){
 						if($i != ""){
 							$data['negara'] = array(
-								'idtbl_pemasaran'=>'',
 								'tujuan_pemasaran'=>$i,
 								'jenis_pemasaran'=>'mancanegara',
 								'skp_id'=>$skpid
@@ -187,7 +184,6 @@ class Skp extends MY_Controller {
 					// insert sni
 					foreach($sni as $k){
 						$data['sni'] = array(
-							'idtbl_sni'=>'',
 							'nama_sni'=>$k,
 							'skp_id'=>$skpid
 						);
@@ -225,7 +221,6 @@ class Skp extends MY_Controller {
 					// insert sarpras
 					foreach($data['ksp'] as $k => $i){
 						$data['inpksp'] = array(
-							'idtbl_sarpras' =>	'',
 							'nama_sarpras' => $k,
 							'value_sarpras' => $i,
 							'kuantitas_sarpras' => $data['uksp'][$k],
@@ -235,7 +230,6 @@ class Skp extends MY_Controller {
 					}
 					// insert data karyawan
 					$data['karyawan'] = array(
-						'idtbl_karyawan' 		=> '',
 						'admasinglk_karyawan' 	=> $this->input->post('tka_administrasi_l'),
 						'admasingpr_karyawan' 	=> $this->input->post('tka_administrasi_p'),
 						'admtetaplk_karyawan' 	=> $this->input->post('tt_administrasi_l'),
@@ -254,14 +248,13 @@ class Skp extends MY_Controller {
 					);
 					$this->model_skp->_insert_for_skp('tbl_karyawan',$data['karyawan']);
 					$data['penanggungjawab'] = array(
-						'idtbl_penanggungjawab' 				=> '',
 						'upinama_penanggungjawab' 				=> $this->input->post('pj_upi_pabrik_nama'),
 						'upipendidikan_penanggungjawab' 		=> $this->input->post('pj_upi_pabrik_pendidikan'),
 						'upipelatihan_penanggungjawab' 			=> $this->input->post('pj_upi_pabrik_sertifikat'),
 						'produksinama_penanggungjawab' 			=> $this->input->post('pj_produksi_nama'),
 						'produksipendidikan_penanggungjawab' 	=> $this->input->post('pj_produksi_pendidikan'),
 						'produksipelatihan_penanggungjawab' 	=> $this->input->post('pj_produksi_sertifikat'),
-						'mutunama_penanggungjawab' 		=> $this->input->post('pj_mutu_nama'),
+						'mutunama_penanggungjawab' 				=> $this->input->post('pj_mutu_nama'),
 						'mutupendidikan_penanggungjawab' 		=> $this->input->post('pj_mutu_pendidikan'),
 						'mutupelatihan_penanggungjawab' 		=> $this->input->post('pj_mutu_sertifikat'),
 						'skp_id' 								=> $skpid
@@ -281,7 +274,6 @@ class Skp extends MY_Controller {
 					if(null!==($this->input->post('penggunaan_es')))
 					{$pe = implode(',',$this->input->post('penggunaan_es'));}
 					$data['asales'] = array(
-						'idtbl_asales' 				=> '',
 						'sendiri_asales' 			=> $this->input->post('produksi_sendiri'),
 						'pembelian_asales' 			=> $this->input->post('pembelian_dari'),
 						'pembelianjumlah_asales' 	=> $this->input->post('pembelianjumlah'),
@@ -291,7 +283,6 @@ class Skp extends MY_Controller {
 					);
 					$this->model_skp->_insert_for_skp('tbl_asales',$data['asales']);
 					$data['lainnya'] = array(
-						'idtbl_infolain' 			=> '',
 						'bahanpenolong_infolain' 	=> $this->input->post('bahan_penolong_tambahan'),
 						'bahankimia_infolain' 		=> $this->input->post('bahan_kimia_tambahan'),
 						'bahanlain_infolain' 		=> $this->input->post('bahan_lainnya'),
@@ -370,7 +361,6 @@ class Skp extends MY_Controller {
 			$tgl = $this->input->post('tanggal_kunjungan');
 			foreach($this->input->post('penjadwalan_dinas') as $key){
 				$dt = array(
-					'idtbl_kunjungan'		=> '',
 					'tgl_kunjungan'			=> $tgl,
 					'pic_kunjungan'			=> '',
 					'uker_kunjungan'		=> 'dinas',
@@ -491,7 +481,6 @@ class Skp extends MY_Controller {
 				$ke 			= explode('-',$k);
 				$key 			= $ke[0];
 				$dt = array(
-					'idtbl_kunjungan'		=> '',
 					'tgl_kunjungan'			=> $tgl,
 					'pic_kunjungan'			=> '',
 					'uker_kunjungan'		=> 'kp',
@@ -626,7 +615,6 @@ class Skp extends MY_Controller {
 	function action_add_alurproses(){
 		if( $this->input->post('submit') != NULL ){
 			$param = array(
-				'idtbl_alurproses'	=> '',
 				'nama_alurproses'	=> $this->input->post('nama'),
 				'name_alurproses'	=> $this->input->post('name'),
 				'status'			=> 1

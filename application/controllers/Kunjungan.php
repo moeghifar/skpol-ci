@@ -406,7 +406,6 @@ class Kunjungan extends MY_Controller {
 				$kd    = date('Y-m-d', strtotime('+2 years'));
 				// insert into skp_terbit
 				$skpTerbit = array(
-					'idtbl_skp_terbit' 			=> '',
 					'tglmulai_skp_terbit'		=> $today,
 					'tglkadaluarsa_skp_terbit'	=> $kd,
 					'noseri_skp_terbit' 		=> $this->input->post('no_seri_skp'),
@@ -419,7 +418,6 @@ class Kunjungan extends MY_Controller {
 
 				// insert into tanda tangan
 				$skpTandaTangan = array(
-					'idtbl_tandatangan' 	=> '',
 					'status_tandatangan' 	=> '',
 					'skp_id' 				=> $idskp
 				);
