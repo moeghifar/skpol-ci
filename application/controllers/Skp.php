@@ -47,7 +47,7 @@ class Skp extends MY_Controller {
 		$config['max_size']            = 0;
 		$this->load->library('upload', $config);
 		if( $this->input->post('submit') != NULL ){
-			$gen_unik_filename = md5(uniqid().$this->input->post('jenis_pengajuan').$this->input->post('total_realisasi_produk'));
+			$gen_unik_filename = md5(uniqid());
 			$fileUpload = array(
 				'file_sp' 		=> 'sp-'.$gen_unik_filename.date('-y-m-d-his'),
 				'file_gmpssop'	=> 'gmpssop-'.$gen_unik_filename.date('-y-m-d-his')
