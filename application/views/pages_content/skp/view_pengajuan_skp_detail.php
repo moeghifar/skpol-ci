@@ -73,7 +73,13 @@
                 <div class="form-group">
                     <label class="control-label col-sm-3">Total Realisasi Produksi</label>
                     <div class="col-sm-9">
-                        <p class="control-label" style="text-align: left;"><?=$skp[0]['realisasiproduksi_skp']?> Kg/Tahun</p>
+                        <?php
+                            $realisasi = 0;
+                            if($skp[0]['realisasiproduksi_skp'] > 0) {
+                                $realisasi = number_format($skp[0]['realisasiproduksi_skp'],'0',',','.');
+                            } 
+                        ?>
+                        <p class="control-label" style="text-align: left;"><?=$realisasi?> Kg/Tahun</p>
                     </div>
                 </div>
                 <div class="form-group">
@@ -150,12 +156,16 @@
                     <div class="col-sm-9">
                         <?php
 							foreach($sarpras as $sp){
-	                        	if ($sp['nama_sarpras']!='-') {
-                                    $value = 0;
+	                        	if ($sp['nama_sarpras']!='-' || $sp['nama_sarpras']!='') {
+                                    $kt_sarpras = 0;
+                                    $val_sarpras = 0;
                                     if($sp['kuantitas_sarpras'] > 0){
-                                        $value = number_format($sp['kuantitas_sarpras'],'0',',','.');
+                                        $kt_sarpras = number_format($sp['kuantitas_sarpras'],'0',',','.');
                                     }
-	                            	echo '<p class="control-label" style="text-align: left;">'.$sp['nama_sarpras'].' : '.$value.' unit, kapasitas '.number_format($sp['value_sarpras'],'0',',','.').' Kg/unit</p>';
+                                    if($sp['value_sarpras'] > 0) {
+                                        $val_sarpras = number_format($sp['value_sarpras'],'0',',','.');
+                                    }
+	                            	echo '<p class="control-label" style="text-align: left;">'.$sp['nama_sarpras'].' : '.$kt_sarpras.' unit, kapasitas '.$val_sarpras.' Kg/unit</p>';
 	                        	}
                         	}
 						?>

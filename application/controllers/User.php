@@ -85,7 +85,6 @@ class User extends MY_Controller {
 			$this->model_user->_insert_user($data['user']);
 			$iduser = $this->db->insert_id();
 			$data['dinas'] = array(
-				'idtbl_dinas'			=> '',
 				'nama_dinas'			=> $this->input->post('nama'),
 				'jabatan_dinas'			=> $this->input->post('jabatan'),
 				'user_id'				=> $iduser

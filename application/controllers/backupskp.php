@@ -30,7 +30,6 @@ class Skp extends MY_Controller {
 			if($this->upload->do_upload('file_gmpssop')){
 				$fileData		= $this->upload->data();
 				$data['skp']	= array(
-					'idtbl_skp'				=> '',
 					'filegmpssop_skp'		=> '/file/gmpssop/'.$fileData['file_name'],
 					'permohonan_skp'		=> $this->input->post('jenis_pengajuan'),
 					'produk_id'				=> $this->input->post('nama_produk'),
