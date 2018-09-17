@@ -148,11 +148,15 @@
                         <?php
 							foreach($sarpras as $sp){
 	                        	if ($sp['nama_sarpras']!='-') {
-                                    $value = 0;
+                                    $kt_sarpras = 0;
+                                    $val_sarpras = 0;
                                     if($sp['kuantitas_sarpras'] > 0){
-                                        $value = number_format($sp['kuantitas_sarpras'],'0',',','.');
+                                        $kt_sarpras = number_format($sp['kuantitas_sarpras'],'0',',','.');
                                     }
-	                            	echo '<p class="control-label" style="text-align: left;">'.$sp['nama_sarpras'].' : '.$value.' unit, kapasitas '.number_format($sp['value_sarpras'],'0',',','.').' Kg/unit</p>';
+                                    if($sp['value_sarpras'] > 0) {
+                                        $val_sarpras = number_format($sp['value_sarpras'],'0',',','.');
+                                    }
+	                            	echo '<p class="control-label" style="text-align: left;">'.$sp['nama_sarpras'].' : '.$kt_sarpras.' unit, kapasitas '.$val_sarpras.' Kg/unit</p>';
 	                        	}
                         	}
 						?>
