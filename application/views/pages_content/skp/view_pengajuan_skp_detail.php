@@ -147,7 +147,7 @@
                     <div class="col-sm-9">
                         <?php
 							foreach($sarpras as $sp){
-	                        	if ($sp['nama_sarpras']!='-') {
+	                        	if ($sp['nama_sarpras']!='-' || $sp['nama_sarpras']!='') {
                                     $kt_sarpras = 0;
                                     $val_sarpras = 0;
                                     if($sp['kuantitas_sarpras'] > 0){
