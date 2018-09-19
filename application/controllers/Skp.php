@@ -129,11 +129,19 @@ class Skp extends MY_Controller {
 					foreach($tangkap as $k => $i){
 						$jenis = explode(",",$t_jenis[$kk]);
 						$bentuk = explode(",",$t_bentuk[$kk]);
+						$jenis_value = '';
+						$bentuk_value = '';
 						if($i != ""){
+							if (isset($jenis[$k])) {
+								$jenis_value = $jenis[$k];
+							}
+							if (isset($bentuk[$k])) {
+								$bentuk_value = $bentuk[$k];
+							}
 							$data['bahanbaku']['t'][$k]['idtbl_bahanbaku']='';
 							$data['bahanbaku']['t'][$k]['asal_bahanbaku']=$i;
-							$data['bahanbaku']['t'][$k]['jenis_bahanbaku']=$jenis[$k];
-							$data['bahanbaku']['t'][$k]['bentuk_bahanbaku']=$bentuk[$k];
+							$data['bahanbaku']['t'][$k]['jenis_bahanbaku']=$jenis_value;
+							$data['bahanbaku']['t'][$k]['bentuk_bahanbaku']=$bentuk_value;
 							$data['bahanbaku']['t'][$k]['kategori_bahanbaku']='tangkapan';
 							$data['bahanbaku']['t'][$k]['skp_id']=$skpid;
 						}
@@ -148,11 +156,19 @@ class Skp extends MY_Controller {
 					foreach($budidaya as $k => $i){
 						$jenis = explode(",",$b_jenis[$kk]);
 						$bentuk = explode(",",$b_bentuk[$kk]);
+						$jenis_value = '';
+						$bentuk_value = '';
 						if($i != ""){
+							if (isset($jenis[$k])) {
+								$jenis_value = $jenis[$k];
+							}
+							if (isset($bentuk[$k])) {
+								$bentuk_value = $bentuk[$k];
+							}
 							$data['bahanbaku']['b'][$k]['idtbl_bahanbaku']='';
 							$data['bahanbaku']['b'][$k]['asal_bahanbaku']=$i;
-							$data['bahanbaku']['b'][$k]['jenis_bahanbaku']=$jenis[$k];
-							$data['bahanbaku']['b'][$k]['bentuk_bahanbaku']=$bentuk[$k];
+							$data['bahanbaku']['b'][$k]['jenis_bahanbaku']=$jenis_value;
+							$data['bahanbaku']['b'][$k]['bentuk_bahanbaku']=$bentuk_value;
 							$data['bahanbaku']['b'][$k]['kategori_bahanbaku']='budidaya';
 							$data['bahanbaku']['b'][$k]['skp_id']=$skpid;
 						}
@@ -167,11 +183,19 @@ class Skp extends MY_Controller {
 					foreach($import as $k => $i){
 						$jenis = explode(",",$i_jenis[$kk]);
 						$bentuk = explode(",",$i_bentuk[$kk]);
+						$jenis_value = '';
+						$bentuk_value = '';
 						if($i != ""){
+							if(isset($jenis[$k])) {
+								$jenis_value = $jenis[$k];
+							}
+							if(isset($bentuk[$k])) {
+								$bentuk_value = $bentuk[$k];
+							}
 							$data['bahanbaku']['i'][$k]['idtbl_bahanbaku']='';
 							$data['bahanbaku']['i'][$k]['asal_bahanbaku']=$i;
-							$data['bahanbaku']['i'][$k]['jenis_bahanbaku']=$jenis[$k];
-							$data['bahanbaku']['i'][$k]['bentuk_bahanbaku']=$bentuk[$k];
+							$data['bahanbaku']['i'][$k]['jenis_bahanbaku']=$jenis_value;							
+							$data['bahanbaku']['i'][$k]['bentuk_bahanbaku']=$bentuk_value;
 							$data['bahanbaku']['i'][$k]['kategori_bahanbaku']='import';
 							$data['bahanbaku']['i'][$k]['skp_id']=$skpid;
 						}
