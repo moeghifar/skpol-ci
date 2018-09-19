@@ -20,11 +20,19 @@
 								<th>Provinsi</th>
 								<th>Kabupaten</th>
 								<th>Nama Produk</th>
+								<th>Pengajuan</th>
 								<th>View</th>
 							</tr>
 						</thead>
 						<tbody>
-							<?php $i=1; foreach($skp as $k){ ?>
+							<?php 
+								$i=1; foreach($skp as $k){ 
+									$labelClass = "label-info";
+									if ($k['permohonan_skp'] == "Baru") {
+										$labelClass = "label-danger";
+									}
+								?>
+								
 								<tr>
 									<td><input name="penjadwalan_dinas[]" value="<?=$k['idtbl_skp']?>" type="checkbox" /></td>
 									<td><?=$i?></td>
@@ -32,6 +40,12 @@
 									<td><?=$k['nama_provinsi']?></td>
 									<td><?=$k['kabupaten_upi']?></td>
 									<td><?=$k['namaind_produk']?></td>
+									<td>
+										<span class="label <?php echo $labelClass; ?>">
+											<?php echo $k['permohonan_skp']; ?>
+										</span>
+									</td>
+									<!-- <td><?=$k['status_skp']?></td> -->
 									<td>
 										<a style="margin-bottom:5px;" class="btn btn-xs btn-primary" href="<?php echo base_url('skp/detail_pengajuan_skp/'.$k['idtbl_skp']);?>"><i class="ico ico-search"></i></a>
 										<a data-toggle="modal" data-target="#deleteModal" data-url="<?=site_url('skp/delete_skp_pengajuan/'.$k['idtbl_skp']);?>" class="btn btn-xs btn-danger mb5"><i class="ico-remove"></i></a>

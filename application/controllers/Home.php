@@ -323,6 +323,195 @@ class Home extends MY_Controller {
 			$this->excel->getActiveSheet()->getStyle('O4:Q'.$lastRow)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER);
 			break;
 
+			case 'skp_pengajuan':
+			$titleName = 'REPORT-PENGAJUAN-SKP';
+			//name the worksheet
+			$this->excel->getActiveSheet()->setTitle($titleName);
+			// set table heading
+			$heading = array(
+				'Nama UPI','Alamat UPI','No. Telp/Fax','Nama dan Nomor Kontak','Email','Propinsi','Kabupaten','Kecamatan','Kelurahan','Kode Pos','Nama Pemilik','Tahun Mulai Operasi','Omzet Tahunan','NPWP','No. SIUP','No. IUP','No. Akta Notaris','Jenis UPI','Jenis Olahan','Jenis Produk (bahasa)','Jenis Produk (english)','Total Realisasi Produksi','Jenis Ikan Bahan Baku',
+				'Jumlah Unit Gudang Beku','Kapasitas Gudang Beku', 'Jumlah Unit Gudang Dingin', 'Kapasitas Gudang Dingin', 'Jumlah Unit ABF', 'Kapasitas ABF', 'Jumlah Unit Contact Plate Freezer', 'Kapasitas Contact Plate Freezer', 'Jumlah Unit Gudang Kering', 'Kapasitas Gudang Kering', 'Tenaga Kerja Laki2', 'Tenaga Kerja Perempuan', 'Jml Hari Kerja', 'Jml Shift',
+				'Jenis Permohonan','Tujuan Pemasaran Domestik','Tujuan Pemasaran Ekspor'
+				// 'SUPERVISI',
+				// 'No. Seri SKP',
+				// 'Tgl. Dikeluarkan',
+				// 'Tgl. Kadaluarsa',
+				// 'No. SKP',
+				// 'Penerbitan SKP',
+				// 'Masuk Direktur',
+				// 'Keluar Direktur',
+				// 'Masuk Dirjen',
+				// 'SKP Terbit',
+				// 'SKP Dikirim'
+			);
+			$this->excel->getActiveSheet()->fromArray($heading, NULL, 'A3');
+			//coloring header
+			$this->excel->getActiveSheet()->getStyle('A3:R3')->getFill()
+			->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFCFDFB0');
+			$this->excel->getActiveSheet()->getStyle('S3:AN3')->getFill()
+			->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFAAC0DD');
+			// $this->excel->getActiveSheet()->getStyle('S3:AU3')->getFill()
+			// ->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFAAC0DD');
+			// $this->excel->getActiveSheet()->getStyle('AV3:BA3')->getFill()
+			// ->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFFC82C0');
+			//set aligment to center
+			$this->excel->getActiveSheet()->getStyle('A3:BA3')->getAlignment()->setWrapText(TRUE);
+			$this->excel->getActiveSheet()->getStyle('A3:BA3')->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
+			$this->excel->getActiveSheet()->getStyle('A3:BA3')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+			$this->excel->getActiveSheet()->getStyle('A3:BA3')->getFont()->setBold(TRUE);
+			//set height
+			$this->excel->getActiveSheet()->getRowDimension('3')->setRowHeight(46);
+			//set width
+			for($col = 'A'; $col !== 'Z'; $col++) {
+				$this->excel->getActiveSheet()
+				->getColumnDimension($col)
+				->setAutoSize(TRUE);
+			}
+			for($col = 'AA'; $col !== 'AN'; $col++) {
+				$this->excel->getActiveSheet()
+				->getColumnDimension($col)
+				->setWidth(20);
+			}
+			// for($col = 'AM'; $col !== 'BB'; $col++) {
+			// 	$this->excel->getActiveSheet()
+			// 	->getColumnDimension($col)
+			// 	->setAutoSize(TRUE);
+			// }
+
+			$skpData = $this->model_home->_get_skp_progress();
+			foreach($skpData as $k => $v){
+				$generated[$v['idtbl_skp']][] = $v['nama_upi'];
+				$generated[$v['idtbl_skp']][] = $v['alamat_upi'];
+				$generated[$v['idtbl_skp']][] = $v['kontak_upi'];
+				$generated[$v['idtbl_skp']][] = $v['kontakperson_upi'];
+				$generated[$v['idtbl_skp']][] = $v['email'];
+				$generated[$v['idtbl_skp']][] = $v['nama_provinsi'];
+				$generated[$v['idtbl_skp']][] = $v['kabupaten_upi'];
+				$generated[$v['idtbl_skp']][] = $v['kecamatan_upi'];
+				$generated[$v['idtbl_skp']][] = $v['desa_upi'];
+				$generated[$v['idtbl_skp']][] = $v['kodepos_upi'];
+				$generated[$v['idtbl_skp']][] = $v['pemilik_upi'];
+				$generated[$v['idtbl_skp']][] = $v['tahunmulai_upi'];
+				$generated[$v['idtbl_skp']][] = $v['omzet_upi'];
+				$generated[$v['idtbl_skp']][] = $v['nonpwp_upi'];
+				$generated[$v['idtbl_skp']][] = $v['nosiup_upi'];
+				$generated[$v['idtbl_skp']][] = $v['noiup_upi'];
+				$generated[$v['idtbl_skp']][] = $v['noakta_upi'];
+				$generated[$v['idtbl_skp']][] = $v['jenis_upi'];
+				$generated[$v['idtbl_skp']][] = $v['kategori_produk'];
+				$generated[$v['idtbl_skp']][] = $v['namaind_produk'];
+				$generated[$v['idtbl_skp']][] = $v['namaen_produk'];
+				// $generated[$v['idtbl_skp']][] = $v['nama_alurproses'];
+				// $generated[$v['idtbl_skp']][] = $v['name_alurproses'];
+				$generated[$v['idtbl_skp']][] = $v['realisasiproduksi_skp'];
+				// detail skp
+				$pemas	= $this->model_skp->_get_by_skp('tbl_pemasaran',$v['idtbl_skp']);
+				$bb	= $this->model_skp->_get_by_skp('tbl_bahanbaku',$v['idtbl_skp']);
+				$sarpras = $this->model_skp->_get_by_skp('tbl_sarpras',$v['idtbl_skp']);
+				$kar	= $this->model_skp->_get_by_skp('tbl_karyawan',$v['idtbl_skp']);
+				// $log	= $this->model_skp->_get_by_skp('tbl_skp_log',$v['skp_id']);
+				$bbready = '';
+				foreach($bb as $vbb){
+					if ($vbb['kategori_bahanbaku']=='tangkapan') {
+						$bbready .= 'Tangkapan : '.ucfirst($vbb['asal_bahanbaku']).'-'.ucfirst($vbb['jenis_bahanbaku']).'-'.ucfirst($vbb['bentuk_bahanbaku']).'; ';
+					}
+					if ($vbb['kategori_bahanbaku']=='budidaya') {
+						$bbready .= 'Budidaya : '.ucfirst($vbb['asal_bahanbaku']).'-'.ucfirst($vbb['jenis_bahanbaku']).'-'.ucfirst($vbb['bentuk_bahanbaku']).'; ';
+					}
+					if ($vbb['kategori_bahanbaku']=='import') {
+						$bbready .= 'Import : '.ucfirst($vbb['asal_bahanbaku']).'-'.ucfirst($vbb['jenis_bahanbaku']).'-'.ucfirst($vbb['bentuk_bahanbaku']).'; ';
+					}
+				}
+				$generated[$v['idtbl_skp']][] = $bbready;
+				$sarprasready = '';
+				foreach($sarpras as $vsarpras){
+					if ($vsarpras['nama_sarpras']=='Gudang Beku') {
+						$generated[$v['idtbl_skp']][] = $vsarpras['kuantitas_sarpras'];
+						$generated[$v['idtbl_skp']][] = $vsarpras['value_sarpras'];
+					}
+					if ($vsarpras['nama_sarpras']=='Gudang Dingin') {
+						$generated[$v['idtbl_skp']][] = $vsarpras['kuantitas_sarpras'];
+						$generated[$v['idtbl_skp']][] = $vsarpras['value_sarpras'];
+					}
+					if ($vsarpras['nama_sarpras']=='ABF') {
+						$generated[$v['idtbl_skp']][] = $vsarpras['kuantitas_sarpras'];
+						$generated[$v['idtbl_skp']][] = $vsarpras['value_sarpras'];
+					}
+					if ($vsarpras['nama_sarpras']=='Contact Plate Freezer') {
+						$generated[$v['idtbl_skp']][] = $vsarpras['kuantitas_sarpras'];
+						$generated[$v['idtbl_skp']][] = $vsarpras['value_sarpras'];
+					}
+					if ($vsarpras['nama_sarpras']=='Gudang Kering') {
+						$generated[$v['idtbl_skp']][] = $vsarpras['kuantitas_sarpras'];
+						$generated[$v['idtbl_skp']][] = $vsarpras['value_sarpras'];
+					}
+				}
+				// tenaga kerja lk
+				$generated[$v['idtbl_skp']][] = $kar[0]['admasinglk_karyawan']+$kar[0]['olahasinglk_karyawan']+$kar[0]['admtetaplk_karyawan']+$kar[0]['olahtetaplk_karyawan']+$kar[0]['admharilk_karyawan']+$kar[0]['olahharilk_karyawan'];
+				// tenaga kerja pr
+				$generated[$v['idtbl_skp']][] = $kar[0]['admasingpr_karyawan']+$kar[0]['olahasingpr_karyawan']+$kar[0]['admtetappr_karyawan']+$kar[0]['olahtetappr_karyawan']+$kar[0]['admharipr_karyawan']+$kar[0]['olahharipr_karyawan'];
+				// hari kerja
+				$generated[$v['idtbl_skp']][] = $kar[0]['harikerja_karyawan'];
+				// shift
+				$generated[$v['idtbl_skp']][] = $kar[0]['shift_karyawan'];
+				// jenis permohonan
+				$generated[$v['idtbl_skp']][] = $v['permohonan_skp'];
+				$mancaready = '';
+				$domready = '';
+				foreach($pemas as $vpemas){
+					if($vpemas['jenis_pemasaran']=='domestik'){
+						$domready .= ucfirst($vpemas['tujuan_pemasaran']).'; ';
+					}
+					if($vpemas['jenis_pemasaran']=='mancanegara'){
+						$mancaready .= ucfirst($vpemas['tujuan_pemasaran']).'; ';
+					}
+				}
+				// tujuan domestik
+				$generated[$v['idtbl_skp']][] = $domready;
+				// tujuan internasional
+				$generated[$v['idtbl_skp']][] = $mancaready;
+				// // no seri skp
+				// $generated[$v['idtbl_skp_terbit']][] = '-';
+				// // no seri skp
+				// $generated[$v['idtbl_skp_terbit']][] = '#'.$v['noseri_skp_terbit'];
+				// // tgl skp terbit
+				// $generated[$v['idtbl_skp_terbit']][] = $v['tglmulai_skp_terbit'];
+				// // tgl kadaluarsa
+				// $generated[$v['idtbl_skp_terbit']][] = $v['tglkadaluarsa_skp_terbit'];
+				// // no skp
+				// $generated[$v['idtbl_skp_terbit']][] = $v['no_skp_terbit'];
+				// foreach($log as $vlog){
+				// 	if($vlog['status_log']=='Penerbitan SKP'){
+				// 		$generated[$v['idtbl_skp_terbit']][] = $vlog['date_log'];
+				// 	}
+				// 	if($vlog['status_log']=='Masuk Direktur'){
+				// 		$generated[$v['idtbl_skp_terbit']][] = $vlog['date_log'];
+				// 	}
+				// 	if($vlog['status_log']=='Keluar Direktur'){
+				// 		$generated[$v['idtbl_skp_terbit']][] = $vlog['date_log'];
+				// 	}
+				// 	if($vlog['status_log']=='Masuk Dirjen'){
+				// 		$generated[$v['idtbl_skp_terbit']][] = $vlog['date_log'];
+				// 	}
+				// 	if($vlog['status_log']=='SKP Terbit'){
+				// 		$generated[$v['idtbl_skp_terbit']][] = $vlog['date_log'];
+				// 	}
+				// 	if($vlog['status_log']=='SKP telah dikirim ke Dinas KP Provinsi'){
+				// 		$generated[$v['idtbl_skp_terbit']][] = $vlog['date_log'];
+				// 	}
+				// }
+			}
+			// --- //
+			$startValue = 4;
+			foreach($generated as $v){
+				$startPoint = 'A'.$startValue;
+				$this->excel->getActiveSheet()->fromArray($v, NULL, $startPoint);
+				$startValue++;
+			}
+			$lastRow = substr($startPoint,1);
+			$this->excel->getActiveSheet()->getStyle('O4:Q'.$lastRow)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER);
+			break;
+
 			default:
 			redirect(site_url());
 		}

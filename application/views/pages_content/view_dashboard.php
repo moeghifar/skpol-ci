@@ -108,6 +108,7 @@
 	                    </div>
 						<div class="text-center" style="margin-bottom:3px">
 	                        <p class="semibold nm">
+								<a href="<?=site_url('home/exportExcel/skp_pengajuan')?>" class="btn btn-danger btn-xs"><i class="ico-download"></i> Report in Excel</a>
 	                            <span class="label label-danger"><?=number_format(count($SkpProsesBaru),'0',',','.')?> Baru & <?=number_format(count($SkpProsesPer),'0',',','.')?> Perpanjang</span>
 	                        </p>
 	                    </div>
