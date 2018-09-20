@@ -3,9 +3,13 @@
 $config['useragent']        = 'PHPMailer';              // Mail engine switcher: 'CodeIgniter' or 'PHPMailer'
 $config['protocol']         = 'smtp';                   // 'mail', 'sendmail', or 'smtp'
 $config['mailpath']         = '/usr/sbin/sendmail';
-$config['smtp_host']        = 'smtp.gmail.com';
-$config['smtp_user']        = 'skpolp2hp@gmail.com';
-$config['smtp_pass']        = 'pengolahan2015';
+$config['smtp_host']        = 'mail.kkp.go.id';
+$config['smtp_user']        = 'skp.pdspkp@kkp.go.id';
+$config['smtp_pass']        = 'Standardisasi2018';
+// OLD GMAIL CONFIG
+// $config['smtp_host']        = 'smtp.gmail.com';
+// $config['smtp_user']        = 'skpolp2hp@gmail.com';
+// $config['smtp_pass']        = 'pengolahan2015';
 $config['smtp_port']        = 465;
 $config['smtp_timeout']     = 30;                       // (in seconds)
 $config['smtp_crypto']      = 'ssl';                       // '' or 'tls' or 'ssl'

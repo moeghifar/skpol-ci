@@ -544,7 +544,7 @@ class Home extends MY_Controller {
 		$conf = array(
 			'subject' 	=> 'Notifikasi SKP - Online',
 			'message' 	=> 'hi guys! email dari skp online.',
-			'from'		=> 'skpolp2hp@gmail.com',
+			'from'		=> 'skp.pdspkp@kkp.go.id',
 			'to'		=> $rec.'@gmail.com'
 		);
 		$this->_send_email($conf);
