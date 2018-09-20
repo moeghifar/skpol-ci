@@ -190,7 +190,7 @@ class Auth extends MY_Controller {
 					$conf = array(
 						'subject' 	=> 'Notifikasi Registrasi SKP - Online',
 						'message' 	=> 'Terima kasih telah mendaftar di sistem SKP - Online Kementrian Kelautan dan Perikanan, Konfirmasi Aktifasi username akan dikirim ke email yang didaftarkan dalam waktu 1x24 jam. username anda : '.$this->input->post('username').' | password anda : '.$this->input->post('password'),
-						'from'		=> 'skpolp2hp@gmail.com',
+						'from'		=> 'skp.pdspkp@kkp.go.id',
 						'to'		=> $this->input->post('email')
 					);
 					$this->_send_email($conf);
@@ -265,7 +265,7 @@ class Auth extends MY_Controller {
 				$conf = array(
 					'subject' 	=> 'Notifikasi Reset Password SKP - Online',
 					'message' 	=> 'Permintaan reset password anda sudah kami terima, Password baru anda : '.$newPass,
-					'from'		=> 'skpolp2hp@gmail.com',
+					'from'		=> 'skp.pdspkp@kkp.go.id',
 					'to'		=> $this->input->post('alamat_email')
 				);
 				$this->_send_email($conf);

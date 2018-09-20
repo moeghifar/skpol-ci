@@ -101,7 +101,7 @@ class Upi extends MY_Controller {
 					$conf = array(
 						'subject' 	=> 'Notifikasi Konfirmasi Pendaftaran SKP - Online',
 						'message' 	=> 'Selamat, akun SKP - Online anda sudah dikonfirmasi. Anda sudah dapat melakukan login, dan mengajukan perizinan SKP melalui link berikut : http://skp-pdspkp.kkp.go.id/skp-online',
-						'from'		=> 'skpolp2hp@gmail.com',
+						'from'		=> 'skp.pdspkp@kkp.go.id',
 						'to'		=> $regUpi[0]['email_upi']
 					);
 					$this->_send_email($conf);

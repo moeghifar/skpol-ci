@@ -444,7 +444,7 @@ class Kunjungan extends MY_Controller {
 			$conf = array(
 				'subject' 	=> 'Notifikasi SKP - Online',
 				'message' 	=> $msg['message_body'],
-				'from'		=> 'skpolp2hp@gmail.com',
+				'from'		=> 'skp.pdspkp@kkp.go.id',
 				'to'		=> $msg['target_email']
 			);
 			$this->_send_email($conf);
