@@ -539,4 +539,15 @@ class Home extends MY_Controller {
 		$this->session->sess_destroy();
 		redirect(site_url('auth'));
 	}
+
+	private function test_send_mail($rec) {
+		$conf = array(
+			'subject' 	=> 'Notifikasi SKP - Online',
+			'message' 	=> 'hi guys! email dari skp online.',
+			'from'		=> 'skpolp2hp@gmail.com',
+			'to'		=> $rec
+		);
+		$this->_send_email($conf);
+	}
+
 }
