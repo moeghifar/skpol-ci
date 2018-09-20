@@ -72,7 +72,8 @@ $(document).ready(function(){
 			}
 		});
 		$.each(bb_t_asal, function(i,v){
-			t_t_input += v +','+ bb_t_jenis[i] + ',' + bb_t_bentuk[i] +'<br/>';
+			/** change comma to | */
+			t_t_input += replace_comma(v)+','+replace_comma(bb_t_jenis[i])+','+replace_comma(bb_t_bentuk[i])+'<br/>';
 		});
 		var bb_b_asal = [], bb_b_jenis =[], bb_b_bentuk = [], b_t_input = '';
 		$('#form-multi-produk input[name^="b_asal"]').each(function(i){
@@ -91,7 +92,7 @@ $(document).ready(function(){
 			}
 		});
 		$.each(bb_b_asal, function(i,v){
-			b_t_input += v +','+ bb_b_jenis[i] + ',' + bb_b_bentuk[i] +'<br/>';
+			b_t_input += replace_comma(v) +','+ replace_comma(bb_b_jenis[i]) + ',' + replace_comma(bb_b_bentuk[i]) +'<br/>';
 		});
 		var bb_i_asal = [], bb_i_jenis =[], bb_i_bentuk = [], i_t_input = '';
 		$('#form-multi-produk input[name^="i_asal"]').each(function(i){
@@ -110,7 +111,7 @@ $(document).ready(function(){
 			}
 		});
 		$.each(bb_i_asal, function(i,v){
-			i_t_input += v +','+ bb_i_jenis[i] + ',' + bb_i_bentuk[i] +'<br/>';
+			i_t_input += replace_comma(v) +','+ replace_comma(bb_i_jenis[i]) + ',' + replace_comma(bb_i_bentuk[i]) +'<br/>';
 		});
 		if (countError == 0) {
 			var buildForm = ''
@@ -263,6 +264,10 @@ function count_flag_prevent(cont) {
 	}else{
 		return true;
 	}
+}
+function replace_comma(input) {
+	var output = input.replace(/,/g , "~");
+	return output;
 }
 var yk = 1;
 var yn = 1;

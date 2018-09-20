@@ -164,7 +164,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-3">Sertifikat Pengolah Ikan bagi QC/QA</label>
+                    <label class="control-label col-sm-3">File Sertifikat Pengolah Ikan(SPI) / Sertifikat Keamanan Pangan QC/QA</label>
                     <div class="col-sm-9">
                         <p class="control-label" style="text-align: left;">
                             <?php

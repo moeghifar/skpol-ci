@@ -75,10 +75,11 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-3">Nama & Nomor Kontak Person</label>
+                    <label class="control-label col-sm-3">Nama & No. Telepon Kontak Person</label>
                     <div class="col-sm-9">
                         <div class="col-sm-7" style="padding-left: 0px;">
                             <input type="text" class="form-control" name="kontakperson" value="<?=$upi[0]['kontakperson_upi']?>">
+                            <span class="info-mini-red">*wajib diisi</span>
                         </div>
                     </div>
                 </div>
@@ -108,13 +109,14 @@
                         <div class="col-sm-7" style="padding-left: 0px;">
                             <select name="jenis_upi" class="form-control mb15">
                                 <?php
-                                    $ju = array('uprlk'=>'UPRLK','upih'=>'UPIH','importir'=>'Importir/ Gudang Non RL','kapal'=>'Kapal','nonupi'=>'Non UPI'); foreach($ju as $a => $b){
-                                            if($upi[0]['jenis_upi'] == $a){
-                                                echo '<option selected value="'.$a.'">'.$b.'</option>';
-                                            }else{
-                                                echo '<option value="'.$a.'">'.$b.'</option>';
-                                            }
+                                    $ju = array('UPRLK (Unit Penanganan Rumput Laut Kering)'=>'UPRLK (Unit Penanganan Rumput Laut Kering)','UPIH (Unit Penanganan Ikan Hidup)'=>'UPIH (Unit Penanganan Ikan Hidup)','Gudang Beku Dalam Negeri'=>'Gudang Beku Dalam Negeri','Gudang Beku Export'=>'Gudang Beku Export','Gudang Penyimpanan Kering'=>'Gudang Penyimpanan Kering','Kapal Pengolah Ikan'=>'Kapal Pengolah Ikan','UPI (Unit Pengolahan Ikan)'=>'UPI (Unit Pengolahan Ikan)','Non UPI/Industri Non Perikanan'=>'Non UPI/Industri Non Perikanan'); 
+                                    foreach($ju as $a => $b){
+                                        if($upi[0]['jenis_upi'] == $a){
+                                            echo '<option selected value="'.$a.'">'.$b.'</option>';
+                                        }else{
+                                            echo '<option value="'.$a.'">'.$b.'</option>';
                                         }
+                                    }
                                 ?>
                             </select>
                         </div>
@@ -122,12 +124,12 @@
                             <select name="skala_upi" class="form-control">
                                 <?php
                                     $sk = array('kecil'=>'Skala Kecil','menengah'=>'Skala Menengah','besar'=>'Skala Besar'); foreach($sk as $c => $d){
-                                            if($upi[0]['skala_upi'] == $c){
-                                                echo '<option selected value="'.$c.'">'.$d.'</option>';
-                                            }else{
-                                                echo '<option value="'.$c.'">'.$d.'</option>';
-                                            }
+                                        if($upi[0]['skala_upi'] == $c){
+                                            echo '<option selected value="'.$c.'">'.$d.'</option>';
+                                        }else{
+                                            echo '<option value="'.$c.'">'.$d.'</option>';
                                         }
+                                    }
                                 ?>
                             </select>
                         </div>
@@ -360,7 +362,7 @@
                 </div>
                 <!-- FILE Sertifikat Pengolah Ikan -->
                 <div class="form-group">
-                    <label class="control-label col-sm-3">File Sertifikat Pengolah Ikan bagi QC/QA</label>
+                    <label class="control-label col-sm-3">File Sertifikat Pengolah Ikan(SPI) / Sertifikat Keamanan Pangan QC/QA</label>
                     <div class="col-sm-9" id="filesertifikatpengolahikan_upi">
 						<div class="col-sm-3" style="padding-left: 0px;">
                             <?php

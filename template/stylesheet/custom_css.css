@@ -60,6 +60,12 @@
 	background-image: none;
 }
 
+.info-mini-red {
+	font-size: 70%;
+	color: red;
+	padding:0px;
+	margin-bottom:12px;
+}
 .info-mini {
 	font-size: 80%;
 	color: #0088cc;

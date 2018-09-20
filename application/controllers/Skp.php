@@ -130,9 +130,9 @@ class Skp extends MY_Controller {
 						$jenis = explode(",",$t_jenis[$kk]);
 						$bentuk = explode(",",$t_bentuk[$kk]);
 						if($i != ""){
-							$data['bahanbaku']['t'][$k]['asal_bahanbaku']=$i;
-							$data['bahanbaku']['t'][$k]['jenis_bahanbaku']=$jenis[$k];
-							$data['bahanbaku']['t'][$k]['bentuk_bahanbaku']=$bentuk[$k];
+							$data['bahanbaku']['t'][$k]['asal_bahanbaku']=parse_to_comma($i, '~');
+							$data['bahanbaku']['t'][$k]['jenis_bahanbaku']=parse_to_comma($jenis[$k], '~');
+							$data['bahanbaku']['t'][$k]['bentuk_bahanbaku']=parse_to_comma($bentuk[$k], '~');
 							$data['bahanbaku']['t'][$k]['kategori_bahanbaku']='tangkapan';
 							$data['bahanbaku']['t'][$k]['skp_id']=$skpid;
 						}
@@ -148,9 +148,9 @@ class Skp extends MY_Controller {
 						$jenis = explode(",",$b_jenis[$kk]);
 						$bentuk = explode(",",$b_bentuk[$kk]);
 						if($i != ""){
-							$data['bahanbaku']['b'][$k]['asal_bahanbaku']=$i;
-							$data['bahanbaku']['b'][$k]['jenis_bahanbaku']=$jenis[$k];
-							$data['bahanbaku']['b'][$k]['bentuk_bahanbaku']=$bentuk[$k];
+							$data['bahanbaku']['b'][$k]['asal_bahanbaku']=parse_to_comma($i, '~');
+							$data['bahanbaku']['b'][$k]['jenis_bahanbaku']=parse_to_comma($jenis[$k], '~');
+							$data['bahanbaku']['b'][$k]['bentuk_bahanbaku']=parse_to_comma($bentuk[$k], '~');
 							$data['bahanbaku']['b'][$k]['kategori_bahanbaku']='budidaya';
 							$data['bahanbaku']['b'][$k]['skp_id']=$skpid;
 						}
@@ -166,9 +166,9 @@ class Skp extends MY_Controller {
 						$jenis = explode(",",$i_jenis[$kk]);
 						$bentuk = explode(",",$i_bentuk[$kk]);
 						if($i != ""){
-							$data['bahanbaku']['i'][$k]['asal_bahanbaku']=$i;
-							$data['bahanbaku']['i'][$k]['jenis_bahanbaku']=$jenis[$k];
-							$data['bahanbaku']['i'][$k]['bentuk_bahanbaku']=$bentuk[$k];
+							$data['bahanbaku']['i'][$k]['asal_bahanbaku']=parse_to_comma($i, '~');
+							$data['bahanbaku']['i'][$k]['jenis_bahanbaku']=parse_to_comma($jenis[$k], '~');
+							$data['bahanbaku']['i'][$k]['bentuk_bahanbaku']=parse_to_comma($bentuk[$k], '~');
 							$data['bahanbaku']['i'][$k]['kategori_bahanbaku']='import';
 							$data['bahanbaku']['i'][$k]['skp_id']=$skpid;
 						}
@@ -776,5 +776,9 @@ class Skp extends MY_Controller {
 				unlink($oldPath);
 			}
 		}
+	}
+
+	public function parse_to_comma($str, $symbol) {
+		return str_replace($symbol, ',', $str);
 	}
 }

@@ -92,6 +92,9 @@
 												<div class="col-sm-4">
 													<input type="text" required group-field="tangkapan0" class="form-control mb10" name="t_bentuk[]" placeholder="Bentuk Ikan">
 												</div>
+												<div class="col-sm-12">
+													<span class="info-mini-red">Isi semua jenis ikan, dipisah dengan tanda koma (,) contoh: Lele, Cakalang, Selar</span>
+												</div>
 											</div>
 										</div>
 										<div class="col-sm-1">
@@ -117,6 +120,9 @@
 												<div class="col-sm-4">
 													<input type="text" group-field="budidaya0" class="form-control mb10" name="b_bentuk[]" placeholder="Bentuk Ikan" required>
 												</div>
+												<div class="col-sm-12">
+													<span class="info-mini-red">Isi semua jenis ikan, dipisah dengan tanda koma (,) contoh: Lele, Cakalang, Selar</span>
+												</div>
 											</div>
 										</div>
 										<div class="col-sm-1">
@@ -141,6 +147,9 @@
 												</div>
 												<div class="col-sm-4">
 													<input type="text" group-field="import0" class="form-control mb10" name="i_bentuk[]" placeholder="Bentuk Ikan" required>
+												</div>
+												<div class="col-sm-12">
+													<span class="info-mini-red">Isi semua jenis ikan, dipisah dengan tanda koma (,) contoh: Lele, Cakalang, Selar</span>
 												</div>
 											</div>
 										</div>
