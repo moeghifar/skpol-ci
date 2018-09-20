@@ -266,7 +266,7 @@ class Auth extends MY_Controller {
 					'subject' 	=> 'Notifikasi Reset Password SKP - Online',
 					'message' 	=> 'Permintaan reset password anda sudah kami terima, Password baru anda : '.$newPass,
 					'from'		=> 'skpolp2hp@gmail.com',
-					'to'		=> $this->input->post('email')
+					'to'		=> $this->input->post('alamat_email')
 				);
 				$this->_send_email($conf);
 				// inform user
