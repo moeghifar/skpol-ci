@@ -540,7 +540,7 @@ class Home extends MY_Controller {
 		redirect(site_url('auth'));
 	}
 
-	private function test_send_mail($rec) {
+	public function test_send_mail($rec) {
 		$conf = array(
 			'subject' 	=> 'Notifikasi SKP - Online',
 			'message' 	=> 'hi guys! email dari skp online.',
