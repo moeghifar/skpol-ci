@@ -360,7 +360,7 @@
                 </div>
                 <!-- FILE Sertifikat Pengolah Ikan -->
                 <div class="form-group">
-                    <label class="control-label col-sm-3">File Sertifikat Pengolah Ikan</label>
+                    <label class="control-label col-sm-3">File Sertifikat Pengolah Ikan bagi QC/QA</label>
                     <div class="col-sm-9" id="filesertifikatpengolahikan_upi">
 						<div class="col-sm-3" style="padding-left: 0px;">
                             <?php

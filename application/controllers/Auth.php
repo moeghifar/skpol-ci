@@ -276,7 +276,7 @@ class Auth extends MY_Controller {
 				// inform user
 				$this->nyast->notif_create_notification('Mohon maaf, Alamat email tidak terdaftar!','Reset Password Gagal');
 			}
-			redirect(site_url('auth/registrasi'));
+			redirect(site_url('auth/login'));
 		}
 	}
 }

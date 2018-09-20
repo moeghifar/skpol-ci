@@ -82,10 +82,6 @@ class MY_Controller extends CI_Controller {
 		->subject($subject)
 		->message($body)
 		->send();
-		//var_dump($result);
-		//echo '<br />';
-		//echo $this->email->print_debugger();
-		//exit;
 	}
 
 	public function show404(){

@@ -32,7 +32,6 @@
 										$labelClass = "label-danger";
 									}
 								?>
-								
 								<tr>
 									<td><input name="penjadwalan_dinas[]" value="<?=$k['idtbl_skp']?>" type="checkbox" /></td>
 									<td><?=$i?></td>

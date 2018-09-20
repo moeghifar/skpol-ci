@@ -29,16 +29,16 @@
 								</select>
 							</div>
 							<div class="col-lg-6">
-								<select class="form-control" name="omzet">
+								<select class="form-control input-md" name="omzet">
 									<option>Omzet Tahunan</option>
 									<?php
 										$st = array('<2.5'=>'< 2.5 Milyar','2.5 - 50'=>'2.5 Milyar - 50 Milyar','> 50'=>'> 50 Milyar'); foreach($st as $k => $v){
-												if($upi[0]['omzet_upi'] == $k){
-													echo '<option selected value="'.$k.'">'.$v.'</option>';
-												}else{
-													echo '<option value="'.$k.'">'.$v.'</option>';
-												}
+											if($upi[0]['omzet_upi'] == $k){
+												echo '<option selected value="'.$k.'">'.$v.'</option>';
+											}else{
+												echo '<option value="'.$k.'">'.$v.'</option>';
 											}
+										}
 									?>
 								</select>
 							</div>
