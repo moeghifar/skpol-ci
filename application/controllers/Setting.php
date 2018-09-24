@@ -3,10 +3,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Setting extends MY_Controller {
 
+	private $session_user_name;
+	private $session_user_email;
+	private $session_user_id;
+	private $session_user_level;
+
 	function __construct(){
 		parent::__construct();
-		//$this->nyast->auth_check_session_page();
+		$this->nyast->auth_check_session_page();
 		$this->load->model('model_setting');
+		
+		$this->session_user_name = $this->session->userdata($this->session_prefix.'-username');
+		$this->session_user_email = $this->session->userdata($this->session_prefix.'-useremail');
+		$this->session_user_id = $this->session->userdata($this->session_prefix.'-userid');
+		$this->session_user_level = $this->session->userdata($this->session_prefix.'-userlevel');
 	}
 
 	public function index()
@@ -106,8 +116,9 @@ class Setting extends MY_Controller {
 
 	public function action_update_setting(){
 		if($this->input->post('submit') != null){
-			$cek = $this->check_username_email($this->input->post('username'),$this->input->post('email'),$this->input->post('id_user'));
-			if($cek === true){
+			// $check should match session-id with submission
+			$cek = $this->check_session_submission($this->input->post('username'), $this->input->post('email'), $this->input->post('id_user'));
+			if($cek){
 				$data['user'] = array(
 					'username' 		=> $this->input->post('username'),
 					'email' 		=> $this->input->post('email')
@@ -120,7 +131,7 @@ class Setting extends MY_Controller {
 				$this->nyast->notif_create_notification('Selamat Perubahan Berhasil','Berhasil');
 				redirect(site_url('setting'));
 			}else{
-				$this->nyast->notif_create_notification($cek,'Gagal');
+				$this->nyast->notif_create_notification("Permintaan Update Data Pengguna Gagal",'Gagal');
 				redirect(site_url('setting'));
 			}
 		}else{
@@ -141,6 +152,14 @@ class Setting extends MY_Controller {
 			}elseif($get[0]['username']==$u){
 				return 'Username Sudah Terdaftar';
 			}
+		}
+	}
+
+	public function check_session_submission($u, $e, $i) {
+		if ($u == $this->session_user_name && $e == $this->session_user_email && $i == $this->session_user_id) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 }

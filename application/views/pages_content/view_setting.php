@@ -3,10 +3,10 @@
         <!-- Form horizontal layout striped -->
 		<?php
 			echo form_open(site_url('setting/action_update_setting/'),array("class"=>"form-setting form-horizontal form-bordered panel panel-default","method"=>"post"))
-		 ?>
+        ?>
             <!--Produk-->
             <div class="panel-heading text-center">
-                <h3 class="panel-title">Email</h3>
+                <h3 class="panel-title">Setting Data Pengguna</h3>
             </div>
             <div class="panel-body">
                 <div class="form-group">
@@ -29,7 +29,7 @@
                     <label class="control-label col-sm-3">Password Baru</label>
                     <div class="col-sm-9">
                         <div class="col-sm-4" style="padding-left: 0px;">
-                            <input type="password" class="form-control">
+                            <input type="password" class="form-control" name="password">
                         </div>
                     </div>
                 </div>
