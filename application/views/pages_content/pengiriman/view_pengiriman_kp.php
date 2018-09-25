@@ -7,7 +7,7 @@
 					<a href="" style="padding:5px 25px;" class="btn btn-success btn-sm disabled" data-toggle="modal" data-target="#modalCheckboxTwo" data-formclass="form-penjadwalan-dinas">Kirim SKP</a>
 				</div>
 			</div>
-			<div class="panel-body">
+		 	<div class="panel-body table-responsive">
 				<form action="" method="POST" class="form-penjadwalan-dinas">
 					<table class="table table-striped table-bordered" id="table-checkbox">
 						<thead>

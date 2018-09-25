@@ -8,7 +8,7 @@
 					<div class="panel-heading">
 						<h3 class="panel-title">Detail History SKP</h3>
 					</div>
-					<div class="panel-body">
+					<div class="panel-body table-responsive">
 						<a class="btn btn-sm btn-primary mb10" href="<?=site_url('home')?>"><i class="ico ico-arrow-left"></i> Kembali</a>
 						<table class="table table-striped table-bordered">
 							<thead>
@@ -127,7 +127,7 @@
 					<div class="panel-heading">
 						<h3 class="panel-title">Daftar Proses Pengajuan SKP</h3>
 					</div>
-					<div class="panel-body">
+					<div class="panel-body table-responsive">
 						<table class="table table-striped table-bordered" id="table-list-unsortable">
 							<thead>
 								<tr>
@@ -188,7 +188,7 @@
 		            <div class="panel-heading">
 		                <h3 class="panel-title">Daftar SKP Terbit (Softcopy sudah di upload)</h3>
 		            </div>
-		            <div class="panel-body">
+		            <div class="panel-body table-responsive">
 		                <table class="table table-striped table-bordered" id="table-list-unsortable">
 		                    <thead>
 		                        <tr>

@@ -14,7 +14,7 @@
 			<div class="panel-heading">
 				<h3 class="panel-title">Daftar Video Pendukung</h3>
 			</div>
-			<div class="panel-body">
+			<div class="panel-body table-responsive">
 				<table class="table table-striped table-bordered">
 					<thead>
 						<tr>
@@ -55,7 +55,7 @@
 			<div class="panel-heading">
 				<h3 class="panel-title">Daftar File Pendukung</h3>
 			</div>
-			<div class="panel-body">
+			<div class="panel-body table-responsive">
 				<table class="table table-striped table-bordered">
 					<thead>
 						<tr>

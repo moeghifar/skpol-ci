@@ -4,7 +4,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Daftar SKP Terbit</h3>
             </div>
-            <div class="panel-body">
+            <div class="panel-body table-responsive">
                 <table class="table table-striped table-bordered" id="table-list-unsortable">
                     <thead>
                         <tr>

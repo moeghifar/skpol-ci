@@ -5,7 +5,7 @@
 				<h3 class="panel-title">Tabel Produk </h3>
 				<div class="panel-toolbar text-right"><a href="" class="btn btn-primary pull-right" data-toggle="modal" data-target="#tambah-modal">Tambah Produk</a></div>
 			</div>
-			<div class="panel-body">
+		 	<div class="panel-body table-responsive">
 				<table class="table table-striped table-bordered" id="table-list-unsortable">
 					<thead>
 						<tr>

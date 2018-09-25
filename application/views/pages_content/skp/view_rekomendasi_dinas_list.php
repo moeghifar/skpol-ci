@@ -5,7 +5,7 @@
 				<h3 class="panel-title">Daftar Rekomendasi SKP</h3>
 				<div class="panel-toolbar text-right"><a href="" style="padding:5px 25px;" class="btn btn-success btn-sm pull-right disabled" data-toggle="modal" data-target="#modalCheckbox" data-formclass="form-surat-rekomendasi">Edit Surat Rekomendasi</a></div>
 			</div>
-			<div class="panel-body">
+			<div class="panel-body table-responsive">
 				<form action="" method="POST" class="form-surat-rekomendasi">
 					<table class="table table-striped table-bordered" id="table-checkbox">
 						<thead>

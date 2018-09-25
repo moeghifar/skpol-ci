@@ -14,7 +14,7 @@
 					?>
 				</div>
 			</div>
-			<div class="panel-body">
+			<div class="panel-body table-responsive">
 				<form class="form-update-ttd">
 					<table class="table table-striped table-bordered" id="table-checkbox">
 						<thead>

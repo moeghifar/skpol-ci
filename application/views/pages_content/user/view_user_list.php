@@ -5,7 +5,7 @@
                 <h3 class="panel-title">Daftar User</h3>
                 <div class="panel-toolbar text-right"><a href="" style="padding:5px 25px;" class="btn btn-primary btn-sm pull-right" data-toggle="modal" data-target="#modaltambah"><i class="ico-user-plus2"></i> Tambah</a></div>
             </div>
-            <div class="panel-body">
+            <div class="panel-body table-responsive">
                 <table class="table table-striped table-bordered" id="table-list-unsortable">
                     <thead>
                         <tr>
