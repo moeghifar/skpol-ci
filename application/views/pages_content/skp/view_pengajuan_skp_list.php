@@ -7,7 +7,7 @@
 				<div class="panel-toolbar text-right"><a href="" id="jadwalSekaligus" style="padding:5px 25px;" class="btn btn-success btn-sm pull-right disabled" data-toggle="modal" data-target="#modalCheckbox" data-formclass="form-penjadwalan-dinas">PEMBINAAN</a></div>
 				<?php } ?>
 			</div>
-			<div class="panel-body">
+			<div class="panel-body table-responsive">
 				<form action="" method="POST" class="form-penjadwalan-dinas">
 					<table class="table table-striped table-bordered" id="table-checkbox">
 						<thead>

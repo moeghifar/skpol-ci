@@ -139,6 +139,7 @@ class Model_skp extends CI_Model {
 	}
 
 	function _get_rekomendasi_skp($id = null, $idp = null){
+		$this->db->reset_query();
 		$this->db->order_by('idtbl_skp','desc');
 		if ($id != null) {
 			if ($idp == null) {
@@ -151,6 +152,53 @@ class Model_skp extends CI_Model {
 				$q = $this->db->get_where('view_skp_kunjungan',array('status_skp'=>'kunjungan-selesai-dinas','status_kunjungan'=>'Kunjungan Selesai','uker_kunjungan'=>'dinas'));
 			}else{
 				$q = $this->db->get_where('view_skp_kunjungan',array('status_skp'=>'kunjungan-selesai-dinas','status_kunjungan'=>'Kunjungan Selesai','uker_kunjungan'=>'dinas', 'kode_provinsi'=>$idp));
+			}
+		}
+		return $q->result_array();
+	}
+
+	function _get_rekomendasi_skp_nonview($id = null, $idp = null){
+		$this->db->reset_query();
+		$query = "SELECT 
+				skp.idtbl_skp, 
+				upi.nama_upi, 
+				prod.namaind_produk, 
+				skp.permohonan_skp,
+				prov.nama_provinsi,
+				k.idtbl_kunjungan,
+				k.tgl_rekomendasi,
+				k.rekomendasi_kunjungan,
+				k.date_updated,
+				k.tgl_kunjungan
+			FROM 
+				tbl_upi upi,
+				tbl_skp skp, 
+				tbl_produk prod,
+				tbl_provinsi prov,
+				tbl_kunjungan k
+			WHERE
+				skp.upi_id = upi.idtbl_upi AND
+				skp.produk_id = prod.idtbl_produk AND
+				upi.provinsi_upi = prov.id_provinsi AND
+				skp.idtbl_skp = k.skp_id AND 
+				skp.status_skp = 'kunjungan-selesai-dinas' AND
+				k.status_kunjungan = 'Kunjungan Selesai' AND
+				k.uker_kunjungan = 'dinas'";
+		if ($id != null) {
+			if ($idp == null) {
+				$fixQuery = $query.' AND skp.idtbl_skp = ? ORDER BY k.tgl_rekomendasi, k.date_updated, k.tgl_kunjungan, skp.idtbl_skp DESC';
+				$q = $this->db->query($fixQuery, $id);
+			}else{
+				$fixQuery = $query.' AND prov.kode_provinsi = ? AND skp.idtbl_skp = ? ORDER BY k.tgl_rekomendasi, k.date_updated, k.tgl_kunjungan, skp.idtbl_skp DESC';
+				$q = $this->db->query($fixQuery, $idp, $id);
+			}
+		}else{
+			if ($idp == null) {
+				$fixQuery = $query.' ORDER BY k.tgl_rekomendasi, k.date_updated, k.tgl_kunjungan, skp.idtbl_skp DESC';
+				$q = $this->db->query($fixQuery);
+			}else{
+				$fixQuery = $query.' AND prov.kode_provinsi = ? ORDER BY k.tgl_rekomendasi, k.date_updated, k.tgl_kunjungan, skp.idtbl_skp DESC';
+				$q = $this->db->query($fixQuery, $idp);
 			}
 		}
 		return $q->result_array();

@@ -413,7 +413,7 @@ class Skp extends MY_Controller {
 			$data['page_title'] = 'Daftar Rekomendasi SKP oleh Dinas';
 			$data['content'] = 'pages_content/skp/view_rekomendasi_list';
 			$data['alurproses']	= $this->model_skp->_get_alur_proses();
-			$data['rekomendasi'] = $this->model_skp->_get_rekomendasi_skp();
+			$data['rekomendasi'] = $this->model_skp->_get_rekomendasi_skp_nonview();
 			foreach ($data['rekomendasi'] as $k => $v) {
 				$skpid = $v['idtbl_skp'];
 				$getRevisi = $this->model_skp->_check_revisi_rekomendasi($skpid);

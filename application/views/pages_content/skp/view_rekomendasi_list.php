@@ -9,42 +9,56 @@
 					<a href="" style="padding:5px 25px;" class="btn btn-primary btn-sm disabled" data-toggle="modal" data-target="#modalCheckbox" data-formclass="form-penjadwalan-dinas">SUPERVISI</a>
 				</div>
 			</div>
-			<div class="panel-body">
+			<div class="panel-body table-responsive">
 				<form action="" method="POST" class="form-penjadwalan-dinas">
-					<table class="table table-striped table-bordered" id="table-checkbox">
-						<thead>
-							<tr>
-								<th>
-									<input name="select_all" id="example-select-all" type="checkbox" />
-								</th>
-								<th>#</th>
-								<th>Nama Upi</th>
-								<th>Provinsi</th>
-								<th>Tanggal Kunjungan Dinas</th>
-								<th>File Rekomendasi</th>
-								<th>Nama Produk</th>
-								<th>Info Revisi</th>
-								<th style="width:40px;">View</th>
-							</tr>
-						</thead>
-						<tbody>
-							<?php $i=1; foreach($rekomendasi as $k){ ?>
+					<div class="">
+						<table class="table table-striped table-bordered" id="table-checkbox">
+							<thead>
 								<tr>
-									<td><input name="supervisi[]" value="<?=$k['idtbl_skp'].'-'.$k['idtbl_kunjungan']?>" type="checkbox" /></td>
-									<td><?=$i?></td>
-									<td><?=$k['nama_upi']?></td>
-									<td><?=$k['nama_provinsi']?></td>
-									<td><?=date("d-m-Y", strtotime($k['tgl_kunjungan']))?></td>
-									<td><a class="btn btn-xs btn-inverse" href="<?=base_url($k['rekomendasi_kunjungan'])?>" target="_blank"><i class="ico ico-file"></i> Lihat File</a></td>
-									<td><?=$k['namaind_produk']?></td>
-									<td><?=$k['info_revisi']?></td>
-									<td>
-										<a class="btn btn-sm btn-xs btn-primary" href="<?php echo base_url('skp/detail_rekomendasi_skp/'.$k['idtbl_skp']);?>"><i class="ico ico-search"></i>Lihat Detail</a>
-									</td>
+									<th>
+										<input name="select_all" id="example-select-all" type="checkbox" />
+									</th>
+									<th>#</th>
+									<th>Nama Upi</th>
+									<th>Provinsi</th>
+									<th>Tanggal Upload Rekomendasi</th>
+									<th>File Rekomendasi</th>
+									<th>Nama Produk</th>
+									<th>Jenis Pengajuan</th>
+									<th>Info Revisi</th>
+									<th style="width:40px;">View</th>
 								</tr>
-							<?php $i++; } ?>
-						</tbody>
-					</table>
+							</thead>
+							<tbody>
+								<?php 
+									$i=1; foreach($rekomendasi as $k){ 
+										$labelClass = "label-info";
+										if ($k['permohonan_skp'] == "Baru") {
+											$labelClass = "label-danger";
+										}
+								?>
+									<tr>
+										<td><input name="supervisi[]" value="<?=$k['idtbl_skp'].'-'.$k['idtbl_kunjungan']?>" type="checkbox" /></td>
+										<td><?=$i?></td>
+										<td><?=$k['nama_upi']?></td>
+										<td><?=$k['nama_provinsi']?></td>
+										<td><?=date("d-m-Y", strtotime($k['tgl_kunjungan']))?></td>
+										<td><a class="btn btn-xs btn-inverse" href="<?=base_url($k['rekomendasi_kunjungan'])?>" target="_blank"><i class="ico ico-file"></i> Lihat File</a></td>
+										<td><?=$k['namaind_produk']?></td>
+										<td>
+											<span class="label <?php echo $labelClass; ?>">
+												<?php echo $k['permohonan_skp']; ?>
+											</span>
+										</td>
+										<td><?=$k['info_revisi']?></td>
+										<td>
+											<a class="btn btn-sm btn-xs btn-primary" href="<?php echo base_url('skp/detail_rekomendasi_skp/'.$k['idtbl_skp']);?>"><i class="ico ico-search"></i>Lihat Detail</a>
+										</td>
+									</tr>
+								<?php $i++; } ?>
+							</tbody>
+						</table>
+					</div>
 				</form>
 			</div>
 		</div>
