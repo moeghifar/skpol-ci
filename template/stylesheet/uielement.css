@@ -71,11 +71,13 @@
 }
 .logo-figure {
   width: 32px;
+  margin-right: 12px;
   background-image: url("../image/logo/logo-figure.png");
   background-repeat: no-repeat;
   background-position: 0px 8px;
   -webkit-background-size: 32px 32px;
           background-size: 32px 32px;
+        
 }
 .logo-figure + .logo-text {
   margin-left: -13px;
