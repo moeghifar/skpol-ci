@@ -354,6 +354,7 @@
 									</div>
 								</span>
 							</div>
+                            <span class="info-mini-red">*Maksimum ukuran file upload 4MB</span>
                         </div>
                         <div class="col-sm-3">
                             <input type="button" class="btn btn-inverse" data-path="file/upi/file_extra" data-file="filektp_upi" data-id="<?=$upi[0]['idtbl_upi']?>" data-tbl="upi" name="submit" id="ajax_upload_file" value="Simpan File">
@@ -385,6 +386,7 @@
 									</div>
 								</span>
 							</div>
+                            <span class="info-mini-red">*Maksimum ukuran file upload 4MB</span>
                         </div>
                         <div class="col-sm-3">
                             <input type="button" class="btn btn-inverse" data-path="file/upi/file_extra" data-file="filesertifikatpengolahikan_upi" data-id="<?=$upi[0]['idtbl_upi']?>" data-tbl="upi" name="submit" id="ajax_upload_file" value="Simpan File">
@@ -416,6 +418,7 @@
 									</div>
 								</span>
 							</div>
+                            <span class="info-mini-red">*Maksimum ukuran file upload 4MB</span>
                         </div>
                         <div class="col-sm-3">
                             <input type="button" class="btn btn-inverse" data-path="file/upi/file_extra" data-file="filesptpajak_upi" data-id="<?=$upi[0]['idtbl_upi']?>" data-tbl="upi" name="submit" id="ajax_upload_file" value="Simpan File">
@@ -447,6 +450,7 @@
 									</div>
 								</span>
 							</div>
+                            <span class="info-mini-red">*Maksimum ukuran file upload 4MB</span>
                         </div>
                         <div class="col-sm-3">
                             <input type="button" class="btn btn-inverse" data-path="file/upi/file_extra" data-file="filesewamenyewa_upi" data-id="<?=$upi[0]['idtbl_upi']?>" data-tbl="upi" name="submit" id="ajax_upload_file" value="Simpan File">
@@ -478,6 +482,7 @@
 									</div>
 								</span>
 							</div>
+                            <span class="info-mini-red">*Maksimum ukuran file upload 4MB</span>
                         </div>
                         <div class="col-sm-3">
                             <input type="button" class="btn btn-inverse" data-path="file/upi/file_extra" data-file="filehiulobsterrajungankepiting_upi" data-id="<?=$upi[0]['idtbl_upi']?>" data-tbl="upi" name="submit" id="ajax_upload_file" value="Simpan File">
@@ -509,6 +514,7 @@
 									</div>
 								</span>
 							</div>
+                            <span class="info-mini-red">*Maksimum ukuran file upload 4MB</span>
                         </div>
                         <div class="col-sm-3">
                             <input type="button" class="btn btn-inverse" data-path="file/upi/file_extra" data-file="filenib_upi" data-id="<?=$upi[0]['idtbl_upi']?>" data-tbl="upi" name="submit" id="ajax_upload_file" value="Simpan File">
