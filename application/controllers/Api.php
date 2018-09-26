@@ -21,7 +21,7 @@ class Api extends MY_Controller {
 				$config['file_name'] 		= $post['file_field'].'-'.$post['file_tbl'].'-'.$post['file_id'];
 				$config['allowed_types'] 	= 'pdf|jpeg|jpg';
 				$config['overwrite']		= true;
-	            $config['max_size']        	= 0; // unlimited file upload
+	            $config['max_size']        	= 4100; // unlimited file upload
 				if (isset($_FILES[$name_attr]['name'])) {
 				    if (0 < $_FILES[$name_attr]['error']) {
 				        echo 'Error during file upload' . $_FILES[$name_attr]['error'];

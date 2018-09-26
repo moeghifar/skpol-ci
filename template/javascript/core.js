@@ -897,4 +897,16 @@
 		modal.find('input[type=hidden]').val(url);
 	});
 
+    var fr = $( "html" ).hasClass( "filereader" );
+    var fs = $( "html" ).hasClass( "filesystem" );
+    if (!fr && !fs) {
+        /* replace all html */
+        var msg = "<div style='text-align:center'>"
+            +"<h3>Mohon maaf browser anda tidak support</h3>"
+            +"<h4>Harap gunakan Browser Chrome/Mozilla Firefox <br/>"
+            +"atau update browser Chrome/Mozilla Firefox anda ke versi terbaru</h4>"
+            +"</div>";
+        $("html").html(msg);
+    }
+
 }));

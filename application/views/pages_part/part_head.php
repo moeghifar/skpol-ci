@@ -31,6 +31,8 @@
 <!--/ Theme stylesheet : optional -->
 
 <!-- modernizr script -->
-<script type="text/javascript" src="<?php echo site_url('template/plugins/modernizr/js/modernizr.js');?>"></script>
+<!-- <script type="text/javascript" src="<?php echo site_url('template/plugins/modernizr/js/modernizr.js');?>"></script> -->
+<!-- modernizr check file and filesystem api -->
+<script type="text/javascript" src="<?php echo site_url('template/plugins/modernizr/js/modernizr-new.js');?>"></script>
 <!--/ modernizr script -->
 <!-- END STYLESHEETS -->
