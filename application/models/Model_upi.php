@@ -188,7 +188,7 @@ class Model_upi extends CI_Model {
 				$q = $this->db->query($sql, $id);
 			}
 		} else {
-			$sql .= "ORDER BY user_id DESC";
+			$sql .= " ORDER BY user_id DESC";
 			$q = $this->db->query($sql);
 		}
 		return $q->result_array();
