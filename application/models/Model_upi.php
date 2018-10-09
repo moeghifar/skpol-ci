@@ -168,6 +168,32 @@ class Model_upi extends CI_Model {
 
 	// query without view
 
+	function _get_upi_revisi_non_view($id = null, $idp = null) {
+		$sql = "SELECT 
+			upi.*,
+			user.email as user_email,
+			user.level as user_level,
+			user.login_status as user_login_status,
+			p.nama_provinsi
+		FROM tbl_upi upi, tbl_user user, tbl_provinsi p, tbl_rejected ur
+		WHERE p.id_provinsi = upi.provinsi_upi
+		AND user.id_user = upi.user_id
+		AND ur.upi_id = upi.idtbl_upi";
+		if($id != null) {
+			if($idp != null) {
+				$sql .= " AND idtbl_upi = ? AND p.kode_provinsi = ?";
+				$q = $this->db->query($sql, $id, $idp);
+			} else {
+				$sql .= " AND idtbl_upi = ?";
+				$q = $this->db->query($sql, $id);
+			}
+		} else {
+			$sql .= "ORDER BY user_id DESC";
+			$q = $this->db->query($sql);
+		}
+		return $q->result_array();
+	}
+
 	function _get_upi_detail($upi_id) {
 		$sql = "SELECT 
 			upi.*,

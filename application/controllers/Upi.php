@@ -88,7 +88,6 @@ class Upi extends MY_Controller {
 				// if revisi data upi
 				if(null!=$this->input->post('alasan')){
 					$data['alasan'] = array(
-						'id_rejected' 	=> '',
 						'alasan'		=> $this->input->post('alasan'),
 						'upi_id'		=> $idupi
 					);
@@ -134,7 +133,7 @@ class Upi extends MY_Controller {
 		}else{
 			if($this->level == 'upi'){
                 if($this->global_alert != ""){
-                    $data['upi']       = $this->model_upi->_get_upi_revisi($this->session->userdata($this->session_prefix.'-upiid'));
+                    $data['upi']       = $this->model_upi->_get_upi_revisi_non_view($this->session->userdata($this->session_prefix.'-upiid'));
                 } else {
                     $data['upi']	   = $this->model_upi->_get_upi_detail($this->session->userdata($this->session_prefix.'-upiid'));
                 }
@@ -156,9 +155,9 @@ class Upi extends MY_Controller {
 	public function view_upi_revisi(){
 		$data['page_title'] = 'Daftar UPI Perlu Revisi';
 		if($this->level=='dinas'){
-    		$data['upi']		= $this->model_upi->_get_upi_revisi(null,$this->session->userdata($this->session_prefix.'-userkodeprovinsi'));
+    		$data['upi']		= $this->model_upi->_get_upi_revisi_non_view(null,$this->session->userdata($this->session_prefix.'-userkodeprovinsi'));
     	}else{
-    		$data['upi']		= $this->model_upi->_get_upi_revisi();
+    		$data['upi']		= $this->model_upi->_get_upi_revisi_non_view();
     	}
 		$data['content'] 	= 'pages_content/upi/view_upi_revisi';
         $this->load->view('index',$data);
@@ -168,9 +167,9 @@ class Upi extends MY_Controller {
 	{
 		$data['page_title'] = 'Detail UPI Revisi';
         if($this->level=='dinas'){
-    		$data['upi']		= $this->model_upi->_get_upi_revisi($id,$this->session->userdata($this->session_prefix.'-userkodeprovinsi'));
+    		$data['upi']		= $this->model_upi->_get_upi_revisi_non_view($id,$this->session->userdata($this->session_prefix.'-userkodeprovinsi'));
     	}else{
-    		$data['upi']		= $this->model_upi->_get_upi_revisi($id);
+    		$data['upi']		= $this->model_upi->_get_upi_revisi_non_view($id);
     	}
 		$data['content'] = 'pages_content/upi/view_upi_detail';
         $data['prev_page'] = site_url('upi/view_upi_revisi');
