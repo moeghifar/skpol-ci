@@ -17,23 +17,27 @@ $(document).ready(function(){
         formData.append('file_tbl', dataTbl);
         formData.append('file_field', dataFile);
         formData.append(nameAttr, fileData);
-        $.ajax({
-            url: BASE_URL+'api/file_upload/',
-            dataType: 'text',
-            cache: false,
-            contentType: false,
-            processData: false,
-            data: formData,
-            type: 'post',
-            beforeSend: function(){
-                ini.addClass('disabled');
-                ini.val('Uploading....');
-            }
-        }).done(function(response){
-            alert(response);
-            location.reload();
-        }).error(function(response){
-            console.log(response);
-        });
+        if (fileData.size > 1024 * 1024 * 4) {
+            alert("Ukuran file melebihi batas 4MB");
+        } else {
+            $.ajax({
+                url: BASE_URL+'api/file_upload/',
+                dataType: 'text',
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: formData,
+                type: 'post',
+                beforeSend: function(){
+                    ini.addClass('disabled');
+                    ini.val('Uploading....');
+                }
+            }).done(function(response){
+                alert(response);
+                location.reload();
+            }).error(function(response){
+                console.log(response);
+            });
+        }
     });
 });
