@@ -171,6 +171,7 @@ class Model_upi extends CI_Model {
 	function _get_upi_revisi_non_view($id = null, $idp = null) {
 		$sql = "SELECT 
 			upi.*,
+			ur.*,
 			user.email as user_email,
 			user.level as user_level,
 			user.login_status as user_login_status,
