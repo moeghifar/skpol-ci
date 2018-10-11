@@ -74,7 +74,15 @@
 										}
 										?>
 									</td>
-									<td><?=$this->nyast->date_indo_format($s['tgl_tandatangan'])?></td>
+									<td>
+										<?php 
+											$ttd = '0000-00-00';
+											if (isset($s['tgl_tandatangan'])) {
+												$ttd = $s['tgl_tandatangan'];
+											}
+											$this->nyast->date_indo_format($ttd);
+										?>
+									</td>
 									<td>
 										<a class="btn btn-xs btn-primary" target="_blank" href="<?php echo base_url('skp/print_skp/'.$s['idtbl_skp'].'/'.$s['noseri_skp_terbit']);?>"><i class="ico ico-print"></i> Print</a>
 									</td>

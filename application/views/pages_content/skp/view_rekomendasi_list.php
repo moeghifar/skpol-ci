@@ -42,7 +42,7 @@
 										<td><?=$i?></td>
 										<td><?=$k['nama_upi']?></td>
 										<td><?=$k['nama_provinsi']?></td>
-										<td><?=date("d-m-Y", strtotime($k['tgl_kunjungan']))?></td>
+										<td><?=date("d-m-Y", strtotime($k['tgl_rekomendasi']))?></td>
 										<td><a class="btn btn-xs btn-inverse" href="<?=base_url($k['rekomendasi_kunjungan'])?>" target="_blank"><i class="ico ico-file"></i> Lihat File</a></td>
 										<td><?=$k['namaind_produk']?></td>
 										<td>
