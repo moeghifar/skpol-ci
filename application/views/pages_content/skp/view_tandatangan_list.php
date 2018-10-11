@@ -77,7 +77,7 @@
 									<td>
 										<?php 
 											$ttd = '0000-00-00';
-											if (isset($s['tgl_tandatangan'])) {
+											if (!empty($s['tgl_tandatangan'])) {
 												$ttd = $s['tgl_tandatangan'];
 											}
 											$this->nyast->date_indo_format($ttd);
