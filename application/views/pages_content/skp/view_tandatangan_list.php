@@ -80,7 +80,7 @@
 											if (!empty($s['tgl_tandatangan'])) {
 												$ttd = $s['tgl_tandatangan'];
 											}
-											$this->nyast->date_indo_format($ttd);
+											echo $this->nyast->date_indo_format($ttd);
 										?>
 									</td>
 									<td>
