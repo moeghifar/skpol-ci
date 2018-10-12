@@ -10,15 +10,19 @@ $(document).ready(function(){
                 nib: word
             };
             console.log(JSON.stringify(ajaxData));
-            $.ajax({
-                method: "POST",
-                contentType: 'application/json',
-                headers : {
-                    'Content-Type': 'application/json'
+            var settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "https://oss.kkp.go.id/api_oss_kkp.php",
+                "method": "POST",
+                "headers": {
+                  "Content-Type": "application/json",
+                  "cache-control": "no-cache"
                 },
-                url: ajaxUri,
-                data: JSON.stringify(ajaxData)
-            }).done(function(resp){
+                "processData": false,
+                "data": JSON.stringify(ajaxData)
+            }
+            $.ajax({settings}).done(function(resp){
                 console.log(res);
                 alert('check ok');
             }).error(function(resp){
@@ -27,3 +31,20 @@ $(document).ready(function(){
         }
     });
 });
+
+function OpenOptions(ajaxUri) {
+    $.ajax({
+        method: "OPTIONS",
+        contentType: 'application/json',
+        headers : {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods':'POST, GET, OPTIONS',
+            'Access-Control-Max-Age':1000
+        },
+        url: ajaxUri,
+    }).done(function(resp){
+        console.log("open options fine!");
+        console.log(resp);
+    });
+}
