@@ -414,7 +414,6 @@ class Skp extends MY_Controller {
 			$data['content'] = 'pages_content/skp/view_rekomendasi_list';
 			$data['alurproses']	= $this->model_skp->_get_alur_proses();
 			$data['rekomendasi'] = $this->model_skp->_get_rekomendasi_skp_nonview();
-			echo $this->db->last_query();
 			foreach ($data['rekomendasi'] as $k => $v) {
 				$skpid = $v['idtbl_skp'];
 				$getRevisi = $this->model_skp->_check_revisi_rekomendasi($skpid);
