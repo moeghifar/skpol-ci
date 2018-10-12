@@ -203,6 +203,37 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label class="control-label col-sm-3">NIB - Nomor Induk Berusaha</label>
+                    <div class="col-sm-9">
+                        <div class="col-sm-5" style="padding-left: 0px;">
+                            <input type="text" class="form-control mb10" name="nonib" value="<?=$upi[0]['nonib_upi']?>">
+                        </div>
+						<div class="col-sm-2" style="padding-left: 0px;">
+                            <?php
+                                if($upi[0]['filenib_upi'] != "" && file_exists('.'.$upi[0]['filenib_upi'])) {
+                                    $filenib = '<i class="ico ico-check" style="color:green"></i>';
+                                    $urlnib = base_url($upi[0]['filenib_upi']);
+                                } else {
+                                    $filenib = '<i class="ico ico-remove" style="color:red"></i>';
+                                    $urlnib = 'javascript:void(0)';
+                                }
+                            ?>
+                            <a  class="btn btn-block btn-default mb10" target="_blank" href="<?=$urlnib?>"><?php echo $filenib; ?> File NIB</a>
+							<input type="hidden" name="old_nib_path" value="<?=$upi[0]['filenib_upi']?>">
+						</div>
+						<div class="col-sm-5">
+							<div class="input-group">
+								<input name="file_name_nib" type="text" class="form-control" placeholder="Upload File NIB" for="file_nib" readonly>
+								<span class="input-group-btn">
+									<div class="btn btn-primary btn-file">
+										<span class="icon iconmoon-file-3"></span> Upload <input type="file" name="file_nib">
+									</div>
+								</span>
+							</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label class="control-label col-sm-3">No. NPWP</label>
                     <div class="col-sm-9">
                         <div class="col-sm-5" style="padding-left: 0px;">
@@ -486,38 +517,6 @@
                         </div>
                         <div class="col-sm-3">
                             <input type="button" class="btn btn-inverse" data-path="file/upi/file_extra" data-file="filehiulobsterrajungankepiting_upi" data-id="<?=$upi[0]['idtbl_upi']?>" data-tbl="upi" name="submit" id="ajax_upload_file" value="Simpan File">
-                        </div>
-                    </div>
-                </div>
-                <!-- FILE Nomor Induk Berusaha (NIB) -->
-                <div class="form-group">
-                    <label class="control-label col-sm-3">File Nomor Induk Berusaha</label>
-                    <div class="col-sm-9" id="filenib_upi">
-						<div class="col-sm-3" style="padding-left: 0px;">
-                            <?php
-                                if($upi[0]['filenib_upi'] != "" && file_exists('.'.$upi[0]['filenib_upi'])) {
-                                    $file = '<i class="ico ico-check" style="color:green"></i> ada';
-                                    $url = base_url($upi[0]['filenib_upi']);
-                                } else {
-                                    $file = '<i class="ico ico-remove" style="color:red"></i> belum ada';
-                                    $url = 'javascript:void(0)';
-                                }
-                            ?>
-                            <a  class="btn btn-block btn-default mb10" target="_blank" href="<?=$url?>"><?php echo $file; ?></a>
-						</div>
-						<div class="col-sm-6">
-							<div class="input-group">
-								<input name="file_name_nib" type="text" class="form-control" placeholder="Upload File Nomor Induk Berusaha" for="file_nib" readonly>
-								<span class="input-group-btn">
-									<div class="btn btn-primary btn-file">
-										<span class="icon iconmoon-file-3"></span> Pilih File <input type="file" name="file_nib">
-									</div>
-								</span>
-							</div>
-                            <span class="info-mini-red">*Maksimum ukuran file upload 4MB</span>
-                        </div>
-                        <div class="col-sm-3">
-                            <input type="button" class="btn btn-inverse" data-path="file/upi/file_extra" data-file="filenib_upi" data-id="<?=$upi[0]['idtbl_upi']?>" data-tbl="upi" name="submit" id="ajax_upload_file" value="Simpan File">
                         </div>
                     </div>
                 </div>

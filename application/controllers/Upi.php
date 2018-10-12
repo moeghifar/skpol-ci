@@ -146,7 +146,10 @@ class Upi extends MY_Controller {
         }else{
             $data['confirmed']  = true;
 		}
-        $data['js']         = 'template/javascript/backend/ajax.upload.js';
+        $data['js']         = array(
+			'template/javascript/backend/ajax.upload.js',
+			'template/javascript/backend/nib.check.js'
+		);
 		$data['provinsi']	= $this->model_upi->_get_provinsi();
 		$data['content']	= 'pages_content/upi/view_edit_detail';
         $this->load->view('index',$data);
