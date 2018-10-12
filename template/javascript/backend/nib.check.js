@@ -9,9 +9,16 @@ $(document).ready(function(){
                 par3: "CekNIBtf",
                 nib: word
             };
-            console.log(JSON.stringify(ajaxData));
-            $.post( ajaxUri, ajaxData).done(function( data ) {
-                alert( "Data Loaded: " + data );
+            $.post(ajaxUri, JSON.stringify(ajaxData)).done(function(resp) {
+                $('input[name=nonib]').css('border-color','green');
+                var msg = 'NIB Data Valid\n'
+                    + resp.data.detail_izin.nama_perseroan
+                    + '\nNO NPWP: ' 
+                    + resp.data.detail_izin.npwp_perseroan;
+                alert(msg);
+            }).fail(function(xhr) {
+                $('input[name=nonib]').css('border-color','red');
+                alert('Nomor Induk Berusaha tidak valid');
             });
         }
     });
