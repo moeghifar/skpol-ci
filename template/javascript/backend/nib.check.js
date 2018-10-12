@@ -13,7 +13,7 @@ $(document).ready(function(){
             var settings = {
                 "async": true,
                 "crossDomain": true,
-                "url": "https://oss.kkp.go.id/api_oss_kkp.php",
+                "url": "oss.kkp.go.id/api_oss_kkp.php",
                 "method": "POST",
                 "headers": {
                   "Content-Type": "application/json",
