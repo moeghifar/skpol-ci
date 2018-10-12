@@ -10,41 +10,9 @@ $(document).ready(function(){
                 nib: word
             };
             console.log(JSON.stringify(ajaxData));
-            var settings = {
-                "async": true,
-                "crossDomain": true,
-                "url": "oss.kkp.go.id/api_oss_kkp.php",
-                "method": "POST",
-                "headers": {
-                  "Content-Type": "application/json",
-                  "cache-control": "no-cache"
-                },
-                "processData": false,
-                "data": JSON.stringify(ajaxData)
-            }
-            $.ajax(settings).done(function(resp){
-                console.log(res);
-                alert('check ok');
-            }).error(function(resp){
-                console.log('check error');
+            $.post( ajaxUri, ajaxData).done(function( data ) {
+                alert( "Data Loaded: " + data );
             });
         }
     });
 });
-
-function OpenOptions(ajaxUri) {
-    $.ajax({
-        method: "OPTIONS",
-        contentType: 'application/json',
-        headers : {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods':'POST, GET, OPTIONS',
-            'Access-Control-Max-Age':1000
-        },
-        url: ajaxUri,
-    }).done(function(resp){
-        console.log("open options fine!");
-        console.log(resp);
-    });
-}
