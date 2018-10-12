@@ -22,7 +22,7 @@ $(document).ready(function(){
                 "processData": false,
                 "data": JSON.stringify(ajaxData)
             }
-            $.ajax({settings}).done(function(resp){
+            $.ajax(settings).done(function(resp){
                 console.log(res);
                 alert('check ok');
             }).error(function(resp){
